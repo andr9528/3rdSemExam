@@ -1,8 +1,13 @@
-﻿<!DOCTYPE HTML>
-<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
-<head>
-    <meta charset="utf-8" />
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="Default.aspx.cs" Inherits="_Default" %>
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
     <title></title>
+
+
+
     <script type="text/javascript">
         window.onload = function () {
             var chart = new CanvasJS.Chart("chartContainer",
@@ -51,9 +56,15 @@
         }
     </script>
     <script type="text/javascript" src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+
+
+
 </head>
 <body>
-    <div id="chartContainer" style="height: 300px; width: 100%;">
-    </div>
+    <div id="chartContainer" style="height: 300px; width: 100%;" />
+    <form id="form1" runat="server">
+        <div>
+        </div>
+    </form>
 </body>
 </html>
