@@ -13,12 +13,8 @@ namespace inCaptiva_Service
     public interface IInCaptivaService
     {
 
-        
-        
-        
-        
-        //[OperationContract]
-        //string GetData(int value);
+        [OperationContract]
+        string GetData(int value);
 
         //[OperationContract]
         //CompositeType GetDataUsingDataContract(CompositeType composite);

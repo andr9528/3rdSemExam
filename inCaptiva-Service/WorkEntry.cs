@@ -25,15 +25,27 @@ namespace inCaptive_Service
             }
         }
         public int TaskID { get; internal set; }
-        public string TimeUsed { get; internal set; }
+        public int WorkerID { get; internal set; }
+        public string TimeUsed { get; internal set; } // Days:Hours:Minutes
 
+        public WorkEntry(int taskID, int workerID)
+        {
+            lock (Lock)
+            {
+                StartTime = DateTime.Now;
+                TaskID = taskID;
+                WorkerID = workerID;
+            }
+        }
         public void EndShift()
         {
             lock (Lock)
             {
                 CompletedTime = DateTime.Now;
 
-                
+                TimeSpan Used = CompletedTime - StartTime;
+
+                TimeUsed = Used.Days + ":" + Used.Hours + ":" + Used.Minutes;
             }
             
         }

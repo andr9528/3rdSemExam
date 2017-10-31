@@ -11,5 +11,10 @@ namespace inCaptive_Service
         public static List<Worker> Workers = new List<Worker>();
         public static List<Task> Tasks = new List<Task>();
         public static List<Project> Projects = new List<Project>();
+        public static List<WorkEntry> WorkEntries = new List<WorkEntry>();
+
+        public static int HighestProjectID;
+        public static int HighestTaskID;
+        public static int HighestWorkerID;
     }
 }
