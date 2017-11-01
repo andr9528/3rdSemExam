@@ -26,15 +26,31 @@ namespace inCaptiva_Service
         }
         public int TaskID { get; internal set; }
         public int WorkerID { get; internal set; }
+        public int ID { get; internal set; }
         public string TimeUsed { get; internal set; } // Days:Hours:Minutes
 
-        public WorkEntry(int taskID, int workerID)
+        public WorkEntry(int taskID, int workerID, DateTime? start = null, int id = -1)
         {
             lock (Lock)
             {
-                StartTime = DateTime.Now;
+                if (start == null)
+                {
+                    StartTime = DateTime.Now; 
+                }
+                else
+                {
+                    StartTime = (DateTime)start;
+                }
                 TaskID = taskID;
                 WorkerID = workerID;
+                if (id == -1)
+                {
+                    lock (Repo.Lock)
+                    {
+                        Repo.HighestEntryID++;
+                        ID = Repo.HighestEntryID;
+                    }
+                }
             }
         }
         public void EndShift()
@@ -50,11 +66,11 @@ namespace inCaptiva_Service
         }
         public void StartBreak()
         {
-
+            throw new NotImplementedException();
         }
         public bool EndBreak()
         {
-
+            throw new NotImplementedException();
         }
     }
 }

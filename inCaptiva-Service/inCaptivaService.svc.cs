@@ -72,7 +72,57 @@ namespace inCaptiva_Service
             throw new NotImplementedException();
         }
 
-        public void WorkEntry(int workerID, int taskID)
+        public void NewWorkEntry(int workerID, int taskID)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void StartBreak(int workerID, int taskID)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void EndBreak(int workerID, int taskID)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void EditWorker(int workerID, string name = "")
+        {
+            throw new NotImplementedException();
+        }
+
+        public void EditWorkEntry(int entryID, DateTime? start = null, int workerID = -1, int taskID = -1)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void EditTask(int taskID, string description = "", DateTime? start = null, int projectID = -1)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void EditProject(int projectID, string name = "", DateTime? start = null)
+        {
+            throw new NotImplementedException();
+        }
+
+        public string DeleteWorker(int workerID)
+        {
+            throw new NotImplementedException();
+        }
+
+        public string DeleteWorkEntry(int workerID)
+        {
+            throw new NotImplementedException();
+        }
+
+        public string DeleteTask(int workerID)
+        {
+            throw new NotImplementedException();
+        }
+
+        public string DeleteProject(int workerID)
         {
             throw new NotImplementedException();
         }

@@ -11,15 +11,22 @@ namespace inCaptiva_Service
         public int ID { get; internal set; }
         public string Name { get; internal set; }
 
-        public Worker(string name)
+        public Worker(string name, int id = -1)
         {
             lock (Lock)
             {
                 Name = name;
-                lock (Repo.Lock)
+                if (id == -1)
                 {
-                    Repo.HighestWorkerID++;
-                    ID = Repo.HighestWorkerID;
+                    lock (Repo.Lock)
+                    {
+                        Repo.HighestWorkerID++;
+                        ID = Repo.HighestWorkerID;
+                    } 
+                }
+                else
+                {
+                    ID = id;
                 }
             }
         }

@@ -29,17 +29,31 @@ namespace inCaptiva_Service
         public string Description { get; internal set; }
         public string TimeUsed { get; internal set; } // Days:Hours:Minutes
 
-        public Task(int projectID, string description)
+        public Task(int projectID, string description, int id = -1, DateTime? start = null)
         {
             lock (Lock)
             {
-                StartTime = DateTime.Now;
+                if (start == null)
+                {
+                    StartTime = DateTime.Now;
+                }
+                else
+                {
+                    StartTime = (DateTime)start;
+                }
                 ProjectID = projectID;
                 Description = description;
-                lock (Repo.Lock)
+                if (id == -1)
                 {
-                    Repo.HighestTaskID++;
-                    ID = Repo.HighestTaskID;
+                    lock (Repo.Lock)
+                    {
+                        Repo.HighestTaskID++;
+                        ID = Repo.HighestTaskID;
+                    } 
+                }
+                else
+                {
+                    ID = id;
                 }
             }
         }

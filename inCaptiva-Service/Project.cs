@@ -27,16 +27,30 @@ namespace inCaptiva_Service
         public int ID { get; internal set; }
         public string Name { get; internal set; }
         public string TimeUsed { get; internal set; } // Days:Hours:Minutes
-        public Project(string name)
+        public Project(string name, int id = -1, DateTime? start = null)
         {
             lock (Lock)
             {
-                StartTime = DateTime.Now;
-                Name = name;
-                lock (Repo.Lock)
+                if (start == null)
                 {
-                    Repo.HighestProjectID++;
-                    ID = Repo.HighestProjectID;
+                    StartTime = DateTime.Now;
+                }
+                else
+                {
+                    StartTime = (DateTime)start;
+                }
+                Name = name;
+                if (id == -1)
+                {
+                    lock (Repo.Lock)
+                    {
+                        Repo.HighestProjectID++;
+                        ID = Repo.HighestProjectID;
+                    } 
+                }
+                else
+                {
+                    ID = id;
                 }
             }
         }

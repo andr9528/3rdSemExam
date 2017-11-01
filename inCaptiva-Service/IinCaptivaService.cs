@@ -38,7 +38,39 @@ namespace inCaptiva_Service
         void NewTask(string description);
 
         [OperationContract]
-        void WorkEntry(int workerID, int taskID);
+        void NewWorkEntry(int workerID, int taskID);
+
+        [OperationContract]
+        void StartBreak(int workerID, int taskID);
+
+        [OperationContract]
+        void EndBreak(int workerID, int taskID);
+
+        [OperationContract]
+        void EditWorker(int workerID, string name = "");
+
+        [OperationContract]
+        void EditWorkEntry(int entryID, DateTime? start = null, int workerID = -1, int taskID = -1);
+
+        [OperationContract]
+        void EditTask(int taskID, string description = "", DateTime? start = null, int projectID = -1);
+
+        [OperationContract]
+        void EditProject(int projectID, string name = "", DateTime? start = null);
+
+        [OperationContract]
+        string DeleteWorker(int workerID);
+
+        [OperationContract]
+        string DeleteWorkEntry(int workerID);
+
+        [OperationContract]
+        string DeleteTask(int workerID);
+
+        [OperationContract]
+        string DeleteProject(int workerID);
+
+
 
         //[OperationContract]
         //CompositeType GetDataUsingDataContract(CompositeType composite);
