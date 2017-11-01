@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-namespace inCaptive_Service
+namespace inCaptiva_Service
 {
     public class WorkEntry
     {
@@ -47,7 +47,14 @@ namespace inCaptive_Service
 
                 TimeUsed = Used.Days + ":" + Used.Hours + ":" + Used.Minutes;
             }
-            
+        }
+        public void StartBreak()
+        {
+
+        }
+        public bool EndBreak()
+        {
+
         }
     }
 }

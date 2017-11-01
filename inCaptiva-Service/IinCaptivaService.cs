@@ -14,7 +14,31 @@ namespace inCaptiva_Service
     {
 
         [OperationContract]
-        string GetData(int value);
+        string GetData(int value); // test method
+
+        [OperationContract]
+        List<Task> GetTasks();
+
+        [OperationContract]
+        List<Worker> GetWorkers();
+
+        [OperationContract]
+        List<Project> GetProjects();
+
+        [OperationContract]
+        List<WorkEntry> GetWorkEntries();
+
+        [OperationContract]
+        void NewWorker(string name);
+
+        [OperationContract]
+        void NewProject(string name);
+
+        [OperationContract]
+        void NewTask(string description);
+
+        [OperationContract]
+        void WorkEntry(int workerID, int taskID);
 
         //[OperationContract]
         //CompositeType GetDataUsingDataContract(CompositeType composite);
