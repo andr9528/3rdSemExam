@@ -8,6 +8,8 @@ namespace inCaptiva_Service
     public class Task
     {
         private object Lock;
+        private int[] timeUsed = new int[3];
+
         public int ProjectID { get; internal set; }
         public DateTime StartTime { get; internal set; }
         public DateTime CompletedTime { get; internal set; }
@@ -27,7 +29,14 @@ namespace inCaptiva_Service
         }
         public int ID { get; internal set; }
         public string Description { get; internal set; }
-        public string TimeUsed { get; internal set; } // Days:Hours:Minutes
+        public int[] TimeUsed
+        {
+            get
+            {
+                DetermineTimeUsed();
+                return timeUsed;
+            }
+        }
 
         public Task(int projectID, string description, int id = -1, DateTime? start = null)
         {
@@ -63,7 +72,6 @@ namespace inCaptiva_Service
             {
                 CompletedTime = DateTime.Now;
             }
-            DetermineTimeUsed();
         }
         public void DetermineTimeUsed()
         {
@@ -84,14 +92,9 @@ namespace inCaptiva_Service
                 {
                     foreach (var entry in Entries)
                     {
-                        string[] split = entry.TimeUsed.Split(':');
-                        int.TryParse(split[0], out int dummyDays);
-                        int.TryParse(split[1], out int dummyHours);
-                        int.TryParse(split[2], out int dummyMinutes);
-
-                        Days += dummyDays;
-                        Hours += dummyHours;
-                        Minutes += dummyMinutes;
+                        Days += entry.TimeUsed[0];
+                        Hours += entry.TimeUsed[1];
+                        Minutes += entry.TimeUsed[2];
                     }
 
                     while (Minutes >= 60)
@@ -105,7 +108,9 @@ namespace inCaptiva_Service
                         Hours -= 24;
                     }
 
-                    TimeUsed = Days + ":" + Hours + ":" + Minutes;
+                    timeUsed[0] = Days;
+                    timeUsed[1] = Hours;
+                    timeUsed[2] = Minutes;
                 }
                 else
                 {
