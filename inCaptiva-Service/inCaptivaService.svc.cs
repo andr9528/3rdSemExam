@@ -59,17 +59,29 @@ namespace inCaptiva_Service
 
         public void NewProject(string name)
         {
-            throw new NotImplementedException();
+            Project project = new Project(name);
+            lock (Repo.Lock)
+            {
+                Repo.Projects.Add(project);
+            }
         }
 
-        public void NewTask(string description)
+        public void NewTask(int projectID, string description) // kills the service
         {
-            throw new NotImplementedException();
+            Task task = new Task(projectID, description);
+            lock (Repo.Lock)
+            {
+                Repo.Tasks.Add(task);
+            }
         }
 
         public void NewWorker(string name)
         {
-            throw new NotImplementedException();
+            Worker worker = new Worker(name);
+            lock (Repo.Lock)
+            {
+                Repo.Workers.Add(worker);
+            }
         }
 
         public void NewWorkEntry(int workerID, int taskID)
