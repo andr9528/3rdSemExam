@@ -1,14 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.Serialization;
 using System.Web;
 
 namespace inCaptiva_Service
 {
+    [DataContract]
     public class Worker
     {
         private object Lock;
+        [DataMember]
         public int ID { get; internal set; }
+        [DataMember]
         public string Name { get; internal set; }
 
         public Worker(string name, int id = -1)

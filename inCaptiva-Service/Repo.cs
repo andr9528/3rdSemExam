@@ -7,7 +7,7 @@ namespace inCaptiva_Service
 {
     public static class Repo
     {
-        public static object Lock;
+        public static object Lock = new object();
 
         public static List<Worker> Workers = new List<Worker>();
         public static List<Task> Tasks = new List<Task>();

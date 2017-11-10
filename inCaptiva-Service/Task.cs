@@ -1,18 +1,23 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.Serialization;
 using System.Web;
 
 namespace inCaptiva_Service
 {
+    [DataContract]
     public class Task
     {
         private object Lock;
         private int[] timeUsed = new int[3];
-
+        [DataMember]
         public int ProjectID { get; internal set; }
+        [DataMember]
         public DateTime StartTime { get; internal set; }
+        [DataMember]
         public DateTime CompletedTime { get; internal set; }
+        [DataMember]
         public bool Status
         {
             get
@@ -27,8 +32,11 @@ namespace inCaptiva_Service
                 }
             }
         }
+        [DataMember]
         public int ID { get; internal set; }
+        [DataMember]
         public string Description { get; internal set; }
+        [DataMember]
         public int[] TimeUsed
         {
             get
