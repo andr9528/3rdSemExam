@@ -9,7 +9,7 @@ namespace inCaptiva_Service
     [DataContract]
     public class WorkEntry
     {
-        private object Lock;
+        private object Lock = new object();
         private int[] timeUsed = new int[3];
         [DataMember]
         public DateTime StartTime { get; internal set; }

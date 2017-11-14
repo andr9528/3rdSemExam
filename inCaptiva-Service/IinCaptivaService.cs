@@ -12,7 +12,6 @@ namespace inCaptiva_Service
     [ServiceContract]
     public interface IInCaptivaService
     {
-
         [OperationContract]
         string GetData(int value); // test method
 
@@ -70,6 +69,8 @@ namespace inCaptiva_Service
         [OperationContract]
         string DeleteProject(int workerID);
 
+        [OperationContract]
+        void ResetService(string password);
 
 
         //[OperationContract]

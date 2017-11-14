@@ -139,17 +139,22 @@ namespace inCaptiva_Service
             throw new NotImplementedException();
         }
 
-        //public CompositeType GetDataUsingDataContract(CompositeType composite)
-        //{
-        //    if (composite == null)
-        //    {
-        //        throw new ArgumentNullException("composite");
-        //    }
-        //    if (composite.BoolValue)
-        //    {
-        //        composite.StringValue += "Suffix";
-        //    }
-        //    return composite;
-        //}
+        public void ResetService(string password)
+        {
+            if (password == "Nagakaborous")
+            {
+                lock (Repo.Lock)
+                {
+                    Repo.Projects.Clear();
+                    Repo.Tasks.Clear();
+                    Repo.WorkEntries.Clear();
+                    Repo.Workers.Clear();
+                    Repo.HighestEntryID = 0;
+                    Repo.HighestProjectID = 0;
+                    Repo.HighestTaskID = 0;
+                    Repo.HighestWorkerID = 0;
+                }
+            }
+        }
     }
 }

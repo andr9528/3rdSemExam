@@ -1,0 +1,222 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:tns="http://tempuri.org/" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:i0="http://schemas.microsoft.com/ws/2005/02/mex/bindings" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="InCaptivaService" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:import namespace="http://schemas.microsoft.com/ws/2005/02/mex/bindings" location="http://incaptiva.azurewebsites.net/InCaptivaService.svc?wsdl=wsdl0" />
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://tempuri.org/Imports">
+      <xsd:import schemaLocation="http://incaptiva.azurewebsites.net/InCaptivaService.svc?xsd=xsd0" namespace="http://tempuri.org/" />
+      <xsd:import schemaLocation="http://incaptiva.azurewebsites.net/InCaptivaService.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+      <xsd:import schemaLocation="http://incaptiva.azurewebsites.net/InCaptivaService.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/inCaptiva_Service" />
+      <xsd:import schemaLocation="http://incaptiva.azurewebsites.net/InCaptivaService.svc?xsd=xsd3" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="IInCaptivaService_GetData_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetData" />
+  </wsdl:message>
+  <wsdl:message name="IInCaptivaService_GetData_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetDataResponse" />
+  </wsdl:message>
+  <wsdl:message name="IInCaptivaService_GetTasks_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetTasks" />
+  </wsdl:message>
+  <wsdl:message name="IInCaptivaService_GetTasks_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetTasksResponse" />
+  </wsdl:message>
+  <wsdl:message name="IInCaptivaService_GetWorkers_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetWorkers" />
+  </wsdl:message>
+  <wsdl:message name="IInCaptivaService_GetWorkers_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetWorkersResponse" />
+  </wsdl:message>
+  <wsdl:message name="IInCaptivaService_GetProjects_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetProjects" />
+  </wsdl:message>
+  <wsdl:message name="IInCaptivaService_GetProjects_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetProjectsResponse" />
+  </wsdl:message>
+  <wsdl:message name="IInCaptivaService_GetWorkEntries_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetWorkEntries" />
+  </wsdl:message>
+  <wsdl:message name="IInCaptivaService_GetWorkEntries_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetWorkEntriesResponse" />
+  </wsdl:message>
+  <wsdl:message name="IInCaptivaService_NewWorker_InputMessage">
+    <wsdl:part name="parameters" element="tns:NewWorker" />
+  </wsdl:message>
+  <wsdl:message name="IInCaptivaService_NewWorker_OutputMessage">
+    <wsdl:part name="parameters" element="tns:NewWorkerResponse" />
+  </wsdl:message>
+  <wsdl:message name="IInCaptivaService_NewProject_InputMessage">
+    <wsdl:part name="parameters" element="tns:NewProject" />
+  </wsdl:message>
+  <wsdl:message name="IInCaptivaService_NewProject_OutputMessage">
+    <wsdl:part name="parameters" element="tns:NewProjectResponse" />
+  </wsdl:message>
+  <wsdl:message name="IInCaptivaService_NewTask_InputMessage">
+    <wsdl:part name="parameters" element="tns:NewTask" />
+  </wsdl:message>
+  <wsdl:message name="IInCaptivaService_NewTask_OutputMessage">
+    <wsdl:part name="parameters" element="tns:NewTaskResponse" />
+  </wsdl:message>
+  <wsdl:message name="IInCaptivaService_NewWorkEntry_InputMessage">
+    <wsdl:part name="parameters" element="tns:NewWorkEntry" />
+  </wsdl:message>
+  <wsdl:message name="IInCaptivaService_NewWorkEntry_OutputMessage">
+    <wsdl:part name="parameters" element="tns:NewWorkEntryResponse" />
+  </wsdl:message>
+  <wsdl:message name="IInCaptivaService_StartBreak_InputMessage">
+    <wsdl:part name="parameters" element="tns:StartBreak" />
+  </wsdl:message>
+  <wsdl:message name="IInCaptivaService_StartBreak_OutputMessage">
+    <wsdl:part name="parameters" element="tns:StartBreakResponse" />
+  </wsdl:message>
+  <wsdl:message name="IInCaptivaService_EndBreak_InputMessage">
+    <wsdl:part name="parameters" element="tns:EndBreak" />
+  </wsdl:message>
+  <wsdl:message name="IInCaptivaService_EndBreak_OutputMessage">
+    <wsdl:part name="parameters" element="tns:EndBreakResponse" />
+  </wsdl:message>
+  <wsdl:message name="IInCaptivaService_EditWorker_InputMessage">
+    <wsdl:part name="parameters" element="tns:EditWorker" />
+  </wsdl:message>
+  <wsdl:message name="IInCaptivaService_EditWorker_OutputMessage">
+    <wsdl:part name="parameters" element="tns:EditWorkerResponse" />
+  </wsdl:message>
+  <wsdl:message name="IInCaptivaService_EditWorkEntry_InputMessage">
+    <wsdl:part name="parameters" element="tns:EditWorkEntry" />
+  </wsdl:message>
+  <wsdl:message name="IInCaptivaService_EditWorkEntry_OutputMessage">
+    <wsdl:part name="parameters" element="tns:EditWorkEntryResponse" />
+  </wsdl:message>
+  <wsdl:message name="IInCaptivaService_EditTask_InputMessage">
+    <wsdl:part name="parameters" element="tns:EditTask" />
+  </wsdl:message>
+  <wsdl:message name="IInCaptivaService_EditTask_OutputMessage">
+    <wsdl:part name="parameters" element="tns:EditTaskResponse" />
+  </wsdl:message>
+  <wsdl:message name="IInCaptivaService_EditProject_InputMessage">
+    <wsdl:part name="parameters" element="tns:EditProject" />
+  </wsdl:message>
+  <wsdl:message name="IInCaptivaService_EditProject_OutputMessage">
+    <wsdl:part name="parameters" element="tns:EditProjectResponse" />
+  </wsdl:message>
+  <wsdl:message name="IInCaptivaService_DeleteWorker_InputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteWorker" />
+  </wsdl:message>
+  <wsdl:message name="IInCaptivaService_DeleteWorker_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteWorkerResponse" />
+  </wsdl:message>
+  <wsdl:message name="IInCaptivaService_DeleteWorkEntry_InputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteWorkEntry" />
+  </wsdl:message>
+  <wsdl:message name="IInCaptivaService_DeleteWorkEntry_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteWorkEntryResponse" />
+  </wsdl:message>
+  <wsdl:message name="IInCaptivaService_DeleteTask_InputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteTask" />
+  </wsdl:message>
+  <wsdl:message name="IInCaptivaService_DeleteTask_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteTaskResponse" />
+  </wsdl:message>
+  <wsdl:message name="IInCaptivaService_DeleteProject_InputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteProject" />
+  </wsdl:message>
+  <wsdl:message name="IInCaptivaService_DeleteProject_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteProjectResponse" />
+  </wsdl:message>
+  <wsdl:message name="IInCaptivaService_ResetService_InputMessage">
+    <wsdl:part name="parameters" element="tns:ResetService" />
+  </wsdl:message>
+  <wsdl:message name="IInCaptivaService_ResetService_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ResetServiceResponse" />
+  </wsdl:message>
+  <wsdl:portType name="IInCaptivaService">
+    <wsdl:operation name="GetData">
+      <wsdl:input wsaw:Action="http://tempuri.org/IInCaptivaService/GetData" message="tns:IInCaptivaService_GetData_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IInCaptivaService/GetDataResponse" message="tns:IInCaptivaService_GetData_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetTasks">
+      <wsdl:input wsaw:Action="http://tempuri.org/IInCaptivaService/GetTasks" message="tns:IInCaptivaService_GetTasks_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IInCaptivaService/GetTasksResponse" message="tns:IInCaptivaService_GetTasks_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetWorkers">
+      <wsdl:input wsaw:Action="http://tempuri.org/IInCaptivaService/GetWorkers" message="tns:IInCaptivaService_GetWorkers_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IInCaptivaService/GetWorkersResponse" message="tns:IInCaptivaService_GetWorkers_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetProjects">
+      <wsdl:input wsaw:Action="http://tempuri.org/IInCaptivaService/GetProjects" message="tns:IInCaptivaService_GetProjects_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IInCaptivaService/GetProjectsResponse" message="tns:IInCaptivaService_GetProjects_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetWorkEntries">
+      <wsdl:input wsaw:Action="http://tempuri.org/IInCaptivaService/GetWorkEntries" message="tns:IInCaptivaService_GetWorkEntries_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IInCaptivaService/GetWorkEntriesResponse" message="tns:IInCaptivaService_GetWorkEntries_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="NewWorker">
+      <wsdl:input wsaw:Action="http://tempuri.org/IInCaptivaService/NewWorker" message="tns:IInCaptivaService_NewWorker_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IInCaptivaService/NewWorkerResponse" message="tns:IInCaptivaService_NewWorker_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="NewProject">
+      <wsdl:input wsaw:Action="http://tempuri.org/IInCaptivaService/NewProject" message="tns:IInCaptivaService_NewProject_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IInCaptivaService/NewProjectResponse" message="tns:IInCaptivaService_NewProject_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="NewTask">
+      <wsdl:input wsaw:Action="http://tempuri.org/IInCaptivaService/NewTask" message="tns:IInCaptivaService_NewTask_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IInCaptivaService/NewTaskResponse" message="tns:IInCaptivaService_NewTask_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="NewWorkEntry">
+      <wsdl:input wsaw:Action="http://tempuri.org/IInCaptivaService/NewWorkEntry" message="tns:IInCaptivaService_NewWorkEntry_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IInCaptivaService/NewWorkEntryResponse" message="tns:IInCaptivaService_NewWorkEntry_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="StartBreak">
+      <wsdl:input wsaw:Action="http://tempuri.org/IInCaptivaService/StartBreak" message="tns:IInCaptivaService_StartBreak_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IInCaptivaService/StartBreakResponse" message="tns:IInCaptivaService_StartBreak_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="EndBreak">
+      <wsdl:input wsaw:Action="http://tempuri.org/IInCaptivaService/EndBreak" message="tns:IInCaptivaService_EndBreak_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IInCaptivaService/EndBreakResponse" message="tns:IInCaptivaService_EndBreak_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="EditWorker">
+      <wsdl:input wsaw:Action="http://tempuri.org/IInCaptivaService/EditWorker" message="tns:IInCaptivaService_EditWorker_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IInCaptivaService/EditWorkerResponse" message="tns:IInCaptivaService_EditWorker_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="EditWorkEntry">
+      <wsdl:input wsaw:Action="http://tempuri.org/IInCaptivaService/EditWorkEntry" message="tns:IInCaptivaService_EditWorkEntry_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IInCaptivaService/EditWorkEntryResponse" message="tns:IInCaptivaService_EditWorkEntry_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="EditTask">
+      <wsdl:input wsaw:Action="http://tempuri.org/IInCaptivaService/EditTask" message="tns:IInCaptivaService_EditTask_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IInCaptivaService/EditTaskResponse" message="tns:IInCaptivaService_EditTask_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="EditProject">
+      <wsdl:input wsaw:Action="http://tempuri.org/IInCaptivaService/EditProject" message="tns:IInCaptivaService_EditProject_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IInCaptivaService/EditProjectResponse" message="tns:IInCaptivaService_EditProject_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteWorker">
+      <wsdl:input wsaw:Action="http://tempuri.org/IInCaptivaService/DeleteWorker" message="tns:IInCaptivaService_DeleteWorker_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IInCaptivaService/DeleteWorkerResponse" message="tns:IInCaptivaService_DeleteWorker_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteWorkEntry">
+      <wsdl:input wsaw:Action="http://tempuri.org/IInCaptivaService/DeleteWorkEntry" message="tns:IInCaptivaService_DeleteWorkEntry_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IInCaptivaService/DeleteWorkEntryResponse" message="tns:IInCaptivaService_DeleteWorkEntry_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteTask">
+      <wsdl:input wsaw:Action="http://tempuri.org/IInCaptivaService/DeleteTask" message="tns:IInCaptivaService_DeleteTask_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IInCaptivaService/DeleteTaskResponse" message="tns:IInCaptivaService_DeleteTask_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteProject">
+      <wsdl:input wsaw:Action="http://tempuri.org/IInCaptivaService/DeleteProject" message="tns:IInCaptivaService_DeleteProject_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IInCaptivaService/DeleteProjectResponse" message="tns:IInCaptivaService_DeleteProject_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ResetService">
+      <wsdl:input wsaw:Action="http://tempuri.org/IInCaptivaService/ResetService" message="tns:IInCaptivaService_ResetService_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IInCaptivaService/ResetServiceResponse" message="tns:IInCaptivaService_ResetService_OutputMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:service name="InCaptivaService">
+    <wsdl:port name="MetadataExchangeHttpBinding_IInCaptivaService" binding="i0:MetadataExchangeHttpBinding_IInCaptivaService">
+      <soap12:address location="http://incaptiva.azurewebsites.net/InCaptivaService.svc/mex" />
+      <wsa10:EndpointReference>
+        <wsa10:Address>http://incaptiva.azurewebsites.net/InCaptivaService.svc/mex</wsa10:Address>
+      </wsa10:EndpointReference>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

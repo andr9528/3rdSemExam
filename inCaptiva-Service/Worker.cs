@@ -9,7 +9,7 @@ namespace inCaptiva_Service
     [DataContract]
     public class Worker
     {
-        private object Lock;
+        private object Lock = new object();
         [DataMember]
         public int ID { get; internal set; }
         [DataMember]

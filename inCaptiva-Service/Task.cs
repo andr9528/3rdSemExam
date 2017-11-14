@@ -9,7 +9,7 @@ namespace inCaptiva_Service
     [DataContract]
     public class Task
     {
-        private object Lock;
+        private object Lock = new object();
         private int[] timeUsed = new int[3];
         [DataMember]
         public int ProjectID { get; internal set; }
