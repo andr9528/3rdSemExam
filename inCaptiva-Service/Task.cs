@@ -12,11 +12,11 @@ namespace inCaptiva_Service
         private object Lock = new object();
         private int[] timeUsed = new int[3];
         [DataMember]
-        public int ProjectID { get; internal set; }
+        public int ProjectID { get; set; }
         [DataMember]
-        public DateTime StartTime { get; internal set; }
+        public DateTime StartTime { get; set; }
         [DataMember]
-        public DateTime CompletedTime { get; internal set; }
+        public DateTime CompletedTime { get; set; }
         [DataMember]
         public bool Status
         {
@@ -31,11 +31,12 @@ namespace inCaptiva_Service
                     return false;
                 }
             }
+            set { }
         }
         [DataMember]
-        public int ID { get; internal set; }
+        public int ID { get; set; }
         [DataMember]
-        public string Description { get; internal set; }
+        public string Description { get; set; }
         [DataMember]
         public int[] TimeUsed
         {
@@ -44,6 +45,7 @@ namespace inCaptiva_Service
                 DetermineTimeUsed();
                 return timeUsed;
             }
+            set { }
         }
 
         public Task(int projectID, string description, int id = -1, DateTime? start = null)

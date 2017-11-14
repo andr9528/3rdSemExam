@@ -11,9 +11,9 @@ namespace inCaptiva_Service
     {
         private object Lock = new object();
         [DataMember]
-        public int ID { get; internal set; }
+        public int ID { get; set; }
         [DataMember]
-        public string Name { get; internal set; }
+        public string Name { get; set; }
 
         public Worker(string name, int id = -1)
         {

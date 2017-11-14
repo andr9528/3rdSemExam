@@ -86,17 +86,31 @@ namespace inCaptiva_Service
 
         public void NewWorkEntry(int workerID, int taskID)
         {
-            throw new NotImplementedException();
+            WorkEntry entry = new WorkEntry(taskID, workerID);
+            lock (Repo.Lock)
+            {
+                Repo.WorkEntries.Add(entry);
+            }
         }
 
-        public void StartBreak(int workerID, int taskID)
+        public bool StartBreak(int workEntryID)
         {
-            throw new NotImplementedException();
+            WorkEntry entry;
+            lock (Repo.Lock)
+            {
+                entry = Repo.WorkEntries.Find(x => x.ID == workEntryID);
+            }
+            return entry.StartBreak();
         }
 
-        public void EndBreak(int workerID, int taskID)
+        public bool EndBreak(int workEntryID)
         {
-            throw new NotImplementedException();
+            WorkEntry entry;
+            lock (Repo.Lock)
+            {
+                entry = Repo.WorkEntries.Find(x => x.ID == workEntryID);
+            }
+            return entry.EndBreak();
         }
 
         public void EditWorker(int workerID, string name = "")
@@ -139,7 +153,7 @@ namespace inCaptiva_Service
             throw new NotImplementedException();
         }
 
-        public void ResetService(string password)
+        public bool ResetService(string password)
         {
             if (password == "Nagakaborous")
             {
@@ -154,7 +168,9 @@ namespace inCaptiva_Service
                     Repo.HighestTaskID = 0;
                     Repo.HighestWorkerID = 0;
                 }
+                return true;
             }
+            return false;
         }
     }
 }

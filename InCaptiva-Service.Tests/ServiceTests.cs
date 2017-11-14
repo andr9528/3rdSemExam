@@ -17,7 +17,7 @@ namespace InCaptiva_Service.Tests
         [TestCleanup]
         public void Cleanup()
         {
-            client.ResetService("Nagakaborous");
+            //client.ResetService("Nagakaborous");
             client.Close();
         }
 

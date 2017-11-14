@@ -11,6 +11,9 @@ namespace inCaptiva_Service
     {
         private object Lock = new object();
         private int[] timeUsed = new int[3];
+        private List<DateTime> StartBreaks = new List<DateTime>();
+        private List<DateTime> EndBreaks = new List<DateTime>();
+
         [DataMember]
         public DateTime StartTime { get; internal set; }
         [DataMember]
@@ -29,13 +32,14 @@ namespace inCaptiva_Service
                     return false;
                 }
             }
+            set { }
         }
         [DataMember]
-        public int TaskID { get; internal set; }
+        public int TaskID { get; set; }
         [DataMember]
-        public int WorkerID { get; internal set; }
+        public int WorkerID { get; set; }
         [DataMember]
-        public int ID { get; internal set; }
+        public int ID { get; set; }
         [DataMember]
         public int[] TimeUsed
         {
@@ -44,6 +48,7 @@ namespace inCaptiva_Service
                 DetermineTimeUsed();
                 return timeUsed;
             }
+            set { }
         }
 
         private void DetermineTimeUsed()
@@ -98,13 +103,24 @@ namespace inCaptiva_Service
                 CompletedTime = DateTime.Now;
             }
         }
-        public void StartBreak()
+        public bool StartBreak()
         {
-            throw new NotImplementedException();
+            if (StartBreaks.Count == EndBreaks.Count )
+            {
+                StartBreaks.Add(DateTime.Now);
+                return true;
+            }
+            return false;
+            
         }
         public bool EndBreak()
         {
-            throw new NotImplementedException();
+            if (EndBreaks.Count+1 == StartBreaks.Count)
+            {
+                EndBreaks.Add(DateTime.Now);
+                return true;
+            }
+            return false;
         }
     }
 }

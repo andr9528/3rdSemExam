@@ -40,10 +40,10 @@ namespace inCaptiva_Service
         void NewWorkEntry(int workerID, int taskID);
 
         [OperationContract]
-        void StartBreak(int workerID, int taskID);
+        bool StartBreak(int workEntryID);
 
         [OperationContract]
-        void EndBreak(int workerID, int taskID);
+        bool EndBreak(int workEntryID);
 
         [OperationContract]
         void EditWorker(int workerID, string name = "");
@@ -70,7 +70,7 @@ namespace inCaptiva_Service
         string DeleteProject(int workerID);
 
         [OperationContract]
-        void ResetService(string password);
+        bool ResetService(string password);
 
 
         //[OperationContract]
