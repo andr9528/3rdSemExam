@@ -1,13 +1,59 @@
 ﻿@model IEnumerable<InCaptivaService.Worker>
-@*@{
-    ViewData["Title"] = "Home Page";
-}*@
-<h1>Stuff</h1>
 
-<ul>
-    @foreach(InCaptivaService.Worker item in Model) {
-        <li>
-            @item.Name
-        </li>
+<style>
+    table, tr {
+        border: 1px solid black
     }
-</ul>
+
+    th, td {
+        padding: 5px
+    }
+</style>
+
+<fieldset>
+    <table style="width:10%">
+        <caption>Workers</caption>
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+        </tr>
+
+        @foreach(InCaptivaService.Worker item in Model) {
+            <tr>
+                <td>@item.ID</td>
+                <td>@item.Name</td>
+            </tr>
+        }
+    </table>
+    @using(Html.BeginForm()) {
+        <p>
+            Name: <input type="text" name="Name">
+        </p>
+        <p>
+            <button type="submit">Create Post</button>
+        </p>
+    }
+</fieldset>
+
+@*<table style="width:10%">
+        <caption>Projects</caption>
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Status</th>
+            <th>Start time</th>
+            <th>Time used</th>
+            <th>Completed time</th>
+        </tr>
+
+        @foreach(InCaptivaService.Project item in Model) {
+            <tr>
+                <td>@item.ID</td>
+                <td>@item.Name</td>
+                <td>@item.Status</td>
+                <td>@item.StartTime</td>
+                <td>@item.TimeUsed</td>
+                <td>@item.CompletedTime</td>
+            </tr>
+        }
+    </table>*@
