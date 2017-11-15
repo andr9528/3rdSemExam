@@ -45,38 +45,28 @@ namespace inCaptiva_Service
             }
             set { }
         }
-        public Project(string name, int id = -1, DateTime? start = null)
+        public Project(string name)
         {
             lock (Lock)
             {
-                if (start == null)
-                {
-                    StartTime = DateTime.Now;
-                }
-                else
-                {
-                    StartTime = (DateTime)start;
-                }
+
+                StartTime = DateTime.Now;
+
                 Name = name;
-                if (id == -1)
+
+                lock (Repo.Lock)
                 {
-                    lock (Repo.Lock)
-                    {
-                        Repo.HighestProjectID++;
-                        ID = Repo.HighestProjectID;
-                    } 
+                    Repo.HighestProjectID++;
+                    ID = Repo.HighestProjectID;
                 }
-                else
-                {
-                    ID = id;
-                }
+
             }
         }
         public void Completed()
         {
             lock (Lock)
             {
-                CompletedTime = DateTime.Now;  
+                CompletedTime = DateTime.Now;
             }
         }
         public void DetermineTimeUsed()

@@ -15,22 +15,16 @@ namespace inCaptiva_Service
         [DataMember]
         public string Name { get; set; }
 
-        public Worker(string name, int id = -1)
+        public Worker(string name)
         {
             lock (Lock)
             {
                 Name = name;
-                if (id == -1)
+
+                lock (Repo.Lock)
                 {
-                    lock (Repo.Lock)
-                    {
-                        Repo.HighestWorkerID++;
-                        ID = Repo.HighestWorkerID;
-                    } 
-                }
-                else
-                {
-                    ID = id;
+                    Repo.HighestWorkerID++;
+                    ID = Repo.HighestWorkerID;
                 }
             }
         }

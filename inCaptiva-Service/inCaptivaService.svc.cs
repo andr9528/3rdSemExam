@@ -19,42 +19,70 @@ namespace inCaptiva_Service
 
         public List<Project> GetProjects()
         {
-            List<Project> list;
-            lock (Repo.Lock)
+            try
             {
-                list = new List<Project>(Repo.Projects);
+                List<Project> list;
+                lock (Repo.Lock)
+                {
+                    list = new List<Project>(Repo.Projects);
+                }
+                return list;
             }
-            return list;
+            catch (Exception e)
+            {
+                throw new Exception("Something went wrong... - " + e.Message);
+            }
         }
 
         public List<Task> GetTasks()
         {
-            List<Task> list;
-            lock (Repo.Lock)
+            try
             {
-                list = new List<Task>(Repo.Tasks);
+                List<Task> list;
+                lock (Repo.Lock)
+                {
+                    list = new List<Task>(Repo.Tasks);
+                }
+                return list;
             }
-            return list;
+            catch (Exception e)
+            {
+                throw new Exception("Something went wrong... - " + e.Message);
+            }
         }
 
         public List<WorkEntry> GetWorkEntries()
         {
-            List<WorkEntry> list;
-            lock (Repo.Lock)
+            try
             {
-                list = new List<WorkEntry>(Repo.WorkEntries);
+                List<WorkEntry> list;
+                lock (Repo.Lock)
+                {
+                    list = new List<WorkEntry>(Repo.WorkEntries);
+                }
+                return list;
             }
-            return list;
+            catch (Exception e)
+            {
+                throw new Exception("Something went wrong... - " + e.Message);
+            }
         }
 
         public List<Worker> GetWorkers()
         {
-            List<Worker> list;
-            lock (Repo.Lock)
+            try
             {
-                list = new List<Worker>(Repo.Workers);
+                List<Worker> list;
+                lock (Repo.Lock)
+                {
+                    list = new List<Worker>(Repo.Workers);
+                }
+                return list;
             }
-            return list;
+            catch (Exception e)
+            {
+                throw new Exception("Something went wrong... - " + e.Message);
+            }
         }
 
         public void NewProject(string name)
@@ -66,7 +94,7 @@ namespace inCaptiva_Service
             }
         }
 
-        public void NewTask(int projectID, string description) // kills the service
+        public void NewTask(int projectID, string description)
         {
             Task task = new Task(projectID, description);
             lock (Repo.Lock)

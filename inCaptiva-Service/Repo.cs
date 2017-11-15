@@ -14,9 +14,9 @@ namespace inCaptiva_Service
         public static List<Project> Projects = new List<Project>();
         public static List<WorkEntry> WorkEntries = new List<WorkEntry>();
 
-        public static int HighestProjectID;
-        public static int HighestTaskID;
-        public static int HighestWorkerID;
-        public static int HighestEntryID;
+        public static int HighestProjectID = 0;
+        public static int HighestTaskID = 0;
+        public static int HighestWorkerID = 0;
+        public static int HighestEntryID = 0;
     }
 }

@@ -48,32 +48,23 @@ namespace inCaptiva_Service
             set { }
         }
 
-        public Task(int projectID, string description, int id = -1, DateTime? start = null)
+        public Task(int projectID, string description)
         {
             lock (Lock)
             {
-                if (start == null)
-                {
-                    StartTime = DateTime.Now;
-                }
-                else
-                {
-                    StartTime = (DateTime)start;
-                }
+
+                StartTime = DateTime.Now;
+
+
                 ProjectID = projectID;
                 Description = description;
-                if (id == -1)
+
+                lock (Repo.Lock)
                 {
-                    lock (Repo.Lock)
-                    {
-                        Repo.HighestTaskID++;
-                        ID = Repo.HighestTaskID;
-                    } 
+                    Repo.HighestTaskID++;
+                    ID = Repo.HighestTaskID;
                 }
-                else
-                {
-                    ID = id;
-                }
+
             }
         }
         public void Completed()

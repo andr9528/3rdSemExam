@@ -34,7 +34,7 @@ namespace inCaptiva_Service
         void NewProject(string name);
 
         [OperationContract]
-        void NewTask(int projectID, string description); // kills the service
+        void NewTask(int projectID, string description);
 
         [OperationContract]
         void NewWorkEntry(int workerID, int taskID);
