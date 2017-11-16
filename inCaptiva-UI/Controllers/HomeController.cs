@@ -14,10 +14,12 @@ namespace inCaptiva_UI.Controllers {
         }
 
         [HttpPost]
-        public IActionResult Index(InCaptivaService.Worker NewWorker) {
+        public async Task<IActionResult> Index(InCaptivaService.Worker NewWorker) {
             var service = new InCaptivaService.InCaptivaServiceClient();
-            service.NewWorkerAsync(NewWorker.Name);
-            return View();
+            await service.NewWorkerAsync(NewWorker.Name);
+
+            List<InCaptivaService.Worker> worker2 = await service.GetWorkersAsync();
+            return View(worker2);
         }
 
         public async Task<ActionResult> Project() {
@@ -27,10 +29,12 @@ namespace inCaptiva_UI.Controllers {
         }
 
         [HttpPost]
-        public IActionResult Project(InCaptivaService.Project project) {
+        public async Task<IActionResult> Project(InCaptivaService.Project project) {
             var service = new InCaptivaService.InCaptivaServiceClient();
-            service.NewProjectAsync(project.Name);
-            return View();
+            await service.NewProjectAsync(project.Name);
+            
+            List<InCaptivaService.Project> project2 = await service.GetProjectsAsync();
+            return View(project2);
         }
 
         public IActionResult Error() {

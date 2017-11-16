@@ -1,59 +1,51 @@
 ﻿@model IEnumerable<InCaptivaService.Worker>
-
-<style>
-    table, tr {
-        border: 1px solid black
-    }
-
-    th, td {
-        padding: 5px
-    }
-</style>
-
-<fieldset>
-    <table style="width:10%">
-        <caption>Workers</caption>
-        <tr>
-            <th>ID</th>
-            <th>Name</th>
-        </tr>
-
-        @foreach(InCaptivaService.Worker item in Model) {
-            <tr>
-                <td>@item.ID</td>
-                <td>@item.Name</td>
-            </tr>
-        }
-    </table>
-    @using(Html.BeginForm()) {
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+</head>
+<body>
+    <p>
+        @using(Html.BeginForm()) {
         <p>
             Name: <input type="text" name="Name">
+            <button type="submit">Add new employee</button>
         </p>
-        <p>
-            <button type="submit">Create Post</button>
-        </p>
-    }
-</fieldset>
-
-@*<table style="width:10%">
-        <caption>Projects</caption>
-        <tr>
-            <th>ID</th>
-            <th>Name</th>
-            <th>Status</th>
-            <th>Start time</th>
-            <th>Time used</th>
-            <th>Completed time</th>
-        </tr>
-
-        @foreach(InCaptivaService.Project item in Model) {
-            <tr>
-                <td>@item.ID</td>
-                <td>@item.Name</td>
-                <td>@item.Status</td>
-                <td>@item.StartTime</td>
-                <td>@item.TimeUsed</td>
-                <td>@item.CompletedTime</td>
-            </tr>
         }
-    </table>*@
+        </p>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.ID)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Name)
+                    </th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach(var item in Model) {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.ID)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Name)
+                        </td>
+                        <td>
+                            @Html.ActionLink("Edit","Edit",new { /* id=item.PrimaryKey */
+           }) |
+                            @Html.ActionLink("Details","Details",new { /* id=item.PrimaryKey */
+           }) |
+                            @Html.ActionLink("Delete","Delete",new { /* id=item.PrimaryKey */
+           })
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </body>
+</html>
