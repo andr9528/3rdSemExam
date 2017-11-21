@@ -56,14 +56,27 @@ namespace inCaptiva_Service
             lock (Lock)
             {
                 TimeSpan Used;
+                
 
                 if (Status)
                 {
-                    Used = (DateTime)CompletedTime - StartTime;
+                    DateTime startTime = new DateTime(StartTime.Year, StartTime.Month, StartTime.Day,
+                        StartTime.Hour, StartTime.Minute, StartTime.Second);
+                    DateTime completedTime = (DateTime)CompletedTime;
+                    completedTime = new DateTime(completedTime.Year, completedTime.Month, completedTime.Day,
+                        completedTime.Hour, completedTime.Minute, completedTime.Second);
+
+                    Used = completedTime - startTime;
                 }
                 else
                 {
-                    Used = DateTime.Now - StartTime;
+                    DateTime startTime = new DateTime(StartTime.Year, StartTime.Month, StartTime.Day,
+                        StartTime.Hour, StartTime.Minute, StartTime.Second);
+                    DateTime now = DateTime.Now;
+                    now = new DateTime(now.Year, now.Month, now.Day,
+                        now.Hour, now.Minute, now.Second);
+
+                    Used = now - startTime;
                 }
 
                 if (StartBreaks.Count == EndBreaks.Count)
@@ -80,7 +93,7 @@ namespace inCaptiva_Service
                         " - Failed to determine time used for Entry with ID of" + ID + " ");
 
                 }
-
+                
                 timeUsed = Used;
                
             }
@@ -91,14 +104,26 @@ namespace inCaptiva_Service
 
             for (int i = 0; i < StartBreaks.Count - a; i++)
             {
-                output += EndBreaks[i] - StartBreaks[i];
+                DateTime start = new DateTime(StartBreaks[i].Year, StartBreaks[i].Month, StartBreaks[i].Day,
+                    StartBreaks[i].Hour, StartBreaks[i].Minute, StartBreaks[i].Second);
+                DateTime end = new DateTime(EndBreaks[i].Year, EndBreaks[i].Month, EndBreaks[i].Day,
+                    EndBreaks[i].Hour, EndBreaks[i].Minute, EndBreaks[i].Second);
+
+                output += end - start;
             }
 
             if (a == 1)
             {
-                output += DateTime.Now - StartBreaks.LastOrDefault();
-            }
+                DateTime start = new DateTime(StartBreaks.LastOrDefault().Year, StartBreaks.LastOrDefault().Month,
+                    StartBreaks.LastOrDefault().Day, StartBreaks.LastOrDefault().Hour,
+                    StartBreaks.LastOrDefault().Minute, StartBreaks.LastOrDefault().Second);
+                DateTime now = DateTime.Now;
+                now = new DateTime(now.Year, now.Month, now.Day,
+                        now.Hour, now.Minute, now.Second);
 
+                output += now - start;
+            }
+            
             return output;
         }
 

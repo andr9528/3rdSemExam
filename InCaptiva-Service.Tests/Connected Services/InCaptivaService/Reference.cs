@@ -647,6 +647,12 @@ namespace InCaptiva_Service.Tests.InCaptivaService {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IInCaptivaService/DeleteProject", ReplyAction="http://tempuri.org/IInCaptivaService/DeleteProjectResponse")]
         System.Threading.Tasks.Task<bool> DeleteProjectAsync(int projectID);
         
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IInCaptivaService/EndWorkEntry", ReplyAction="http://tempuri.org/IInCaptivaService/EndWorkEntryResponse")]
+        bool EndWorkEntry(int entryID);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IInCaptivaService/EndWorkEntry", ReplyAction="http://tempuri.org/IInCaptivaService/EndWorkEntryResponse")]
+        System.Threading.Tasks.Task<bool> EndWorkEntryAsync(int entryID);
+        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IInCaptivaService/ResetService", ReplyAction="http://tempuri.org/IInCaptivaService/ResetServiceResponse")]
         bool ResetService(string password);
         
@@ -831,6 +837,14 @@ namespace InCaptiva_Service.Tests.InCaptivaService {
         
         public System.Threading.Tasks.Task<bool> DeleteProjectAsync(int projectID) {
             return base.Channel.DeleteProjectAsync(projectID);
+        }
+        
+        public bool EndWorkEntry(int entryID) {
+            return base.Channel.EndWorkEntry(entryID);
+        }
+        
+        public System.Threading.Tasks.Task<bool> EndWorkEntryAsync(int entryID) {
+            return base.Channel.EndWorkEntryAsync(entryID);
         }
         
         public bool ResetService(string password) {

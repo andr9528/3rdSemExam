@@ -70,6 +70,9 @@ namespace inCaptiva_Service
         bool DeleteProject(int projectID);
 
         [OperationContract]
+        bool EndWorkEntry(int entryID);
+
+        [OperationContract]
         bool ResetService(string password);
 
 

@@ -183,6 +183,15 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="EndWorkEntry">
+      <soap12:operation soapAction="http://tempuri.org/IInCaptivaService/EndWorkEntry" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="ResetService">
       <soap12:operation soapAction="http://tempuri.org/IInCaptivaService/ResetService" style="document" />
       <wsdl:input>

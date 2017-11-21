@@ -1,6 +1,7 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Collections.Generic;
+using System.Threading;
 
 namespace InCaptiva_Service.Tests
 {
@@ -38,11 +39,12 @@ namespace InCaptiva_Service.Tests
         public void CreateWorkEntry1()
         {
             client.NewWorkEntry(0, 0);
-            
+            Thread.Sleep(10000);
+            client.EndWorkEntry(client.GetWorkEntries()[client.GetWorkEntries().Count - 1].ID);
             List<InCaptivaService.WorkEntry> entries = client.GetWorkEntries();
-            InCaptivaService.WorkEntry entry = entries[0];
+            InCaptivaService.WorkEntry entry = entries[entries.Count-1];
 
-            
+            Assert.AreEqual(new TimeSpan(0, 0, 10), entry.TimeUsed);
 
         }
     }
