@@ -87,102 +87,377 @@ namespace inCaptiva_Service
 
         public bool NewProject(string name)
         {
-            Project project = new Project(name);
-            lock (Repo.Lock)
+            try
             {
-                Repo.Projects.Add(project);
+                Project project = new Project(name);
+                lock (Repo.Lock)
+                {
+                    Repo.Projects.Add(project);
+                }
+                return true;
             }
-            return true;
+            catch (Exception e)
+            {
+                throw new Exception("Something went wrong... - " + e.Message);
+            }
         }
 
         public bool NewTask(int projectID, string description)
         {
-            Task task = new Task(projectID, description);
-            lock (Repo.Lock)
+            try
             {
-                Repo.Tasks.Add(task);
+                Task task = new Task(projectID, description);
+                lock (Repo.Lock)
+                {
+                    Repo.Tasks.Add(task);
+                }
+                return true;
             }
-            return true;
+            catch (Exception e)
+            {
+                throw new Exception("Something went wrong... - " + e.Message);
+            }
         }
 
-        public bool NewWorker(string name)
+        public bool NewWorker(string name, string phoneNumber, string email, string jobDescription)
         {
-            Worker worker = new Worker(name);
-            lock (Repo.Lock)
+            try
             {
-                Repo.Workers.Add(worker);
+                if (!email.Contains('@'))
+                {
+                    throw new Exception("@");
+                }
+
+                Worker worker = new Worker(name, phoneNumber, email, jobDescription);
+                lock (Repo.Lock)
+                {
+                    Repo.Workers.Add(worker);
+                }
+                return true;
             }
-            return true;
+            catch (Exception e)
+            {
+                if (e.Message == "@")
+                {
+                    throw new Exception("Invalid Email - Missing a '@'");
+                }
+                throw new Exception("Something went wrong... - " + e.Message);
+            }
         }
 
         public bool NewWorkEntry(int workerID, int taskID)
         {
-            WorkEntry entry = new WorkEntry(taskID, workerID);
-            lock (Repo.Lock)
+            try
             {
-                Repo.WorkEntries.Add(entry);
+                WorkEntry entry = new WorkEntry(taskID, workerID);
+                lock (Repo.Lock)
+                {
+                    Repo.WorkEntries.Add(entry);
+                }
+                return true;
             }
-            return true;
+            catch (Exception e)
+            {
+                throw new Exception("Something went wrong... - " + e.Message);
+            }
         }
 
         public bool StartBreak(int workEntryID)
         {
-            WorkEntry entry;
-            lock (Repo.Lock)
+            try
             {
-                entry = Repo.WorkEntries.Find(x => x.ID == workEntryID);
+                WorkEntry entry;
+                lock (Repo.Lock)
+                {
+                    entry = Repo.WorkEntries.Find(x => x.ID == workEntryID);
+                }
+                return entry.StartBreak();
             }
-            return entry.StartBreak();
+            catch (NullReferenceException e)
+            {
+                throw new NullReferenceException("Did not find a work entry with that ID - " + e.Message);
+            }
+            catch (Exception e)
+            {
+                throw new Exception("Something went wrong... - " + e.Message);
+            }
         }
 
         public bool EndBreak(int workEntryID)
         {
-            WorkEntry entry;
-            lock (Repo.Lock)
+            try
             {
-                entry = Repo.WorkEntries.Find(x => x.ID == workEntryID);
+                WorkEntry entry;
+                lock (Repo.Lock)
+                {
+                    entry = Repo.WorkEntries.Find(x => x.ID == workEntryID);
+                }
+                return entry.EndBreak();
             }
-            return entry.EndBreak();
+            catch (NullReferenceException e)
+            {
+                throw new NullReferenceException("Did not find a work entry with that ID - " + e.Message);
+            }
+            catch (Exception e)
+            {
+                throw new Exception("Something went wrong... - " + e.Message);
+            }
         }
 
-        public void EditWorker(int workerID, string name = "")
+        public bool EditWorker(int workerID, string name = "", string phoneNumber = "", string email = "", string jobDescription = "")
         {
-            throw new NotImplementedException();
+            try
+            {
+                Worker worker;
+                int index;
+                lock (Repo.Lock)
+                {
+                    worker = Repo.Workers.Find(x => x.ID == workerID);
+                    index = Repo.Workers.FindIndex(X => X.ID == workerID);
+                }
+                if (name != "")
+                {
+                    worker.Name = name;
+                }
+                if (phoneNumber != "")
+                {
+                    worker.PhoneNumber = phoneNumber;
+                }
+                if (jobDescription != "")
+                {
+                    worker.JobDescription = jobDescription;
+                }
+                if (email != "")
+                {
+                    if (!email.Contains('@'))
+                    {
+                        throw new Exception("@");
+                    }
+                    worker.Email = email;
+                }
+                lock (Repo.Lock)
+                {
+                    Repo.Workers[index] = worker;
+                }
+                return true;
+            }
+            catch (NullReferenceException e)
+            {
+                throw new NullReferenceException("Did not find a worker with that ID - " + e.Message);
+            }
+            catch (Exception e)
+            {
+                if (e.Message == "@")
+                {
+                    throw new Exception("Invalid Email - Missing a '@'");
+                }
+                throw new Exception("Something went wrong... - " + e.Message);
+            }
         }
 
-        public void EditWorkEntry(int entryID, DateTime? start = null, int workerID = -1, int taskID = -1)
+        public bool EditWorkEntry(int entryID, DateTime? start = null, int workerID = -1, int taskID = -1, DateTime? completed = null)
         {
-            throw new NotImplementedException();
+            try
+            {
+                WorkEntry entry;
+                int index;
+                lock (Repo.Lock)
+                {
+                    entry = Repo.WorkEntries.Find(x => x.ID == entryID);
+                    index = Repo.WorkEntries.FindIndex(X => X.ID == entryID);
+                }
+                if (start != null)
+                {
+                    entry.StartTime = (DateTime)start;
+                }
+                if (workerID != -1)
+                {
+                    entry.WorkerID = workerID;
+                }
+                if (taskID != -1)
+                {
+                    entry.TaskID = taskID;
+                }
+                if (completed != null)
+                {
+                    entry.CompletedTime = (DateTime)completed;
+                }
+                lock (Repo.Lock)
+                {
+                    Repo.WorkEntries[index] = entry;
+                }
+                return true;
+            }
+            catch (NullReferenceException e)
+            {
+                throw new NullReferenceException("Did not find a work entry with that ID - " + e.Message);
+            }
+            catch (Exception e)
+            {
+                throw new Exception("Something went wrong... - " + e.Message);
+            }
         }
 
-        public void EditTask(int taskID, string description = "", DateTime? start = null, int projectID = -1)
+        public bool EditTask(int taskID, string description = "", DateTime? start = null, int projectID = -1, DateTime? completed = null)
         {
-            throw new NotImplementedException();
+            try
+            {
+                Task task;
+                int index;
+                lock (Repo.Lock)
+                {
+                    task = Repo.Tasks.Find(x => x.ID == taskID);
+                    index = Repo.Tasks.FindIndex(x => x.ID == taskID);
+                }
+                if (description != "")
+                {
+                    task.Description = description;
+                }
+                if (start != null)
+                {
+                    task.StartTime = (DateTime)start;
+                }
+                if (projectID != -1)
+                {
+                    task.ProjectID = projectID;
+                }
+                if (completed != null)
+                {
+                    task.CompletedTime = (DateTime)completed;
+                }
+                lock (Repo.Lock)
+                {
+                    Repo.Tasks[index] = task;
+                }
+                return true;
+            }
+            catch (NullReferenceException e)
+            {
+                throw new NullReferenceException("Did not find a task with that ID - " + e.Message);
+            }
+            catch (Exception e)
+            {
+                throw new Exception("Something went wrong... - " + e.Message);
+            }
         }
 
-        public void EditProject(int projectID, string name = "", DateTime? start = null)
+        public bool EditProject(int projectID, string name = "", DateTime? start = null, DateTime? completed = null)
         {
-            throw new NotImplementedException();
+            try
+            {
+                Project project;
+                int index;
+                lock (Repo.Lock)
+                {
+                    project = Repo.Projects.Find(x => x.ID == projectID);
+                    index = Repo.Projects.FindIndex(x => x.ID == projectID);
+                }
+                if (name != "")
+                {
+                    project.Name = name;
+                }
+                if (start != null)
+                {
+                    project.StartTime = (DateTime)start;
+                }
+                if (completed != null)
+                {
+                    project.CompletedTime = (DateTime)completed;
+                }
+                lock (Repo.Lock)
+                {
+                    Repo.Projects[index] = project;
+                }
+                return true;
+            }
+            catch (NullReferenceException e)
+            {
+                throw new NullReferenceException("Did not find a project with that ID - " + e.Message);
+            }
+            catch (Exception e)
+            {
+                throw new Exception("Something went wrong... - " + e.Message);
+            }
         }
-
-        public string DeleteWorker(int workerID)
+        /// <summary>
+        /// Please insure the user knows the Deleted Worker can not be salvaged after calling this
+        /// </summary>
+        /// <param name="workerID"></param>
+        /// <returns></returns>
+        public bool DeleteWorker(int workerID)
         {
-            throw new NotImplementedException();
+            try
+            {
+                lock (Repo.Lock)
+                {
+                    Repo.Workers.Remove(Repo.Workers.Find(x => x.ID == workerID));
+                }
+                return true;
+            }
+            catch (Exception e)
+            {
+                throw new Exception("Something went wrong... - " + e.Message);
+            }
         }
-
-        public string DeleteWorkEntry(int workerID)
+        /// <summary>
+        /// Please insure the user knows the Deleted Work Entry can not be salvaged after calling this
+        /// </summary>
+        /// <param name="entryID"></param>
+        /// <returns></returns>
+        public bool DeleteWorkEntry(int entryID)
         {
-            throw new NotImplementedException();
+            try
+            {
+                lock (Repo.Lock)
+                {
+                    Repo.WorkEntries.Remove(Repo.WorkEntries.Find(x => x.ID == entryID));
+                }
+                return true;
+            }
+            catch (Exception e)
+            {
+                throw new Exception("Something went wrong... - " + e.Message);
+            }
         }
-
-        public string DeleteTask(int workerID)
+        /// <summary>
+        /// Please insure the user knows the Deleted Task can not be salvaged after calling this
+        /// </summary>
+        /// <param name="taskID"></param>
+        /// <returns></returns>
+        public bool DeleteTask(int taskID)
         {
-            throw new NotImplementedException();
+            try
+            {
+                lock (Repo.Lock)
+                {
+                    Repo.Tasks.Remove(Repo.Tasks.Find(x => x.ID == taskID));
+                }
+                return true;
+            }
+            catch (Exception e)
+            {
+                throw new Exception("Something went wrong... - " + e.Message);
+            }
         }
-
-        public string DeleteProject(int workerID)
+        /// <summary>
+        /// Please insure the user knows the Deleted Project can not be salvaged after calling this
+        /// </summary>
+        /// <param name="projectID"></param>
+        /// <returns></returns>
+        public bool DeleteProject(int projectID)
         {
-            throw new NotImplementedException();
+            try
+            {
+                lock (Repo.Lock)
+                {
+                    Repo.Projects.Remove(Repo.Projects.Find(x => x.ID == projectID));
+                }
+                return true;
+            }
+            catch (Exception e)
+            {
+                throw new Exception("Something went wrong... - " + e.Message);
+            }
         }
 
         public bool ResetService(string password)

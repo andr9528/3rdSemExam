@@ -74,7 +74,7 @@ namespace inCaptiva_Service
                 CompletedTime = DateTime.Now;
             }
         }
-        public void DetermineTimeUsed()
+        private void DetermineTimeUsed()
         {
             lock (Lock)
             {

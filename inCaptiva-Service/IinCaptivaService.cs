@@ -28,7 +28,7 @@ namespace inCaptiva_Service
         List<WorkEntry> GetWorkEntries();
 
         [OperationContract]
-        bool NewWorker(string name);
+        bool NewWorker(string name, string phoneNumber, string email, string jobDescription);
 
         [OperationContract]
         bool NewProject(string name);
@@ -46,28 +46,28 @@ namespace inCaptiva_Service
         bool EndBreak(int workEntryID);
 
         [OperationContract]
-        void EditWorker(int workerID, string name = "");
+        bool EditWorker(int workerID, string name = "", string phoneNumber = "", string email = "", string jobDescription = "");
 
         [OperationContract]
-        void EditWorkEntry(int entryID, DateTime? start = null, int workerID = -1, int taskID = -1);
+        bool EditWorkEntry(int entryID, DateTime? start = null, int workerID = -1, int taskID = -1, DateTime? completed = null);
 
         [OperationContract]
-        void EditTask(int taskID, string description = "", DateTime? start = null, int projectID = -1);
+        bool EditTask(int taskID, string description = "", DateTime? start = null, int projectID = -1, DateTime? completed = null);
 
         [OperationContract]
-        void EditProject(int projectID, string name = "", DateTime? start = null);
+        bool EditProject(int projectID, string name = "", DateTime? start = null, DateTime? completed = null);
 
         [OperationContract]
-        string DeleteWorker(int workerID);
+        bool DeleteWorker(int workerID);
 
         [OperationContract]
-        string DeleteWorkEntry(int workerID);
+        bool DeleteWorkEntry(int entryID);
 
         [OperationContract]
-        string DeleteTask(int workerID);
+        bool DeleteTask(int taskID);
 
         [OperationContract]
-        string DeleteProject(int workerID);
+        bool DeleteProject(int projectID);
 
         [OperationContract]
         bool ResetService(string password);

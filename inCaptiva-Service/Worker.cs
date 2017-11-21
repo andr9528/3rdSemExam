@@ -14,12 +14,22 @@ namespace inCaptiva_Service
         public int ID { get; set; }
         [DataMember]
         public string Name { get; set; }
+        [DataMember]
+        public string PhoneNumber { get; set; }
+        [DataMember]
+        public string Email { get; set; }
+        [DataMember]
+        public string JobDescription { get; set; }
 
-        public Worker(string name)
+
+        public Worker(string name, string phoneNumber, string email, string jobDescription)
         {
             lock (Lock)
             {
                 Name = name;
+                PhoneNumber = phoneNumber;
+                JobDescription = jobDescription;
+                Email = email;
 
                 lock (Repo.Lock)
                 {
