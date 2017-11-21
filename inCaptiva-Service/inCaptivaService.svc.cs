@@ -479,5 +479,22 @@ namespace inCaptiva_Service
             }
             return false;
         }
+
+        public bool EndWorkEntry(int entryID)
+        {
+            try
+            {
+                bool output;
+                lock (Repo.Lock)
+                {
+                    output = Repo.WorkEntries.Find(x => x.ID == entryID).EndEntry();
+                }
+                return output;
+            }
+            catch (Exception e)
+            {
+                throw new Exception("Something went wrong... - " + e.Message);
+            }
+        }
     }
 }
