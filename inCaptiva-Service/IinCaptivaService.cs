@@ -28,16 +28,16 @@ namespace inCaptiva_Service
         List<WorkEntry> GetWorkEntries();
 
         [OperationContract]
-        void NewWorker(string name);
+        bool NewWorker(string name);
 
         [OperationContract]
-        void NewProject(string name);
+        bool NewProject(string name);
 
         [OperationContract]
-        void NewTask(int projectID, string description);
+        bool NewTask(int projectID, string description);
 
         [OperationContract]
-        void NewWorkEntry(int workerID, int taskID);
+        bool NewWorkEntry(int workerID, int taskID);
 
         [OperationContract]
         bool StartBreak(int workEntryID);

@@ -10,11 +10,11 @@ namespace inCaptiva_Service
     public class Project
     {
         private object Lock = new object();
-        private int[] timeUsed = new int[3];
+        private TimeSpan timeUsed = new TimeSpan();
         [DataMember]
         public DateTime StartTime { get; set; }
         [DataMember]
-        public DateTime CompletedTime { get; set; }
+        public DateTime? CompletedTime { get; set; }
         [DataMember]
         public bool Status
         {
@@ -36,7 +36,7 @@ namespace inCaptiva_Service
         [DataMember]
         public string Name { get; set; }
         [DataMember]
-        public int[] TimeUsed
+        public TimeSpan TimeUsed
         {
             get
             {
@@ -80,33 +80,12 @@ namespace inCaptiva_Service
                     Tasks = Repo.Tasks.FindAll(x => x.ProjectID == ID);
                 }
 
-                int Minutes = 0;
-                int Hours = 0;
-                int Days = 0;
-
                 if (Tasks != null)
                 {
                     foreach (var task in Tasks)
                     {
-                        Days += task.TimeUsed[0];
-                        Hours += task.TimeUsed[1];
-                        Minutes += task.TimeUsed[2];
+                        timeUsed += task.TimeUsed;
                     }
-
-                    while (Minutes >= 60)
-                    {
-                        Hours++;
-                        Minutes -= 60;
-                    }
-                    while (Hours >= 24)
-                    {
-                        Days++;
-                        Hours -= 24;
-                    }
-
-                    timeUsed[0] = Days;
-                    timeUsed[1] = Hours;
-                    timeUsed[2] = Minutes;
                 }
                 else
                 {

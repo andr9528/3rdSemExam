@@ -85,40 +85,44 @@ namespace inCaptiva_Service
             }
         }
 
-        public void NewProject(string name)
+        public bool NewProject(string name)
         {
             Project project = new Project(name);
             lock (Repo.Lock)
             {
                 Repo.Projects.Add(project);
             }
+            return true;
         }
 
-        public void NewTask(int projectID, string description)
+        public bool NewTask(int projectID, string description)
         {
             Task task = new Task(projectID, description);
             lock (Repo.Lock)
             {
                 Repo.Tasks.Add(task);
             }
+            return true;
         }
 
-        public void NewWorker(string name)
+        public bool NewWorker(string name)
         {
             Worker worker = new Worker(name);
             lock (Repo.Lock)
             {
                 Repo.Workers.Add(worker);
             }
+            return true;
         }
 
-        public void NewWorkEntry(int workerID, int taskID)
+        public bool NewWorkEntry(int workerID, int taskID)
         {
             WorkEntry entry = new WorkEntry(taskID, workerID);
             lock (Repo.Lock)
             {
                 Repo.WorkEntries.Add(entry);
             }
+            return true;
         }
 
         public bool StartBreak(int workEntryID)

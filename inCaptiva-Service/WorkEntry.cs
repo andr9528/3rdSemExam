@@ -10,14 +10,14 @@ namespace inCaptiva_Service
     public class WorkEntry
     {
         private object Lock = new object();
-        private int[] timeUsed = new int[3];
+        private TimeSpan timeUsed = new TimeSpan();
         private List<DateTime> StartBreaks = new List<DateTime>();
         private List<DateTime> EndBreaks = new List<DateTime>();
 
         [DataMember]
         public DateTime StartTime { get; internal set; }
         [DataMember]
-        public DateTime CompletedTime { get; internal set; }
+        public DateTime? CompletedTime { get; internal set; }
         [DataMember]
         public bool Status
         {
@@ -41,7 +41,7 @@ namespace inCaptiva_Service
         [DataMember]
         public int ID { get; set; }
         [DataMember]
-        public int[] TimeUsed
+        public TimeSpan TimeUsed
         {
             get
             {
@@ -59,43 +59,37 @@ namespace inCaptiva_Service
 
                 if (Status)
                 {
-                    Used = CompletedTime - StartTime;
+                    Used = (DateTime)CompletedTime - StartTime;
                 }
                 else
                 {
                     Used = DateTime.Now - StartTime;
                 }
 
-                
-
-                lock (Lock)
+                if (StartBreaks.Count == EndBreaks.Count)
                 {
-                    if (StartBreaks.Count == EndBreaks.Count)
-                    {
-                        Used -= DetermineBreakTime(0);
-                    }
-                    else if (StartBreaks.Count > EndBreaks.Count)
-                    {
-                        Used -= DetermineBreakTime(1);
-                    }
-                    else
-                    {
-                        throw new Exception("HOW DID YOU GET HERE!" +
-                            " - Failed to determine time used for Entry with ID of" + ID + " ");
+                    Used -= DetermineBreakTime(0);
+                }
+                else if (StartBreaks.Count > EndBreaks.Count)
+                {
+                    Used -= DetermineBreakTime(1);
+                }
+                else
+                {
+                    throw new Exception("HOW DID YOU GET HERE!" +
+                        " - Failed to determine time used for Entry with ID of" + ID + " ");
 
-                    }
                 }
 
-                timeUsed[0] = Used.Days;
-                timeUsed[1] = Used.Hours;
-                timeUsed[2] = Used.Minutes;
+                timeUsed = Used;
+               
             }
         }
         private TimeSpan DetermineBreakTime(int a)
         {
             TimeSpan output = new TimeSpan();
 
-            for (int i = 0; i < StartBreaks.Count-a; i++)
+            for (int i = 0; i < StartBreaks.Count - a; i++)
             {
                 output += EndBreaks[i] - StartBreaks[i];
             }
@@ -112,7 +106,7 @@ namespace inCaptiva_Service
         {
             lock (Lock)
             {
-                StartTime = DateTime.Now; 
+                StartTime = DateTime.Now;
                 TaskID = taskID;
                 WorkerID = workerID;
                 lock (Repo.Lock)
@@ -122,26 +116,27 @@ namespace inCaptiva_Service
                 }
             }
         }
-        public void EndShift()
+        public bool EndEntry()
         {
             lock (Lock)
             {
                 CompletedTime = DateTime.Now;
+                return true;
             }
         }
         public bool StartBreak()
         {
-            if (StartBreaks.Count == EndBreaks.Count )
+            if (StartBreaks.Count == EndBreaks.Count)
             {
                 StartBreaks.Add(DateTime.Now);
                 return true;
             }
             return false;
-            
+
         }
         public bool EndBreak()
         {
-            if (EndBreaks.Count+1 == StartBreaks.Count)
+            if (EndBreaks.Count + 1 == StartBreaks.Count)
             {
                 EndBreaks.Add(DateTime.Now);
                 return true;
