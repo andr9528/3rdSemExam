@@ -26,7 +26,6 @@
   <Metadata>
     <MetadataFile FileName="InCaptivaService1.wsdl" MetadataType="Wsdl" ID="55f1fca3-cfcc-438a-a369-35a4b40e9186" SourceId="1" SourceUrl="http://incaptiva.azurewebsites.net/InCaptivaService.svc?wsdl=wsdl0" />
     <MetadataFile FileName="InCaptivaService.xsd" MetadataType="Schema" ID="fc29ef94-0fdc-4b2b-b532-7da48200efa5" SourceId="1" SourceUrl="http://incaptiva.azurewebsites.net/InCaptivaService.svc?xsd=xsd0" />
-    <MetadataFile FileName="InCaptivaService2.xsd" MetadataType="Schema" ID="3b7342fb-afb3-491f-bba5-e52f314fc6cd" SourceId="1" SourceUrl="http://incaptiva.azurewebsites.net/InCaptivaService.svc?xsd=xsd3" />
     <MetadataFile FileName="InCaptivaService21.xsd" MetadataType="Schema" ID="cafa03c7-31f7-40a5-8549-dcf8a589fd7b" SourceId="1" SourceUrl="http://incaptiva.azurewebsites.net/InCaptivaService.svc?xsd=xsd2" />
     <MetadataFile FileName="InCaptivaService.disco" MetadataType="Disco" ID="feb29ffc-1d9a-4cf1-92af-c51e5268564f" SourceId="1" SourceUrl="http://incaptiva.azurewebsites.net/InCaptivaService.svc?disco" />
     <MetadataFile FileName="InCaptivaService.wsdl" MetadataType="Wsdl" ID="508e6f1d-1b19-4bcf-9290-bcaa5b155f78" SourceId="1" SourceUrl="http://incaptiva.azurewebsites.net/InCaptivaService.svc?wsdl" />

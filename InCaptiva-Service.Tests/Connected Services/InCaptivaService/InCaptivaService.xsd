@@ -67,12 +67,17 @@
     <xs:complexType>
       <xs:sequence>
         <xs:element minOccurs="0" name="name" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="phoneNumber" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="email" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="jobDescription" nillable="true" type="xs:string" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="NewWorkerResponse">
     <xs:complexType>
-      <xs:sequence />
+      <xs:sequence>
+        <xs:element minOccurs="0" name="NewWorkerResult" type="xs:boolean" />
+      </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="NewProject">
@@ -84,7 +89,9 @@
   </xs:element>
   <xs:element name="NewProjectResponse">
     <xs:complexType>
-      <xs:sequence />
+      <xs:sequence>
+        <xs:element minOccurs="0" name="NewProjectResult" type="xs:boolean" />
+      </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="NewTask">
@@ -97,7 +104,9 @@
   </xs:element>
   <xs:element name="NewTaskResponse">
     <xs:complexType>
-      <xs:sequence />
+      <xs:sequence>
+        <xs:element minOccurs="0" name="NewTaskResult" type="xs:boolean" />
+      </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="NewWorkEntry">
@@ -110,33 +119,37 @@
   </xs:element>
   <xs:element name="NewWorkEntryResponse">
     <xs:complexType>
-      <xs:sequence />
+      <xs:sequence>
+        <xs:element minOccurs="0" name="NewWorkEntryResult" type="xs:boolean" />
+      </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="StartBreak">
     <xs:complexType>
       <xs:sequence>
-        <xs:element minOccurs="0" name="workerID" type="xs:int" />
-        <xs:element minOccurs="0" name="taskID" type="xs:int" />
+        <xs:element minOccurs="0" name="workEntryID" type="xs:int" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="StartBreakResponse">
     <xs:complexType>
-      <xs:sequence />
+      <xs:sequence>
+        <xs:element minOccurs="0" name="StartBreakResult" type="xs:boolean" />
+      </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="EndBreak">
     <xs:complexType>
       <xs:sequence>
-        <xs:element minOccurs="0" name="workerID" type="xs:int" />
-        <xs:element minOccurs="0" name="taskID" type="xs:int" />
+        <xs:element minOccurs="0" name="workEntryID" type="xs:int" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="EndBreakResponse">
     <xs:complexType>
-      <xs:sequence />
+      <xs:sequence>
+        <xs:element minOccurs="0" name="EndBreakResult" type="xs:boolean" />
+      </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="EditWorker">
@@ -144,12 +157,17 @@
       <xs:sequence>
         <xs:element minOccurs="0" name="workerID" type="xs:int" />
         <xs:element minOccurs="0" name="name" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="phoneNumber" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="email" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="jobDescription" nillable="true" type="xs:string" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="EditWorkerResponse">
     <xs:complexType>
-      <xs:sequence />
+      <xs:sequence>
+        <xs:element minOccurs="0" name="EditWorkerResult" type="xs:boolean" />
+      </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="EditWorkEntry">
@@ -159,12 +177,15 @@
         <xs:element minOccurs="0" name="start" nillable="true" type="xs:dateTime" />
         <xs:element minOccurs="0" name="workerID" type="xs:int" />
         <xs:element minOccurs="0" name="taskID" type="xs:int" />
+        <xs:element minOccurs="0" name="completed" nillable="true" type="xs:dateTime" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="EditWorkEntryResponse">
     <xs:complexType>
-      <xs:sequence />
+      <xs:sequence>
+        <xs:element minOccurs="0" name="EditWorkEntryResult" type="xs:boolean" />
+      </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="EditTask">
@@ -174,12 +195,15 @@
         <xs:element minOccurs="0" name="description" nillable="true" type="xs:string" />
         <xs:element minOccurs="0" name="start" nillable="true" type="xs:dateTime" />
         <xs:element minOccurs="0" name="projectID" type="xs:int" />
+        <xs:element minOccurs="0" name="completed" nillable="true" type="xs:dateTime" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="EditTaskResponse">
     <xs:complexType>
-      <xs:sequence />
+      <xs:sequence>
+        <xs:element minOccurs="0" name="EditTaskResult" type="xs:boolean" />
+      </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="EditProject">
@@ -188,12 +212,15 @@
         <xs:element minOccurs="0" name="projectID" type="xs:int" />
         <xs:element minOccurs="0" name="name" nillable="true" type="xs:string" />
         <xs:element minOccurs="0" name="start" nillable="true" type="xs:dateTime" />
+        <xs:element minOccurs="0" name="completed" nillable="true" type="xs:dateTime" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="EditProjectResponse">
     <xs:complexType>
-      <xs:sequence />
+      <xs:sequence>
+        <xs:element minOccurs="0" name="EditProjectResult" type="xs:boolean" />
+      </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="DeleteWorker">
@@ -206,49 +233,49 @@
   <xs:element name="DeleteWorkerResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element minOccurs="0" name="DeleteWorkerResult" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="DeleteWorkerResult" type="xs:boolean" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="DeleteWorkEntry">
     <xs:complexType>
       <xs:sequence>
-        <xs:element minOccurs="0" name="workerID" type="xs:int" />
+        <xs:element minOccurs="0" name="entryID" type="xs:int" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="DeleteWorkEntryResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element minOccurs="0" name="DeleteWorkEntryResult" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="DeleteWorkEntryResult" type="xs:boolean" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="DeleteTask">
     <xs:complexType>
       <xs:sequence>
-        <xs:element minOccurs="0" name="workerID" type="xs:int" />
+        <xs:element minOccurs="0" name="taskID" type="xs:int" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="DeleteTaskResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element minOccurs="0" name="DeleteTaskResult" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="DeleteTaskResult" type="xs:boolean" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="DeleteProject">
     <xs:complexType>
       <xs:sequence>
-        <xs:element minOccurs="0" name="workerID" type="xs:int" />
+        <xs:element minOccurs="0" name="projectID" type="xs:int" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="DeleteProjectResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element minOccurs="0" name="DeleteProjectResult" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="DeleteProjectResult" type="xs:boolean" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -261,7 +288,9 @@
   </xs:element>
   <xs:element name="ResetServiceResponse">
     <xs:complexType>
-      <xs:sequence />
+      <xs:sequence>
+        <xs:element minOccurs="0" name="ResetServiceResult" type="xs:boolean" />
+      </xs:sequence>
     </xs:complexType>
   </xs:element>
 </xs:schema>

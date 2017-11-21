@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/inCaptiva_Service" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/inCaptiva_Service" xmlns:xs="http://www.w3.org/2001/XMLSchema">
-  <xs:import schemaLocation="http://incaptiva.azurewebsites.net/InCaptivaService.svc?xsd=xsd3" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
+<xs:schema xmlns:ser="http://schemas.microsoft.com/2003/10/Serialization/" xmlns:tns="http://schemas.datacontract.org/2004/07/inCaptiva_Service" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/inCaptiva_Service" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://incaptiva.azurewebsites.net/InCaptivaService.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
   <xs:complexType name="ArrayOfTask">
     <xs:sequence>
       <xs:element minOccurs="0" maxOccurs="unbounded" name="Task" nillable="true" type="tns:Task" />
@@ -9,13 +9,13 @@
   <xs:element name="ArrayOfTask" nillable="true" type="tns:ArrayOfTask" />
   <xs:complexType name="Task">
     <xs:sequence>
-      <xs:element minOccurs="0" name="CompletedTime" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="CompletedTime" nillable="true" type="xs:dateTime" />
       <xs:element minOccurs="0" name="Description" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="ID" type="xs:int" />
       <xs:element minOccurs="0" name="ProjectID" type="xs:int" />
       <xs:element minOccurs="0" name="StartTime" type="xs:dateTime" />
       <xs:element minOccurs="0" name="Status" type="xs:boolean" />
-      <xs:element xmlns:q1="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="TimeUsed" nillable="true" type="q1:ArrayOfint" />
+      <xs:element minOccurs="0" name="TimeUsed" type="ser:duration" />
     </xs:sequence>
   </xs:complexType>
   <xs:element name="Task" nillable="true" type="tns:Task" />
@@ -27,8 +27,11 @@
   <xs:element name="ArrayOfWorker" nillable="true" type="tns:ArrayOfWorker" />
   <xs:complexType name="Worker">
     <xs:sequence>
+      <xs:element minOccurs="0" name="Email" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="ID" type="xs:int" />
+      <xs:element minOccurs="0" name="JobDescription" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="PhoneNumber" nillable="true" type="xs:string" />
     </xs:sequence>
   </xs:complexType>
   <xs:element name="Worker" nillable="true" type="tns:Worker" />
@@ -40,12 +43,12 @@
   <xs:element name="ArrayOfProject" nillable="true" type="tns:ArrayOfProject" />
   <xs:complexType name="Project">
     <xs:sequence>
-      <xs:element minOccurs="0" name="CompletedTime" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="CompletedTime" nillable="true" type="xs:dateTime" />
       <xs:element minOccurs="0" name="ID" type="xs:int" />
       <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="StartTime" type="xs:dateTime" />
       <xs:element minOccurs="0" name="Status" type="xs:boolean" />
-      <xs:element xmlns:q2="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="TimeUsed" nillable="true" type="q2:ArrayOfint" />
+      <xs:element minOccurs="0" name="TimeUsed" type="ser:duration" />
     </xs:sequence>
   </xs:complexType>
   <xs:element name="Project" nillable="true" type="tns:Project" />
@@ -57,12 +60,12 @@
   <xs:element name="ArrayOfWorkEntry" nillable="true" type="tns:ArrayOfWorkEntry" />
   <xs:complexType name="WorkEntry">
     <xs:sequence>
-      <xs:element minOccurs="0" name="CompletedTime" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="CompletedTime" nillable="true" type="xs:dateTime" />
       <xs:element minOccurs="0" name="ID" type="xs:int" />
       <xs:element minOccurs="0" name="StartTime" type="xs:dateTime" />
       <xs:element minOccurs="0" name="Status" type="xs:boolean" />
       <xs:element minOccurs="0" name="TaskID" type="xs:int" />
-      <xs:element xmlns:q3="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="TimeUsed" nillable="true" type="q3:ArrayOfint" />
+      <xs:element minOccurs="0" name="TimeUsed" type="ser:duration" />
       <xs:element minOccurs="0" name="WorkerID" type="xs:int" />
     </xs:sequence>
   </xs:complexType>

@@ -23,7 +23,7 @@ namespace InCaptiva_Service.Tests.InCaptivaService {
         private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private System.DateTime CompletedTimeField;
+        private System.Nullable<System.DateTime> CompletedTimeField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string DescriptionField;
@@ -41,7 +41,7 @@ namespace InCaptiva_Service.Tests.InCaptivaService {
         private bool StatusField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private System.Collections.Generic.List<int> TimeUsedField;
+        private System.TimeSpan TimeUsedField;
         
         [global::System.ComponentModel.BrowsableAttribute(false)]
         public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
@@ -54,7 +54,7 @@ namespace InCaptiva_Service.Tests.InCaptivaService {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public System.DateTime CompletedTime {
+        public System.Nullable<System.DateTime> CompletedTime {
             get {
                 return this.CompletedTimeField;
             }
@@ -132,12 +132,12 @@ namespace InCaptiva_Service.Tests.InCaptivaService {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public System.Collections.Generic.List<int> TimeUsed {
+        public System.TimeSpan TimeUsed {
             get {
                 return this.TimeUsedField;
             }
             set {
-                if ((object.ReferenceEquals(this.TimeUsedField, value) != true)) {
+                if ((this.TimeUsedField.Equals(value) != true)) {
                     this.TimeUsedField = value;
                     this.RaisePropertyChanged("TimeUsed");
                 }
@@ -164,10 +164,19 @@ namespace InCaptiva_Service.Tests.InCaptivaService {
         private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string EmailField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private int IDField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string JobDescriptionField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string NameField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string PhoneNumberField;
         
         [global::System.ComponentModel.BrowsableAttribute(false)]
         public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
@@ -176,6 +185,19 @@ namespace InCaptiva_Service.Tests.InCaptivaService {
             }
             set {
                 this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Email {
+            get {
+                return this.EmailField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.EmailField, value) != true)) {
+                    this.EmailField = value;
+                    this.RaisePropertyChanged("Email");
+                }
             }
         }
         
@@ -193,6 +215,19 @@ namespace InCaptiva_Service.Tests.InCaptivaService {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
+        public string JobDescription {
+            get {
+                return this.JobDescriptionField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.JobDescriptionField, value) != true)) {
+                    this.JobDescriptionField = value;
+                    this.RaisePropertyChanged("JobDescription");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
         public string Name {
             get {
                 return this.NameField;
@@ -201,6 +236,19 @@ namespace InCaptiva_Service.Tests.InCaptivaService {
                 if ((object.ReferenceEquals(this.NameField, value) != true)) {
                     this.NameField = value;
                     this.RaisePropertyChanged("Name");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string PhoneNumber {
+            get {
+                return this.PhoneNumberField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.PhoneNumberField, value) != true)) {
+                    this.PhoneNumberField = value;
+                    this.RaisePropertyChanged("PhoneNumber");
                 }
             }
         }
@@ -225,7 +273,7 @@ namespace InCaptiva_Service.Tests.InCaptivaService {
         private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private System.DateTime CompletedTimeField;
+        private System.Nullable<System.DateTime> CompletedTimeField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private int IDField;
@@ -240,7 +288,7 @@ namespace InCaptiva_Service.Tests.InCaptivaService {
         private bool StatusField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private System.Collections.Generic.List<int> TimeUsedField;
+        private System.TimeSpan TimeUsedField;
         
         [global::System.ComponentModel.BrowsableAttribute(false)]
         public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
@@ -253,7 +301,7 @@ namespace InCaptiva_Service.Tests.InCaptivaService {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public System.DateTime CompletedTime {
+        public System.Nullable<System.DateTime> CompletedTime {
             get {
                 return this.CompletedTimeField;
             }
@@ -318,12 +366,12 @@ namespace InCaptiva_Service.Tests.InCaptivaService {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public System.Collections.Generic.List<int> TimeUsed {
+        public System.TimeSpan TimeUsed {
             get {
                 return this.TimeUsedField;
             }
             set {
-                if ((object.ReferenceEquals(this.TimeUsedField, value) != true)) {
+                if ((this.TimeUsedField.Equals(value) != true)) {
                     this.TimeUsedField = value;
                     this.RaisePropertyChanged("TimeUsed");
                 }
@@ -350,7 +398,7 @@ namespace InCaptiva_Service.Tests.InCaptivaService {
         private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private System.DateTime CompletedTimeField;
+        private System.Nullable<System.DateTime> CompletedTimeField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private int IDField;
@@ -365,7 +413,7 @@ namespace InCaptiva_Service.Tests.InCaptivaService {
         private int TaskIDField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private System.Collections.Generic.List<int> TimeUsedField;
+        private System.TimeSpan TimeUsedField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private int WorkerIDField;
@@ -381,7 +429,7 @@ namespace InCaptiva_Service.Tests.InCaptivaService {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public System.DateTime CompletedTime {
+        public System.Nullable<System.DateTime> CompletedTime {
             get {
                 return this.CompletedTimeField;
             }
@@ -446,12 +494,12 @@ namespace InCaptiva_Service.Tests.InCaptivaService {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public System.Collections.Generic.List<int> TimeUsed {
+        public System.TimeSpan TimeUsed {
             get {
                 return this.TimeUsedField;
             }
             set {
-                if ((object.ReferenceEquals(this.TimeUsedField, value) != true)) {
+                if ((this.TimeUsedField.Equals(value) != true)) {
                     this.TimeUsedField = value;
                     this.RaisePropertyChanged("TimeUsed");
                 }
@@ -516,94 +564,94 @@ namespace InCaptiva_Service.Tests.InCaptivaService {
         System.Threading.Tasks.Task<System.Collections.Generic.List<InCaptiva_Service.Tests.InCaptivaService.WorkEntry>> GetWorkEntriesAsync();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IInCaptivaService/NewWorker", ReplyAction="http://tempuri.org/IInCaptivaService/NewWorkerResponse")]
-        void NewWorker(string name);
+        bool NewWorker(string name, string phoneNumber, string email, string jobDescription);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IInCaptivaService/NewWorker", ReplyAction="http://tempuri.org/IInCaptivaService/NewWorkerResponse")]
-        System.Threading.Tasks.Task NewWorkerAsync(string name);
+        System.Threading.Tasks.Task<bool> NewWorkerAsync(string name, string phoneNumber, string email, string jobDescription);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IInCaptivaService/NewProject", ReplyAction="http://tempuri.org/IInCaptivaService/NewProjectResponse")]
-        void NewProject(string name);
+        bool NewProject(string name);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IInCaptivaService/NewProject", ReplyAction="http://tempuri.org/IInCaptivaService/NewProjectResponse")]
-        System.Threading.Tasks.Task NewProjectAsync(string name);
+        System.Threading.Tasks.Task<bool> NewProjectAsync(string name);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IInCaptivaService/NewTask", ReplyAction="http://tempuri.org/IInCaptivaService/NewTaskResponse")]
-        void NewTask(int projectID, string description);
+        bool NewTask(int projectID, string description);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IInCaptivaService/NewTask", ReplyAction="http://tempuri.org/IInCaptivaService/NewTaskResponse")]
-        System.Threading.Tasks.Task NewTaskAsync(int projectID, string description);
+        System.Threading.Tasks.Task<bool> NewTaskAsync(int projectID, string description);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IInCaptivaService/NewWorkEntry", ReplyAction="http://tempuri.org/IInCaptivaService/NewWorkEntryResponse")]
-        void NewWorkEntry(int workerID, int taskID);
+        bool NewWorkEntry(int workerID, int taskID);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IInCaptivaService/NewWorkEntry", ReplyAction="http://tempuri.org/IInCaptivaService/NewWorkEntryResponse")]
-        System.Threading.Tasks.Task NewWorkEntryAsync(int workerID, int taskID);
+        System.Threading.Tasks.Task<bool> NewWorkEntryAsync(int workerID, int taskID);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IInCaptivaService/StartBreak", ReplyAction="http://tempuri.org/IInCaptivaService/StartBreakResponse")]
-        void StartBreak(int workerID, int taskID);
+        bool StartBreak(int workEntryID);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IInCaptivaService/StartBreak", ReplyAction="http://tempuri.org/IInCaptivaService/StartBreakResponse")]
-        System.Threading.Tasks.Task StartBreakAsync(int workerID, int taskID);
+        System.Threading.Tasks.Task<bool> StartBreakAsync(int workEntryID);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IInCaptivaService/EndBreak", ReplyAction="http://tempuri.org/IInCaptivaService/EndBreakResponse")]
-        void EndBreak(int workerID, int taskID);
+        bool EndBreak(int workEntryID);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IInCaptivaService/EndBreak", ReplyAction="http://tempuri.org/IInCaptivaService/EndBreakResponse")]
-        System.Threading.Tasks.Task EndBreakAsync(int workerID, int taskID);
+        System.Threading.Tasks.Task<bool> EndBreakAsync(int workEntryID);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IInCaptivaService/EditWorker", ReplyAction="http://tempuri.org/IInCaptivaService/EditWorkerResponse")]
-        void EditWorker(int workerID, string name);
+        bool EditWorker(int workerID, string name, string phoneNumber, string email, string jobDescription);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IInCaptivaService/EditWorker", ReplyAction="http://tempuri.org/IInCaptivaService/EditWorkerResponse")]
-        System.Threading.Tasks.Task EditWorkerAsync(int workerID, string name);
+        System.Threading.Tasks.Task<bool> EditWorkerAsync(int workerID, string name, string phoneNumber, string email, string jobDescription);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IInCaptivaService/EditWorkEntry", ReplyAction="http://tempuri.org/IInCaptivaService/EditWorkEntryResponse")]
-        void EditWorkEntry(int entryID, System.Nullable<System.DateTime> start, int workerID, int taskID);
+        bool EditWorkEntry(int entryID, System.Nullable<System.DateTime> start, int workerID, int taskID, System.Nullable<System.DateTime> completed);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IInCaptivaService/EditWorkEntry", ReplyAction="http://tempuri.org/IInCaptivaService/EditWorkEntryResponse")]
-        System.Threading.Tasks.Task EditWorkEntryAsync(int entryID, System.Nullable<System.DateTime> start, int workerID, int taskID);
+        System.Threading.Tasks.Task<bool> EditWorkEntryAsync(int entryID, System.Nullable<System.DateTime> start, int workerID, int taskID, System.Nullable<System.DateTime> completed);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IInCaptivaService/EditTask", ReplyAction="http://tempuri.org/IInCaptivaService/EditTaskResponse")]
-        void EditTask(int taskID, string description, System.Nullable<System.DateTime> start, int projectID);
+        bool EditTask(int taskID, string description, System.Nullable<System.DateTime> start, int projectID, System.Nullable<System.DateTime> completed);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IInCaptivaService/EditTask", ReplyAction="http://tempuri.org/IInCaptivaService/EditTaskResponse")]
-        System.Threading.Tasks.Task EditTaskAsync(int taskID, string description, System.Nullable<System.DateTime> start, int projectID);
+        System.Threading.Tasks.Task<bool> EditTaskAsync(int taskID, string description, System.Nullable<System.DateTime> start, int projectID, System.Nullable<System.DateTime> completed);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IInCaptivaService/EditProject", ReplyAction="http://tempuri.org/IInCaptivaService/EditProjectResponse")]
-        void EditProject(int projectID, string name, System.Nullable<System.DateTime> start);
+        bool EditProject(int projectID, string name, System.Nullable<System.DateTime> start, System.Nullable<System.DateTime> completed);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IInCaptivaService/EditProject", ReplyAction="http://tempuri.org/IInCaptivaService/EditProjectResponse")]
-        System.Threading.Tasks.Task EditProjectAsync(int projectID, string name, System.Nullable<System.DateTime> start);
+        System.Threading.Tasks.Task<bool> EditProjectAsync(int projectID, string name, System.Nullable<System.DateTime> start, System.Nullable<System.DateTime> completed);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IInCaptivaService/DeleteWorker", ReplyAction="http://tempuri.org/IInCaptivaService/DeleteWorkerResponse")]
-        string DeleteWorker(int workerID);
+        bool DeleteWorker(int workerID);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IInCaptivaService/DeleteWorker", ReplyAction="http://tempuri.org/IInCaptivaService/DeleteWorkerResponse")]
-        System.Threading.Tasks.Task<string> DeleteWorkerAsync(int workerID);
+        System.Threading.Tasks.Task<bool> DeleteWorkerAsync(int workerID);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IInCaptivaService/DeleteWorkEntry", ReplyAction="http://tempuri.org/IInCaptivaService/DeleteWorkEntryResponse")]
-        string DeleteWorkEntry(int workerID);
+        bool DeleteWorkEntry(int entryID);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IInCaptivaService/DeleteWorkEntry", ReplyAction="http://tempuri.org/IInCaptivaService/DeleteWorkEntryResponse")]
-        System.Threading.Tasks.Task<string> DeleteWorkEntryAsync(int workerID);
+        System.Threading.Tasks.Task<bool> DeleteWorkEntryAsync(int entryID);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IInCaptivaService/DeleteTask", ReplyAction="http://tempuri.org/IInCaptivaService/DeleteTaskResponse")]
-        string DeleteTask(int workerID);
+        bool DeleteTask(int taskID);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IInCaptivaService/DeleteTask", ReplyAction="http://tempuri.org/IInCaptivaService/DeleteTaskResponse")]
-        System.Threading.Tasks.Task<string> DeleteTaskAsync(int workerID);
+        System.Threading.Tasks.Task<bool> DeleteTaskAsync(int taskID);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IInCaptivaService/DeleteProject", ReplyAction="http://tempuri.org/IInCaptivaService/DeleteProjectResponse")]
-        string DeleteProject(int workerID);
+        bool DeleteProject(int projectID);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IInCaptivaService/DeleteProject", ReplyAction="http://tempuri.org/IInCaptivaService/DeleteProjectResponse")]
-        System.Threading.Tasks.Task<string> DeleteProjectAsync(int workerID);
+        System.Threading.Tasks.Task<bool> DeleteProjectAsync(int projectID);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IInCaptivaService/ResetService", ReplyAction="http://tempuri.org/IInCaptivaService/ResetServiceResponse")]
-        void ResetService(string password);
+        bool ResetService(string password);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IInCaptivaService/ResetService", ReplyAction="http://tempuri.org/IInCaptivaService/ResetServiceResponse")]
-        System.Threading.Tasks.Task ResetServiceAsync(string password);
+        System.Threading.Tasks.Task<bool> ResetServiceAsync(string password);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -673,123 +721,123 @@ namespace InCaptiva_Service.Tests.InCaptivaService {
             return base.Channel.GetWorkEntriesAsync();
         }
         
-        public void NewWorker(string name) {
-            base.Channel.NewWorker(name);
+        public bool NewWorker(string name, string phoneNumber, string email, string jobDescription) {
+            return base.Channel.NewWorker(name, phoneNumber, email, jobDescription);
         }
         
-        public System.Threading.Tasks.Task NewWorkerAsync(string name) {
-            return base.Channel.NewWorkerAsync(name);
+        public System.Threading.Tasks.Task<bool> NewWorkerAsync(string name, string phoneNumber, string email, string jobDescription) {
+            return base.Channel.NewWorkerAsync(name, phoneNumber, email, jobDescription);
         }
         
-        public void NewProject(string name) {
-            base.Channel.NewProject(name);
+        public bool NewProject(string name) {
+            return base.Channel.NewProject(name);
         }
         
-        public System.Threading.Tasks.Task NewProjectAsync(string name) {
+        public System.Threading.Tasks.Task<bool> NewProjectAsync(string name) {
             return base.Channel.NewProjectAsync(name);
         }
         
-        public void NewTask(int projectID, string description) {
-            base.Channel.NewTask(projectID, description);
+        public bool NewTask(int projectID, string description) {
+            return base.Channel.NewTask(projectID, description);
         }
         
-        public System.Threading.Tasks.Task NewTaskAsync(int projectID, string description) {
+        public System.Threading.Tasks.Task<bool> NewTaskAsync(int projectID, string description) {
             return base.Channel.NewTaskAsync(projectID, description);
         }
         
-        public void NewWorkEntry(int workerID, int taskID) {
-            base.Channel.NewWorkEntry(workerID, taskID);
+        public bool NewWorkEntry(int workerID, int taskID) {
+            return base.Channel.NewWorkEntry(workerID, taskID);
         }
         
-        public System.Threading.Tasks.Task NewWorkEntryAsync(int workerID, int taskID) {
+        public System.Threading.Tasks.Task<bool> NewWorkEntryAsync(int workerID, int taskID) {
             return base.Channel.NewWorkEntryAsync(workerID, taskID);
         }
         
-        public void StartBreak(int workerID, int taskID) {
-            base.Channel.StartBreak(workerID, taskID);
+        public bool StartBreak(int workEntryID) {
+            return base.Channel.StartBreak(workEntryID);
         }
         
-        public System.Threading.Tasks.Task StartBreakAsync(int workerID, int taskID) {
-            return base.Channel.StartBreakAsync(workerID, taskID);
+        public System.Threading.Tasks.Task<bool> StartBreakAsync(int workEntryID) {
+            return base.Channel.StartBreakAsync(workEntryID);
         }
         
-        public void EndBreak(int workerID, int taskID) {
-            base.Channel.EndBreak(workerID, taskID);
+        public bool EndBreak(int workEntryID) {
+            return base.Channel.EndBreak(workEntryID);
         }
         
-        public System.Threading.Tasks.Task EndBreakAsync(int workerID, int taskID) {
-            return base.Channel.EndBreakAsync(workerID, taskID);
+        public System.Threading.Tasks.Task<bool> EndBreakAsync(int workEntryID) {
+            return base.Channel.EndBreakAsync(workEntryID);
         }
         
-        public void EditWorker(int workerID, string name) {
-            base.Channel.EditWorker(workerID, name);
+        public bool EditWorker(int workerID, string name, string phoneNumber, string email, string jobDescription) {
+            return base.Channel.EditWorker(workerID, name, phoneNumber, email, jobDescription);
         }
         
-        public System.Threading.Tasks.Task EditWorkerAsync(int workerID, string name) {
-            return base.Channel.EditWorkerAsync(workerID, name);
+        public System.Threading.Tasks.Task<bool> EditWorkerAsync(int workerID, string name, string phoneNumber, string email, string jobDescription) {
+            return base.Channel.EditWorkerAsync(workerID, name, phoneNumber, email, jobDescription);
         }
         
-        public void EditWorkEntry(int entryID, System.Nullable<System.DateTime> start, int workerID, int taskID) {
-            base.Channel.EditWorkEntry(entryID, start, workerID, taskID);
+        public bool EditWorkEntry(int entryID, System.Nullable<System.DateTime> start, int workerID, int taskID, System.Nullable<System.DateTime> completed) {
+            return base.Channel.EditWorkEntry(entryID, start, workerID, taskID, completed);
         }
         
-        public System.Threading.Tasks.Task EditWorkEntryAsync(int entryID, System.Nullable<System.DateTime> start, int workerID, int taskID) {
-            return base.Channel.EditWorkEntryAsync(entryID, start, workerID, taskID);
+        public System.Threading.Tasks.Task<bool> EditWorkEntryAsync(int entryID, System.Nullable<System.DateTime> start, int workerID, int taskID, System.Nullable<System.DateTime> completed) {
+            return base.Channel.EditWorkEntryAsync(entryID, start, workerID, taskID, completed);
         }
         
-        public void EditTask(int taskID, string description, System.Nullable<System.DateTime> start, int projectID) {
-            base.Channel.EditTask(taskID, description, start, projectID);
+        public bool EditTask(int taskID, string description, System.Nullable<System.DateTime> start, int projectID, System.Nullable<System.DateTime> completed) {
+            return base.Channel.EditTask(taskID, description, start, projectID, completed);
         }
         
-        public System.Threading.Tasks.Task EditTaskAsync(int taskID, string description, System.Nullable<System.DateTime> start, int projectID) {
-            return base.Channel.EditTaskAsync(taskID, description, start, projectID);
+        public System.Threading.Tasks.Task<bool> EditTaskAsync(int taskID, string description, System.Nullable<System.DateTime> start, int projectID, System.Nullable<System.DateTime> completed) {
+            return base.Channel.EditTaskAsync(taskID, description, start, projectID, completed);
         }
         
-        public void EditProject(int projectID, string name, System.Nullable<System.DateTime> start) {
-            base.Channel.EditProject(projectID, name, start);
+        public bool EditProject(int projectID, string name, System.Nullable<System.DateTime> start, System.Nullable<System.DateTime> completed) {
+            return base.Channel.EditProject(projectID, name, start, completed);
         }
         
-        public System.Threading.Tasks.Task EditProjectAsync(int projectID, string name, System.Nullable<System.DateTime> start) {
-            return base.Channel.EditProjectAsync(projectID, name, start);
+        public System.Threading.Tasks.Task<bool> EditProjectAsync(int projectID, string name, System.Nullable<System.DateTime> start, System.Nullable<System.DateTime> completed) {
+            return base.Channel.EditProjectAsync(projectID, name, start, completed);
         }
         
-        public string DeleteWorker(int workerID) {
+        public bool DeleteWorker(int workerID) {
             return base.Channel.DeleteWorker(workerID);
         }
         
-        public System.Threading.Tasks.Task<string> DeleteWorkerAsync(int workerID) {
+        public System.Threading.Tasks.Task<bool> DeleteWorkerAsync(int workerID) {
             return base.Channel.DeleteWorkerAsync(workerID);
         }
         
-        public string DeleteWorkEntry(int workerID) {
-            return base.Channel.DeleteWorkEntry(workerID);
+        public bool DeleteWorkEntry(int entryID) {
+            return base.Channel.DeleteWorkEntry(entryID);
         }
         
-        public System.Threading.Tasks.Task<string> DeleteWorkEntryAsync(int workerID) {
-            return base.Channel.DeleteWorkEntryAsync(workerID);
+        public System.Threading.Tasks.Task<bool> DeleteWorkEntryAsync(int entryID) {
+            return base.Channel.DeleteWorkEntryAsync(entryID);
         }
         
-        public string DeleteTask(int workerID) {
-            return base.Channel.DeleteTask(workerID);
+        public bool DeleteTask(int taskID) {
+            return base.Channel.DeleteTask(taskID);
         }
         
-        public System.Threading.Tasks.Task<string> DeleteTaskAsync(int workerID) {
-            return base.Channel.DeleteTaskAsync(workerID);
+        public System.Threading.Tasks.Task<bool> DeleteTaskAsync(int taskID) {
+            return base.Channel.DeleteTaskAsync(taskID);
         }
         
-        public string DeleteProject(int workerID) {
-            return base.Channel.DeleteProject(workerID);
+        public bool DeleteProject(int projectID) {
+            return base.Channel.DeleteProject(projectID);
         }
         
-        public System.Threading.Tasks.Task<string> DeleteProjectAsync(int workerID) {
-            return base.Channel.DeleteProjectAsync(workerID);
+        public System.Threading.Tasks.Task<bool> DeleteProjectAsync(int projectID) {
+            return base.Channel.DeleteProjectAsync(projectID);
         }
         
-        public void ResetService(string password) {
-            base.Channel.ResetService(password);
+        public bool ResetService(string password) {
+            return base.Channel.ResetService(password);
         }
         
-        public System.Threading.Tasks.Task ResetServiceAsync(string password) {
+        public System.Threading.Tasks.Task<bool> ResetServiceAsync(string password) {
             return base.Channel.ResetServiceAsync(password);
         }
     }

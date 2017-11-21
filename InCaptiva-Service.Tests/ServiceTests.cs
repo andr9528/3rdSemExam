@@ -30,7 +30,7 @@ namespace InCaptiva_Service.Tests
         [TestMethod]
         public void CreateWorker1()
         {
-            client.NewWorker("Jacob");
+            client.NewWorker("Jacob", "+4522287257", "Someone@Somewhere.org", "Secretary");
             Assert.AreEqual(1, client.GetWorkers().Count);
         }
     }
