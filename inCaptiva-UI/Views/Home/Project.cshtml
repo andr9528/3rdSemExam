@@ -1,69 +1,64 @@
 ﻿@model IEnumerable<InCaptivaService.Project>
-<!DOCTYPE html>
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title>Project</title>
-</head>
-<body>
+
+@{
+    ViewData["Title"] = "Project";
+}
+
+<h2>Project</h2>
+@using(Html.BeginForm()) {
     <p>
-        @using(Html.BeginForm()) {
-        <p>
-            Name: <input type="text" name="Name">
-            <button type="submit">Add new project</button>
-        </p>
+        Name: <input type="text" name="Name">
+        <button type="submit">Add new project</button>
+    </p>
+}
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.ID)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.StartTime)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CompletedTime)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Status)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach(var item in Model) {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ID)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.StartTime)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CompletedTime)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Status)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit","Edit",new { /* id=item.PrimaryKey */
+               }) |
+                    @Html.ActionLink("Details","Details",new { /* id=item.PrimaryKey */
+               }) |
+                    @Html.ActionLink("Delete","Delete",new { /* id=item.PrimaryKey */
+               })
+                </td>
+            </tr>
         }
-        </p>
-        <table class="table">
-            <thead>
-                <tr>
-                    <th>
-                        @Html.DisplayNameFor(model => model.ID)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.Name)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.StartTime)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.CompletedTime)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.Status)
-                    </th>
-                    <th></th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach(var item in Model) {
-                    <tr>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.ID)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Name)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.StartTime)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.CompletedTime)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Status)
-                        </td>
-                        <td>
-                            @Html.ActionLink("Edit","Edit",new { /* id=item.PrimaryKey */
-                       }) |
-                            @Html.ActionLink("Details","Details",new { /* id=item.PrimaryKey */
-                       }) |
-                            @Html.ActionLink("Delete","Delete",new { /* id=item.PrimaryKey */
-                       })
-                        </td>
-                    </tr>
-                }
-            </tbody>
-        </table>
-    </body>
-</html>
+    </tbody>
+</table>

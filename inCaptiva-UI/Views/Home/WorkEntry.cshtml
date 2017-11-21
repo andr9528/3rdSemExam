@@ -1,0 +1,74 @@
+﻿@model IEnumerable<InCaptivaService.WorkEntry>
+
+@{
+    ViewData["Title"] = "Work entry";
+}
+
+<h2>Work entry</h2>
+@using(Html.BeginForm()) {
+    <p>
+        Worker ID: <input type="text" name="WorkerID">
+        Task ID: <input type="text" name="TaskID">
+        <button type="submit">Add new Work entry</button>
+    </p>
+}
+<table class="table">
+    <thead>
+        <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.CompletedTime)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.ID)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.StartTime)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Status)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.TaskID)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.TimeUsed)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.WorkerID)
+                </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.CompletedTime)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.StartTime)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Status)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TaskID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TimeUsed)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.WorkerID)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
