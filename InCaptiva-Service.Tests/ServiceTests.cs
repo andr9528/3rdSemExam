@@ -14,12 +14,12 @@ namespace InCaptiva_Service.Tests
         public void Initialize()
         {
             client = new InCaptivaService.InCaptivaServiceClient();
-            
+            client.ResetService("Nagakaborous");
         }
         [TestCleanup]
         public void Cleanup()
         {
-            //client.ResetService("Nagakaborous");
+            client.ResetService("Nagakaborous");
             client.Close();
         }
 
@@ -32,20 +32,34 @@ namespace InCaptiva_Service.Tests
         [TestMethod]
         public void CreateWorker1()
         {
-            client.NewWorker("Jacob", "+4522287257", "Someone@Somewhere.org", "Secretary");
+            client.NewWorker("Jacob", "+4512345678", "Someone@Somewhere.org", "Secretary");
             Assert.AreEqual(1, client.GetWorkers().Count);
         }
         [TestMethod]
         public void CreateWorkEntry1()
         {
             client.NewWorkEntry(0, 0);
-            Thread.Sleep(10000);
+            Thread.Sleep(2000);
             client.EndWorkEntry(client.GetWorkEntries()[client.GetWorkEntries().Count - 1].ID);
             List<InCaptivaService.WorkEntry> entries = client.GetWorkEntries();
             InCaptivaService.WorkEntry entry = entries[entries.Count-1];
 
-            Assert.AreEqual(new TimeSpan(0, 0, 10), entry.TimeUsed);
+            Assert.AreEqual(new TimeSpan(0, 0, 2), entry.TimeUsed);
+        }
+        [TestMethod]
+        public void DeleteTest1()
+        {
+            client.NewWorker("Jacob", "+412345678", "Someone@Somewhere.org", "Secretary");
+            List<InCaptivaService.Worker> workers = client.GetWorkers();
+            int countbefore = workers.Count;
+            InCaptivaService.Worker worker = workers[countbefore - 1];
 
+            Assert.AreEqual(1, countbefore);
+
+            Assert.IsTrue(client.Delete(1, worker.ID));
+
+            Assert.AreEqual(0, countbefore - 1);
+            
         }
     }
 }

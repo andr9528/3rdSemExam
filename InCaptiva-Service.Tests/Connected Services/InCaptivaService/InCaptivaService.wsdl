@@ -128,6 +128,12 @@
   <wsdl:message name="IInCaptivaService_EndWorkEntry_OutputMessage">
     <wsdl:part name="parameters" element="tns:EndWorkEntryResponse" />
   </wsdl:message>
+  <wsdl:message name="IInCaptivaService_Delete_InputMessage">
+    <wsdl:part name="parameters" element="tns:Delete" />
+  </wsdl:message>
+  <wsdl:message name="IInCaptivaService_Delete_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteResponse" />
+  </wsdl:message>
   <wsdl:message name="IInCaptivaService_ResetService_InputMessage">
     <wsdl:part name="parameters" element="tns:ResetService" />
   </wsdl:message>
@@ -214,6 +220,10 @@
     <wsdl:operation name="EndWorkEntry">
       <wsdl:input wsaw:Action="http://tempuri.org/IInCaptivaService/EndWorkEntry" message="tns:IInCaptivaService_EndWorkEntry_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IInCaptivaService/EndWorkEntryResponse" message="tns:IInCaptivaService_EndWorkEntry_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="Delete">
+      <wsdl:input wsaw:Action="http://tempuri.org/IInCaptivaService/Delete" message="tns:IInCaptivaService_Delete_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IInCaptivaService/DeleteResponse" message="tns:IInCaptivaService_Delete_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation name="ResetService">
       <wsdl:input wsaw:Action="http://tempuri.org/IInCaptivaService/ResetService" message="tns:IInCaptivaService_ResetService_InputMessage" />

@@ -380,86 +380,73 @@ namespace inCaptiva_Service
             }
         }
         /// <summary>
-        /// Please insure the user knows the Deleted Worker can not be salvaged after calling this
+        /// To delete from Worker pass a '1' to 'what'
+        /// To delete from Work Entries pass a '2' to 'what'
+        /// To delete from Tasks pass a '3' to 'what'
+        /// To delete from Projects pass a '4' to 'what'
+        /// 
+        /// Always insure the user know the object cannot be salveged after calling this.
         /// </summary>
-        /// <param name="workerID"></param>
+        /// <param name="what"></param>
+        /// <param name="id"></param>
         /// <returns></returns>
-        public bool DeleteWorker(int workerID)
+        public bool Delete(int what, int id)
         {
             try
             {
-                lock (Repo.Lock)
+                if (what == 1)
                 {
-                    Repo.Workers.Remove(Repo.Workers.Find(x => x.ID == workerID));
+                    Repo.Workers.Remove(Repo.Workers.Find(x => x.ID == id));
                 }
+                else if (what == 2)
+                {
+                    Repo.WorkEntries.Remove(Repo.WorkEntries.Find(x => x.ID == id));
+                }
+                else if (what == 3)
+                {
+                    Repo.Tasks.Remove(Repo.Tasks.Find(x => x.ID == id));
+                }
+                else if (what == 4)
+                {
+                    Repo.Projects.Remove(Repo.Projects.Find(x => x.ID == id));
+                }
+                else
+                {
+                    throw new Exception("W");
+                }
+
                 return true;
+            }
+            catch (NullReferenceException e)
+            {
+                throw new NullReferenceException("Did not find a target to delete with that ID - " + e.Message);
             }
             catch (Exception e)
             {
-                throw new Exception("Something went wrong... - " + e.Message);
-            }
-        }
-        /// <summary>
-        /// Please insure the user knows the Deleted Work Entry can not be salvaged after calling this
-        /// </summary>
-        /// <param name="entryID"></param>
-        /// <returns></returns>
-        public bool DeleteWorkEntry(int entryID)
-        {
-            try
-            {
-                lock (Repo.Lock)
+                if (e.Message == "W")
                 {
-                    Repo.WorkEntries.Remove(Repo.WorkEntries.Find(x => x.ID == entryID));
+                    throw new Exception("Invalid Value for 'What', must be a value of 1 to 4");
                 }
-                return true;
-            }
-            catch (Exception e)
-            {
-                throw new Exception("Something went wrong... - " + e.Message);
-            }
-        }
-        /// <summary>
-        /// Please insure the user knows the Deleted Task can not be salvaged after calling this
-        /// </summary>
-        /// <param name="taskID"></param>
-        /// <returns></returns>
-        public bool DeleteTask(int taskID)
-        {
-            try
-            {
-                lock (Repo.Lock)
-                {
-                    Repo.Tasks.Remove(Repo.Tasks.Find(x => x.ID == taskID));
-                }
-                return true;
-            }
-            catch (Exception e)
-            {
-                throw new Exception("Something went wrong... - " + e.Message);
-            }
-        }
-        /// <summary>
-        /// Please insure the user knows the Deleted Project can not be salvaged after calling this
-        /// </summary>
-        /// <param name="projectID"></param>
-        /// <returns></returns>
-        public bool DeleteProject(int projectID)
-        {
-            try
-            {
-                lock (Repo.Lock)
-                {
-                    Repo.Projects.Remove(Repo.Projects.Find(x => x.ID == projectID));
-                }
-                return true;
-            }
-            catch (Exception e)
-            {
                 throw new Exception("Something went wrong... - " + e.Message);
             }
         }
 
+        public bool EndWorkEntry(int entryID)
+        {
+            try
+            {
+                bool output;
+                lock (Repo.Lock)
+                {
+                    output = Repo.WorkEntries.Find(x => x.ID == entryID).EndEntry();
+                }
+                return output;
+            }
+            catch (Exception e)
+            {
+                throw new Exception("Something went wrong... - " + e.Message);
+            }
+        }
         public bool ResetService(string password)
         {
             if (password == "Nagakaborous")
@@ -480,21 +467,6 @@ namespace inCaptiva_Service
             return false;
         }
 
-        public bool EndWorkEntry(int entryID)
-        {
-            try
-            {
-                bool output;
-                lock (Repo.Lock)
-                {
-                    output = Repo.WorkEntries.Find(x => x.ID == entryID).EndEntry();
-                }
-                return output;
-            }
-            catch (Exception e)
-            {
-                throw new Exception("Something went wrong... - " + e.Message);
-            }
-        }
+        
     }
 }
