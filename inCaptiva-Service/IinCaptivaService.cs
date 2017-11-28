@@ -31,10 +31,10 @@ namespace inCaptiva_Service
         bool NewWorker(string name, string phoneNumber, string email, string jobDescription);
 
         [OperationContract]
-        bool NewProject(string name);
+        bool NewProject(string name, string description);
 
         [OperationContract]
-        bool NewTask(int projectID, string description);
+        bool NewTask(int projectID, string name, string description, TimeSpan estimatedTime);
 
         [OperationContract]
         bool NewWorkEntry(int workerID, int taskID);
@@ -52,56 +52,19 @@ namespace inCaptiva_Service
         bool EditWorkEntry(int entryID, DateTime? start = null, int workerID = -1, int taskID = -1, DateTime? completed = null);
 
         [OperationContract]
-        bool EditTask(int taskID, string description = "", DateTime? start = null, int projectID = -1, DateTime? completed = null);
+        bool EditTask(int taskID, string description = "", DateTime? start = null, int projectID = -1, DateTime? completed = null, string name = "");
 
         [OperationContract]
-        bool EditProject(int projectID, string name = "", DateTime? start = null, DateTime? completed = null);
-
-        [OperationContract]
-        bool DeleteWorker(int workerID);
-
-        [OperationContract]
-        bool DeleteWorkEntry(int entryID);
-
-        [OperationContract]
-        bool DeleteTask(int taskID);
-
-        [OperationContract]
-        bool DeleteProject(int projectID);
+        bool EditProject(int projectID, string name = "", DateTime? start = null, DateTime? completed = null, string description = "");
 
         [OperationContract]
         bool EndWorkEntry(int entryID);
 
         [OperationContract]
+        bool Delete(int what, int id);
+
+        [OperationContract]
         bool ResetService(string password);
 
-
-        //[OperationContract]
-        //CompositeType GetDataUsingDataContract(CompositeType composite);
-
-        // TODO: Add your service operations here
-    }
-
-
-    // Use a data contract as illustrated in the sample below to add composite types to service operations.
-    [DataContract]
-    public class CompositeType
-    {
-        bool boolValue = true;
-        string stringValue = "Hello ";
-
-        [DataMember]
-        public bool BoolValue
-        {
-            get { return boolValue; }
-            set { boolValue = value; }
-        }
-
-        [DataMember]
-        public string StringValue
-        {
-            get { return stringValue; }
-            set { stringValue = value; }
-        }
     }
 }
