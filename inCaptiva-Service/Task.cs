@@ -49,8 +49,10 @@ namespace inCaptiva_Service
             }
             set { }
         }
+        [DataMember]
+        public TimeSpan EstimatedTime { get; set; }
 
-        public Task(int projectID, string description, string name)
+        public Task(int projectID, string description, string name, TimeSpan estimatedTime)
         {
             lock (Lock)
             {
@@ -61,6 +63,7 @@ namespace inCaptiva_Service
                 ProjectID = projectID;
                 Description = description;
                 Name = name;
+                EstimatedTime = estimatedTime;
 
                 lock (Repo.Lock)
                 {

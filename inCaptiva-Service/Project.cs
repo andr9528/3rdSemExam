@@ -11,6 +11,7 @@ namespace inCaptiva_Service
     {
         private object Lock = new object();
         private TimeSpan timeUsed = new TimeSpan();
+        private TimeSpan estimatedTime = new TimeSpan();
         [DataMember]
         public DateTime StartTime { get; set; }
         [DataMember]
@@ -47,6 +48,42 @@ namespace inCaptiva_Service
             }
             set { }
         }
+        public TimeSpan EstimatedTime
+        {
+            get
+            {
+                DetermineEstimatedTime();
+                return estimatedTime;
+            }
+            set { }
+        }
+
+        private void DetermineEstimatedTime()
+        {
+            lock (Lock)
+            {
+                List<Task> Tasks;
+
+                lock (Repo.Lock)
+                {
+                    Tasks = Repo.Tasks.FindAll(x => x.ProjectID == ID);
+                }
+
+                if (Tasks != null)
+                {
+                    foreach (var task in Tasks)
+                    {
+                        estimatedTime += task.EstimatedTime;
+                    }
+                }
+                else
+                {
+                    throw new ArgumentNullException("Tasks");
+                }
+
+            }
+        }
+
         public Project(string name, string description)
         {
             lock (Lock)

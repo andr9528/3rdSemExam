@@ -34,7 +34,7 @@ namespace inCaptiva_Service
         bool NewProject(string name, string description);
 
         [OperationContract]
-        bool NewTask(int projectID, string name, string description);
+        bool NewTask(int projectID, string name, string description, TimeSpan estimatedTime);
 
         [OperationContract]
         bool NewWorkEntry(int workerID, int taskID);
@@ -52,16 +52,16 @@ namespace inCaptiva_Service
         bool EditWorkEntry(int entryID, DateTime? start = null, int workerID = -1, int taskID = -1, DateTime? completed = null);
 
         [OperationContract]
-        bool EditTask(int taskID, string description = "", DateTime? start = null, int projectID = -1, DateTime? completed = null);
+        bool EditTask(int taskID, string description = "", DateTime? start = null, int projectID = -1, DateTime? completed = null, string name = "");
 
         [OperationContract]
-        bool EditProject(int projectID, string name = "", DateTime? start = null, DateTime? completed = null);
+        bool EditProject(int projectID, string name = "", DateTime? start = null, DateTime? completed = null, string description = "");
 
         [OperationContract]
         bool EndWorkEntry(int entryID);
 
         [OperationContract]
-        bool Delete(int what, int id);
+        bool Delete(int type, int id);
 
         [OperationContract]
         bool ResetService(string password);

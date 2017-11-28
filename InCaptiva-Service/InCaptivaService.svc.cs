@@ -387,34 +387,23 @@ namespace inCaptiva_Service
                 throw new Exception("Something went wrong... - " + e.Message);
             }
         }
-        /// <summary>
-        /// To delete from Worker pass a '1' to 'what'
-        /// To delete from Work Entries pass a '2' to 'what'
-        /// To delete from Tasks pass a '3' to 'what'
-        /// To delete from Projects pass a '4' to 'what'
-        /// 
-        /// Always insure the user know the object cannot be salveged after calling this.
-        /// </summary>
-        /// <param name="what"></param>
-        /// <param name="id"></param>
-        /// <returns></returns>
-        public bool Delete(int what, int id)
+        public bool Delete(int type, int id)
         {
             try
             {
-                if (what == 1)
+                if (type == 1)
                 {
                     Repo.Workers.Remove(Repo.Workers.Find(x => x.ID == id));
                 }
-                else if (what == 2)
+                else if (type == 2)
                 {
                     Repo.WorkEntries.Remove(Repo.WorkEntries.Find(x => x.ID == id));
                 }
-                else if (what == 3)
+                else if (type == 3)
                 {
                     Repo.Tasks.Remove(Repo.Tasks.Find(x => x.ID == id));
                 }
-                else if (what == 4)
+                else if (type == 4)
                 {
                     Repo.Projects.Remove(Repo.Projects.Find(x => x.ID == id));
                 }
