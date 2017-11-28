@@ -31,10 +31,10 @@ namespace inCaptiva_Service
         bool NewWorker(string name, string phoneNumber, string email, string jobDescription);
 
         [OperationContract]
-        bool NewProject(string name);
+        bool NewProject(string name, string description);
 
         [OperationContract]
-        bool NewTask(int projectID, string description);
+        bool NewTask(int projectID, string name, string description);
 
         [OperationContract]
         bool NewWorkEntry(int workerID, int taskID);

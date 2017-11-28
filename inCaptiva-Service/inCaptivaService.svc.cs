@@ -85,11 +85,11 @@ namespace inCaptiva_Service
             }
         }
 
-        public bool NewProject(string name)
+        public bool NewProject(string name, string description)
         {
             try
             {
-                Project project = new Project(name);
+                Project project = new Project(name, description);
                 lock (Repo.Lock)
                 {
                     Repo.Projects.Add(project);
@@ -102,11 +102,11 @@ namespace inCaptiva_Service
             }
         }
 
-        public bool NewTask(int projectID, string description)
+        public bool NewTask(int projectID, string name, string description)
         {
             try
             {
-                Task task = new Task(projectID, description);
+                Task task = new Task(projectID, description, name);
                 lock (Repo.Lock)
                 {
                     Repo.Tasks.Add(task);

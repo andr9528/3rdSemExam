@@ -38,6 +38,8 @@ namespace inCaptiva_Service
         [DataMember]
         public string Description { get; set; }
         [DataMember]
+        public string Name { get; set; }
+        [DataMember]
         public TimeSpan TimeUsed
         {
             get
@@ -48,7 +50,7 @@ namespace inCaptiva_Service
             set { }
         }
 
-        public Task(int projectID, string description)
+        public Task(int projectID, string description, string name)
         {
             lock (Lock)
             {
@@ -58,6 +60,7 @@ namespace inCaptiva_Service
 
                 ProjectID = projectID;
                 Description = description;
+                Name = name;
 
                 lock (Repo.Lock)
                 {
