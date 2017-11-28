@@ -22,7 +22,11 @@ namespace InCaptivaService
         
         private string DescriptionField;
         
+        private System.TimeSpan EstimatedTimeField;
+        
         private int IDField;
+        
+        private string NameField;
         
         private int ProjectIDField;
         
@@ -59,6 +63,19 @@ namespace InCaptivaService
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.TimeSpan EstimatedTime
+        {
+            get
+            {
+                return this.EstimatedTimeField;
+            }
+            set
+            {
+                this.EstimatedTimeField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
         public int ID
         {
             get
@@ -68,6 +85,19 @@ namespace InCaptivaService
             set
             {
                 this.IDField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Name
+        {
+            get
+            {
+                return this.NameField;
+            }
+            set
+            {
+                this.NameField = value;
             }
         }
         
@@ -214,6 +244,8 @@ namespace InCaptivaService
         
         private System.Nullable<System.DateTime> CompletedTimeField;
         
+        private string DescriptionField;
+        
         private int IDField;
         
         private string NameField;
@@ -234,6 +266,19 @@ namespace InCaptivaService
             set
             {
                 this.CompletedTimeField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Description
+        {
+            get
+            {
+                return this.DescriptionField;
+            }
+            set
+            {
+                this.DescriptionField = value;
             }
         }
         
@@ -439,10 +484,10 @@ namespace InCaptivaService
         System.Threading.Tasks.Task<bool> NewWorkerAsync(string name, string phoneNumber, string email, string jobDescription);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IInCaptivaService/NewProject", ReplyAction="http://tempuri.org/IInCaptivaService/NewProjectResponse")]
-        System.Threading.Tasks.Task<bool> NewProjectAsync(string name);
+        System.Threading.Tasks.Task<bool> NewProjectAsync(string name, string description);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IInCaptivaService/NewTask", ReplyAction="http://tempuri.org/IInCaptivaService/NewTaskResponse")]
-        System.Threading.Tasks.Task<bool> NewTaskAsync(int projectID, string description);
+        System.Threading.Tasks.Task<bool> NewTaskAsync(int projectID, string name, string description, System.TimeSpan estimatedTime);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IInCaptivaService/NewWorkEntry", ReplyAction="http://tempuri.org/IInCaptivaService/NewWorkEntryResponse")]
         System.Threading.Tasks.Task<bool> NewWorkEntryAsync(int workerID, int taskID);
@@ -460,16 +505,16 @@ namespace InCaptivaService
         System.Threading.Tasks.Task<bool> EditWorkEntryAsync(int entryID, System.Nullable<System.DateTime> start, int workerID, int taskID, System.Nullable<System.DateTime> completed);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IInCaptivaService/EditTask", ReplyAction="http://tempuri.org/IInCaptivaService/EditTaskResponse")]
-        System.Threading.Tasks.Task<bool> EditTaskAsync(int taskID, string description, System.Nullable<System.DateTime> start, int projectID, System.Nullable<System.DateTime> completed);
+        System.Threading.Tasks.Task<bool> EditTaskAsync(int taskID, string description, System.Nullable<System.DateTime> start, int projectID, System.Nullable<System.DateTime> completed, string name);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IInCaptivaService/EditProject", ReplyAction="http://tempuri.org/IInCaptivaService/EditProjectResponse")]
-        System.Threading.Tasks.Task<bool> EditProjectAsync(int projectID, string name, System.Nullable<System.DateTime> start, System.Nullable<System.DateTime> completed);
+        System.Threading.Tasks.Task<bool> EditProjectAsync(int projectID, string name, System.Nullable<System.DateTime> start, System.Nullable<System.DateTime> completed, string description);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IInCaptivaService/EndWorkEntry", ReplyAction="http://tempuri.org/IInCaptivaService/EndWorkEntryResponse")]
         System.Threading.Tasks.Task<bool> EndWorkEntryAsync(int entryID);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IInCaptivaService/Delete", ReplyAction="http://tempuri.org/IInCaptivaService/DeleteResponse")]
-        System.Threading.Tasks.Task<bool> DeleteAsync(int what, int id);
+        System.Threading.Tasks.Task<bool> DeleteAsync(int type, int id);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IInCaptivaService/ResetService", ReplyAction="http://tempuri.org/IInCaptivaService/ResetServiceResponse")]
         System.Threading.Tasks.Task<bool> ResetServiceAsync(string password);
@@ -555,14 +600,14 @@ namespace InCaptivaService
             return base.Channel.NewWorkerAsync(name, phoneNumber, email, jobDescription);
         }
         
-        public System.Threading.Tasks.Task<bool> NewProjectAsync(string name)
+        public System.Threading.Tasks.Task<bool> NewProjectAsync(string name, string description)
         {
-            return base.Channel.NewProjectAsync(name);
+            return base.Channel.NewProjectAsync(name, description);
         }
         
-        public System.Threading.Tasks.Task<bool> NewTaskAsync(int projectID, string description)
+        public System.Threading.Tasks.Task<bool> NewTaskAsync(int projectID, string name, string description, System.TimeSpan estimatedTime)
         {
-            return base.Channel.NewTaskAsync(projectID, description);
+            return base.Channel.NewTaskAsync(projectID, name, description, estimatedTime);
         }
         
         public System.Threading.Tasks.Task<bool> NewWorkEntryAsync(int workerID, int taskID)
@@ -590,14 +635,14 @@ namespace InCaptivaService
             return base.Channel.EditWorkEntryAsync(entryID, start, workerID, taskID, completed);
         }
         
-        public System.Threading.Tasks.Task<bool> EditTaskAsync(int taskID, string description, System.Nullable<System.DateTime> start, int projectID, System.Nullable<System.DateTime> completed)
+        public System.Threading.Tasks.Task<bool> EditTaskAsync(int taskID, string description, System.Nullable<System.DateTime> start, int projectID, System.Nullable<System.DateTime> completed, string name)
         {
-            return base.Channel.EditTaskAsync(taskID, description, start, projectID, completed);
+            return base.Channel.EditTaskAsync(taskID, description, start, projectID, completed, name);
         }
         
-        public System.Threading.Tasks.Task<bool> EditProjectAsync(int projectID, string name, System.Nullable<System.DateTime> start, System.Nullable<System.DateTime> completed)
+        public System.Threading.Tasks.Task<bool> EditProjectAsync(int projectID, string name, System.Nullable<System.DateTime> start, System.Nullable<System.DateTime> completed, string description)
         {
-            return base.Channel.EditProjectAsync(projectID, name, start, completed);
+            return base.Channel.EditProjectAsync(projectID, name, start, completed, description);
         }
         
         public System.Threading.Tasks.Task<bool> EndWorkEntryAsync(int entryID)
@@ -605,9 +650,9 @@ namespace InCaptivaService
             return base.Channel.EndWorkEntryAsync(entryID);
         }
         
-        public System.Threading.Tasks.Task<bool> DeleteAsync(int what, int id)
+        public System.Threading.Tasks.Task<bool> DeleteAsync(int type, int id)
         {
-            return base.Channel.DeleteAsync(what, id);
+            return base.Channel.DeleteAsync(type, id);
         }
         
         public System.Threading.Tasks.Task<bool> ResetServiceAsync(string password)
