@@ -22,8 +22,10 @@ namespace inCaptiva_UI.Controllers {
                 Task = task,
                 WorkEntry = workEntry
             };
+            data.Add(data);
 
             return View(data);
+            // https://stackoverflow.com/questions/21849806/implement-getenumerator-in-c-sharp hmm ik sikker på hvorfor/hvordan det virker xD
         }
 
         //WORKER
@@ -58,7 +60,7 @@ namespace inCaptiva_UI.Controllers {
         [HttpPost]
         public async Task<IActionResult> Project(InCaptivaService.Project project) {
             var service = new InCaptivaService.InCaptivaServiceClient();
-            await service.NewProjectAsync(project.Name);
+            await service.NewProjectAsync(project.Name, project.Description);
 
             return RedirectToAction("Project");
         }
@@ -73,7 +75,7 @@ namespace inCaptiva_UI.Controllers {
         [HttpPost]
         public async Task<IActionResult> Task(InCaptivaService.Task task) {
             var service = new InCaptivaService.InCaptivaServiceClient();
-            await service.NewTaskAsync(task.ProjectID,task.Description);
+            await service.NewTaskAsync(task.ProjectID,task.Name,task.Description,task.EstimatedTime);
 
             return RedirectToAction("Task");
         }

@@ -5,9 +5,12 @@
 }
 
 <h2>Task</h2>
-@using(Html.BeginForm()) {
+@using (Html.BeginForm())
+{
     <p>
         Project ID: <input type="text" name="ProjectID">
+        Name: <input type="text" name="Name">
+        Estimated time: <input type="text" name="EstimatedTime">
         Description: <input type="text" name="Description">
         <button type="submit">Add new Task</button>
     </p>
@@ -22,7 +25,13 @@
                     @Html.DisplayNameFor(model => model.Description)
                 </th>
                 <th>
+                    @Html.DisplayNameFor(model => model.EstimatedTime)
+                </th>
+                <th>
                     @Html.DisplayNameFor(model => model.ID)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Name)
                 </th>
                 <th>
                     @Html.DisplayNameFor(model => model.ProjectID)
@@ -49,7 +58,13 @@
                 @Html.DisplayFor(modelItem => item.Description)
             </td>
             <td>
+                @Html.DisplayFor(modelItem => item.EstimatedTime)
+            </td>
+            <td>
                 @Html.DisplayFor(modelItem => item.ID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.ProjectID)

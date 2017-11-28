@@ -1,4 +1,4 @@
-﻿@model inCaptiva_UI.Models.Data
+﻿@model IEnumerable<inCaptiva_UI.Models.Data>
 
 @{
     ViewData["Title"] = "Frontpage";
@@ -49,13 +49,16 @@
 <p></p>
 <p></p>
 
+@*<div id="diagram">
+        <div id="label">Worker:</div><div id="worker" style="width: @(Model.Worker.Count()*10+"%")"></div>
+        <br />
+        <div id="label">Project:</div><div id="project" style="width: @(Model.Project.Count()*10+"%")"></div>
+        <br />
+        <div id="label">Task:</div><div id="task" style="width: @(Model.Task.Count()*10+"%")"></div>
+        <br />
+        <div id="label">Work entry:</div><div id="workEntry" style="width: @(Model.WorkEntry.Count()*10+"%")"></div>
+    </div>*@
 
-<div id="diagram">
-    <div id="label">Worker:</div><div id="worker" style="width: @(Model.Worker.Count()*10+"%")"></div>
-    <br />
-    <div id="label">Project:</div><div id="project" style="width: @(Model.Project.Count()*10+"%")"></div>
-    <br />
-    <div id="label">Task:</div><div id="task" style="width: @(Model.Task.Count()*10+"%")"></div>
-    <br />
-    <div id="label">Work entry:</div><div id="workEntry" style="width: @(Model.WorkEntry.Count()*10+"%")"></div>
-</div>
+@foreach (var item in Model) {
+    <div id="label">Project:</div><div id="project" style="width: @(item.Project.Count()*10+"%")"></div>
+}
