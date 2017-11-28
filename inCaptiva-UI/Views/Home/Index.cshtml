@@ -1,15 +1,61 @@
-﻿
+﻿@model inCaptiva_UI.Models.Data
+
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Frontpage";
 }
 
-<h2>Index</h2>
+<style>
+    #project {
+        border: 1px solid;
+        background-color: red;
+        height: 20px;
+        display: inline-block;
+    }
 
-<table class="table">
-    <tbody>
-        @foreach(var item in Model) {
+    #task {
+        border: 1px solid;
+        background-color: blue;
+        height: 20px;
+        display: inline-block;
+    }
 
-        }
-    </tbody>
-</table>
-}
+    #workEntry {
+        border: 1px solid;
+        background-color: green;
+        height: 20px;
+        display: inline-block;
+    }
+
+    #worker {
+        border: 1px solid;
+        background-color: gold;
+        height: 20px;
+        display: inline-block;
+    }
+
+    #diagram {
+        border: 1px solid;
+        width: 60%;
+    }
+
+    #label {
+        width: 80px;
+        display: inline-block;
+    }
+</style>
+
+<p></p>
+<p></p>
+<p></p>
+<p></p>
+
+
+<div id="diagram">
+    <div id="label">Worker:</div><div id="worker" style="width: @(Model.Worker.Count()*10+"%")"></div>
+    <br />
+    <div id="label">Project:</div><div id="project" style="width: @(Model.Project.Count()*10+"%")"></div>
+    <br />
+    <div id="label">Task:</div><div id="task" style="width: @(Model.Task.Count()*10+"%")"></div>
+    <br />
+    <div id="label">Work entry:</div><div id="workEntry" style="width: @(Model.WorkEntry.Count()*10+"%")"></div>
+</div>
