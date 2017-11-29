@@ -20,6 +20,15 @@
         display: inline-block;
     }
 
+    #task2 {
+        border: 1px solid;
+        /*background-color: blue;*/
+        height: 20px;
+        margin-left: -4px;
+        margin-top: -30px;
+        display: inline-block;
+    }
+
     #workEntry {
         border: 1px solid;
         background-color: green;
@@ -71,6 +80,7 @@
 
         //task
         <div id="task" style="background-color: @(color[i]); width: @(((task.EstimatedTime.TotalHours)/2).ToString().Replace(',','.'))%">@(task.ID)</div>
+        //<div id="task2" style="background-color: black; width: @(((task.TimeUsed.TotalHours)/2).ToString().Replace(',','.'))%">@(task.ID)</div>
 
         lastID = task.ProjectID;
         i++;

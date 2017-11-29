@@ -12,6 +12,14 @@
         <button type="submit">Add new Work entry</button>
     </p>
 }
+
+@using (Html.BeginForm())
+{
+    <p>
+        Entry ID: <input type="text" name="EntryID">
+        <button type="submit">End Work entry</button>
+    </p>
+}
 <table class="table">
     <thead>
         <tr>
