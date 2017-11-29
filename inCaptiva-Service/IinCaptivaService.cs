@@ -61,7 +61,7 @@ namespace inCaptiva_Service
         bool EndWorkEntry(int entryID);
 
         [OperationContract]
-        bool Delete(int what, int id);
+        bool Delete(int type, int id);
 
         [OperationContract]
         bool ResetService(string password);

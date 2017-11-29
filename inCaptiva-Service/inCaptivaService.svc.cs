@@ -102,11 +102,11 @@ namespace inCaptiva_Service
             }
         }
 
-        public bool NewTask(int projectID, string name, string description)
+        public bool NewTask(int projectID, string name, string description, TimeSpan estimatedTime)
         {
             try
             {
-                Task task = new Task(projectID, description, name);
+                Task task = new Task(projectID, description, name, estimatedTime);
                 lock (Repo.Lock)
                 {
                     Repo.Tasks.Add(task);
@@ -298,7 +298,7 @@ namespace inCaptiva_Service
             }
         }
 
-        public bool EditTask(int taskID, string description = "", DateTime? start = null, int projectID = -1, DateTime? completed = null)
+        public bool EditTask(int taskID, string description = "", DateTime? start = null, int projectID = -1, DateTime? completed = null, string name = "")
         {
             try
             {
@@ -325,6 +325,10 @@ namespace inCaptiva_Service
                 {
                     task.CompletedTime = (DateTime)completed;
                 }
+                if (name != "")
+                {
+                    task.Name = name;
+                }
                 lock (Repo.Lock)
                 {
                     Repo.Tasks[index] = task;
@@ -341,7 +345,7 @@ namespace inCaptiva_Service
             }
         }
 
-        public bool EditProject(int projectID, string name = "", DateTime? start = null, DateTime? completed = null)
+        public bool EditProject(int projectID, string name = "", DateTime? start = null, DateTime? completed = null, string description = "")
         {
             try
             {
@@ -364,6 +368,10 @@ namespace inCaptiva_Service
                 {
                     project.CompletedTime = (DateTime)completed;
                 }
+                if (description != "")
+                {
+                    project.Description = description;
+                }
                 lock (Repo.Lock)
                 {
                     Repo.Projects[index] = project;
@@ -379,34 +387,23 @@ namespace inCaptiva_Service
                 throw new Exception("Something went wrong... - " + e.Message);
             }
         }
-        /// <summary>
-        /// To delete from Worker pass a '1' to 'what'
-        /// To delete from Work Entries pass a '2' to 'what'
-        /// To delete from Tasks pass a '3' to 'what'
-        /// To delete from Projects pass a '4' to 'what'
-        /// 
-        /// Always insure the user know the object cannot be salveged after calling this.
-        /// </summary>
-        /// <param name="what"></param>
-        /// <param name="id"></param>
-        /// <returns></returns>
-        public bool Delete(int what, int id)
+        public bool Delete(int type, int id)
         {
             try
             {
-                if (what == 1)
+                if (type == 1)
                 {
                     Repo.Workers.Remove(Repo.Workers.Find(x => x.ID == id));
                 }
-                else if (what == 2)
+                else if (type == 2)
                 {
                     Repo.WorkEntries.Remove(Repo.WorkEntries.Find(x => x.ID == id));
                 }
-                else if (what == 3)
+                else if (type == 3)
                 {
                     Repo.Tasks.Remove(Repo.Tasks.Find(x => x.ID == id));
                 }
-                else if (what == 4)
+                else if (type == 4)
                 {
                     Repo.Projects.Remove(Repo.Projects.Find(x => x.ID == id));
                 }
