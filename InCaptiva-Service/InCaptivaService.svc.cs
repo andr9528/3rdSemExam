@@ -12,6 +12,14 @@ namespace inCaptiva_Service
     // NOTE: In order to launch WCF Test Client for testing this service, please select Service1.svc or Service1.svc.cs at the Solution Explorer and start debugging.
     public class InCaptivaService : IInCaptivaService
     {
+        [DataContract]
+        public enum ListType
+        {
+            [EnumMember] Task,
+            [EnumMember] Project,
+            [EnumMember] Worker,
+            [EnumMember] WorkEntry
+        }
         public string GetData(int value)
         {
             return string.Format("You entered: {0}", value);
@@ -387,23 +395,23 @@ namespace inCaptiva_Service
                 throw new Exception("Something went wrong... - " + e.Message);
             }
         }
-        public bool Delete(int type, int id)
+        public bool Delete(ListType type, int id)
         {
             try
             {
-                if (type == 1)
+                if (type == ListType.Worker)
                 {
                     Repo.Workers.Remove(Repo.Workers.Find(x => x.ID == id));
                 }
-                else if (type == 2)
+                else if (type == ListType.WorkEntry)
                 {
                     Repo.WorkEntries.Remove(Repo.WorkEntries.Find(x => x.ID == id));
                 }
-                else if (type == 3)
+                else if (type == ListType.Task)
                 {
                     Repo.Tasks.Remove(Repo.Tasks.Find(x => x.ID == id));
                 }
-                else if (type == 4)
+                else if (type == ListType.Project)
                 {
                     Repo.Projects.Remove(Repo.Projects.Find(x => x.ID == id));
                 }
@@ -444,6 +452,21 @@ namespace inCaptiva_Service
                 throw new Exception("Something went wrong... - " + e.Message);
             }
         }
+
+        public bool AddTestData()
+        {
+            ResetService("Nagakaborous");
+            NewProject("Onion cutting machine", "Lorem Ipsum er ganske enkelt fyldtekst fra print- og typografiindustrien. Lorem Ipsum har været standard...");
+            NewProject("Automated welding machine", "Lorem Ipsum er ganske enkelt fyldtekst fra print- og typografiindustrien. Lorem Ipsum har været standard...");
+            NewWorker("Jan Christensen", "75319486", "Jan@somehwere.com", "CEO");
+            NewWorker("James Bond", "00700700", "Bond@JamesBond.uk", "Assasin");
+            NewTask(1, "Cut Onions", "Slice & Dice", new TimeSpan(15, 0, 0));
+            NewTask(2, "Setup of build", "Setting up the materials, etc.", new TimeSpan(10, 0, 0));
+            NewTask(2, "Paintjob", "Paint the machine so it looks awesome", new TimeSpan(50, 0, 0));
+            NewTask(2, "Assembling", "Assemble the various components together", new TimeSpan(75, 0, 0));
+            return true;
+        }
+
         public bool ResetService(string password)
         {
             if (password == "Nagakaborous")
@@ -464,6 +487,17 @@ namespace inCaptiva_Service
             return false;
         }
 
-        
+        public bool Sort(ListType type, string parameter)
+        {
+            
+
+            throw new NotImplementedException();
+        }
+        //string GetName<T>(T item) where T : class
+        //{
+        //    var properties = typeof(T).GetProperties();
+        //    Enforce.That(properties.Length == 1);
+        //    return properties[0].Name;
+        //}
     }
 }
