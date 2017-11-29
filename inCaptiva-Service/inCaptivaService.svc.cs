@@ -12,6 +12,14 @@ namespace inCaptiva_Service
     // NOTE: In order to launch WCF Test Client for testing this service, please select Service1.svc or Service1.svc.cs at the Solution Explorer and start debugging.
     public class InCaptivaService : IInCaptivaService
     {
+        [DataContract]
+        public enum ListType
+        {
+            [EnumMember] Task,
+            [EnumMember] Project,
+            [EnumMember] Worker,
+            [EnumMember] WorkEntry
+        }
         public string GetData(int value)
         {
             return string.Format("You entered: {0}", value);
@@ -102,11 +110,11 @@ namespace inCaptiva_Service
             }
         }
 
-        public bool NewTask(int projectID, string name, string description)
+        public bool NewTask(int projectID, string name, string description, TimeSpan estimatedTime)
         {
             try
             {
-                Task task = new Task(projectID, description, name);
+                Task task = new Task(projectID, description, name, estimatedTime);
                 lock (Repo.Lock)
                 {
                     Repo.Tasks.Add(task);
@@ -298,7 +306,7 @@ namespace inCaptiva_Service
             }
         }
 
-        public bool EditTask(int taskID, string description = "", DateTime? start = null, int projectID = -1, DateTime? completed = null)
+        public bool EditTask(int taskID, string description = "", DateTime? start = null, int projectID = -1, DateTime? completed = null, string name = "")
         {
             try
             {
@@ -325,6 +333,10 @@ namespace inCaptiva_Service
                 {
                     task.CompletedTime = (DateTime)completed;
                 }
+                if (name != "")
+                {
+                    task.Name = name;
+                }
                 lock (Repo.Lock)
                 {
                     Repo.Tasks[index] = task;
@@ -341,7 +353,7 @@ namespace inCaptiva_Service
             }
         }
 
-        public bool EditProject(int projectID, string name = "", DateTime? start = null, DateTime? completed = null)
+        public bool EditProject(int projectID, string name = "", DateTime? start = null, DateTime? completed = null, string description = "")
         {
             try
             {
@@ -364,6 +376,10 @@ namespace inCaptiva_Service
                 {
                     project.CompletedTime = (DateTime)completed;
                 }
+                if (description != "")
+                {
+                    project.Description = description;
+                }
                 lock (Repo.Lock)
                 {
                     Repo.Projects[index] = project;
@@ -379,34 +395,23 @@ namespace inCaptiva_Service
                 throw new Exception("Something went wrong... - " + e.Message);
             }
         }
-        /// <summary>
-        /// To delete from Worker pass a '1' to 'what'
-        /// To delete from Work Entries pass a '2' to 'what'
-        /// To delete from Tasks pass a '3' to 'what'
-        /// To delete from Projects pass a '4' to 'what'
-        /// 
-        /// Always insure the user know the object cannot be salveged after calling this.
-        /// </summary>
-        /// <param name="what"></param>
-        /// <param name="id"></param>
-        /// <returns></returns>
-        public bool Delete(int what, int id)
+        public bool Delete(ListType type, int id)
         {
             try
             {
-                if (what == 1)
+                if (type == ListType.Worker)
                 {
                     Repo.Workers.Remove(Repo.Workers.Find(x => x.ID == id));
                 }
-                else if (what == 2)
+                else if (type == ListType.WorkEntry)
                 {
                     Repo.WorkEntries.Remove(Repo.WorkEntries.Find(x => x.ID == id));
                 }
-                else if (what == 3)
+                else if (type == ListType.Task)
                 {
                     Repo.Tasks.Remove(Repo.Tasks.Find(x => x.ID == id));
                 }
-                else if (what == 4)
+                else if (type == ListType.Project)
                 {
                     Repo.Projects.Remove(Repo.Projects.Find(x => x.ID == id));
                 }
@@ -447,6 +452,21 @@ namespace inCaptiva_Service
                 throw new Exception("Something went wrong... - " + e.Message);
             }
         }
+
+        public bool AddTestData()
+        {
+            ResetService("Nagakaborous");
+            NewProject("Onion cutting machine", "Lorem Ipsum er ganske enkelt fyldtekst fra print- og typografiindustrien. Lorem Ipsum har været standard...");
+            NewProject("Automated welding machine", "Lorem Ipsum er ganske enkelt fyldtekst fra print- og typografiindustrien. Lorem Ipsum har været standard...");
+            NewWorker("Jan Christensen", "75319486", "Jan@somehwere.com", "CEO");
+            NewWorker("James Bond", "00700700", "Bond@JamesBond.uk", "Assasin");
+            NewTask(1, "Cut Onions", "Slice & Dice", new TimeSpan(15, 0, 0));
+            NewTask(2, "Setup of build", "Setting up the materials, etc.", new TimeSpan(10, 0, 0));
+            NewTask(2, "Paintjob", "Paint the machine so it looks awesome", new TimeSpan(50, 0, 0));
+            NewTask(2, "Assembling", "Assemble the various components together", new TimeSpan(75, 0, 0));
+            return true;
+        }
+
         public bool ResetService(string password)
         {
             if (password == "Nagakaborous")
@@ -467,6 +487,17 @@ namespace inCaptiva_Service
             return false;
         }
 
-        
+        public bool Sort(ListType type, string parameter)
+        {
+            
+
+            throw new NotImplementedException();
+        }
+        //string GetName<T>(T item) where T : class
+        //{
+        //    var properties = typeof(T).GetProperties();
+        //    Enforce.That(properties.Length == 1);
+        //    return properties[0].Name;
+        //}
     }
 }
