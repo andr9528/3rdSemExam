@@ -58,7 +58,7 @@
                 @Html.DisplayFor(modelItem => item.Description)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.EstimatedTime)
+                @Html.DisplayFor(modelItem => item.EstimatedTime.TotalHours)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.ID)
@@ -76,7 +76,7 @@
                 @Html.DisplayFor(modelItem => item.Status)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.TimeUsed)
+                @Html.DisplayFor(modelItem => item.TimeUsed.TotalHours)
             </td>
             <td>
                 @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |

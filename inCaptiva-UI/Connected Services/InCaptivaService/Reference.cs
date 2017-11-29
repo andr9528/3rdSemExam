@@ -516,6 +516,9 @@ namespace InCaptivaService
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IInCaptivaService/Delete", ReplyAction="http://tempuri.org/IInCaptivaService/DeleteResponse")]
         System.Threading.Tasks.Task<bool> DeleteAsync(int type, int id);
         
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IInCaptivaService/AddTestData", ReplyAction="http://tempuri.org/IInCaptivaService/AddTestDataResponse")]
+        System.Threading.Tasks.Task<bool> AddTestDataAsync();
+        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IInCaptivaService/ResetService", ReplyAction="http://tempuri.org/IInCaptivaService/ResetServiceResponse")]
         System.Threading.Tasks.Task<bool> ResetServiceAsync(string password);
     }
@@ -653,6 +656,11 @@ namespace InCaptivaService
         public System.Threading.Tasks.Task<bool> DeleteAsync(int type, int id)
         {
             return base.Channel.DeleteAsync(type, id);
+        }
+        
+        public System.Threading.Tasks.Task<bool> AddTestDataAsync()
+        {
+            return base.Channel.AddTestDataAsync();
         }
         
         public System.Threading.Tasks.Task<bool> ResetServiceAsync(string password)

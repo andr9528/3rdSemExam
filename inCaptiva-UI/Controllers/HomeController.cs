@@ -8,13 +8,12 @@ namespace inCaptiva_UI.Controllers {
 
         //INDEX
         public async Task<ActionResult> Index() {
-
+            
             var service = new InCaptivaService.InCaptivaServiceClient();
             List<InCaptivaService.Worker> worker = await service.GetWorkersAsync();
             List<InCaptivaService.Project> project = await service.GetProjectsAsync();
             List<InCaptivaService.Task> task = await service.GetTasksAsync();
             List<InCaptivaService.WorkEntry> workEntry = await service.GetWorkEntriesAsync();
-
             
             Data data = new Data {
                 Worker = worker,
@@ -22,10 +21,14 @@ namespace inCaptiva_UI.Controllers {
                 Task = task,
                 WorkEntry = workEntry
             };
-            data.Add(data);
-
             return View(data);
-            // https://stackoverflow.com/questions/21849806/implement-getenumerator-in-c-sharp hmm ik sikker på hvorfor/hvordan det virker xD
+        }
+        [HttpPost]
+        public async Task<IActionResult> Index(string whatever)
+        {
+            var service = new InCaptivaService.InCaptivaServiceClient();
+            await service.AddTestDataAsync();
+            return RedirectToAction("Index");
         }
 
         //WORKER
