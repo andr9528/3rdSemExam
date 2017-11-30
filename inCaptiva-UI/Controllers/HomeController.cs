@@ -103,23 +103,19 @@ namespace inCaptiva_UI.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> WorkEntry(InCaptivaService.WorkEntry workEntry)
+        public async Task<IActionResult> WorkEntry(InCaptivaService.WorkEntry workEntry, int entryID, string lol)
         {
             var service = new InCaptivaService.InCaptivaServiceClient();
-            await service.NewWorkEntryAsync(workEntry.WorkerID, workEntry.TaskID);
-
+            if (lol == "test")
+            {
+                await service.NewWorkEntryAsync(workEntry.WorkerID, workEntry.TaskID);
+            }
+            else if (lol == "test2")
+            {
+                await service.EndWorkEntryAsync(entryID);
+            }
+            
             return RedirectToAction("WorkEntry");
         }
-        [HttpPost]
-        public async Task<IActionResult> WorkEntry(int entryID)
-        {
-            //https://docs.microsoft.com/en-us/aspnet/core/mvc/razor-pages/?tabs=visual-studio#using-multiple-handlers
-            //https://www.pluralsight.com/guides/microsoft-net/asp-net-mvc-using-multiple-submit-buttons-with-default-model-binding-and-controller-actions?status=in-review&aid=7010a000002BWqGAAW&promo=&oid=&utm_source=google&utm_medium=ppc&utm_campaign=EMEA_Dynamic&utm_content=&utm_term=&gclid=EAIaIQobChMIrdXHmN7k1wIVB4myCh2dfgUkEAAYASAAEgJ8yvD_BwE
-            var service = new InCaptivaService.InCaptivaServiceClient();
-            await service.EndWorkEntryAsync(entryID);
-
-            return RedirectToAction("WorkEntry");
-        }
-
     }
 }
