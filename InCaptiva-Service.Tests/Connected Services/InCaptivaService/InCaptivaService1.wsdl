@@ -147,42 +147,6 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="DeleteWorker">
-      <soap12:operation soapAction="http://tempuri.org/IInCaptivaService/DeleteWorker" style="document" />
-      <wsdl:input>
-        <soap12:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap12:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="DeleteWorkEntry">
-      <soap12:operation soapAction="http://tempuri.org/IInCaptivaService/DeleteWorkEntry" style="document" />
-      <wsdl:input>
-        <soap12:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap12:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="DeleteTask">
-      <soap12:operation soapAction="http://tempuri.org/IInCaptivaService/DeleteTask" style="document" />
-      <wsdl:input>
-        <soap12:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap12:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="DeleteProject">
-      <soap12:operation soapAction="http://tempuri.org/IInCaptivaService/DeleteProject" style="document" />
-      <wsdl:input>
-        <soap12:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap12:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
     <wsdl:operation name="EndWorkEntry">
       <soap12:operation soapAction="http://tempuri.org/IInCaptivaService/EndWorkEntry" style="document" />
       <wsdl:input>
@@ -192,8 +156,71 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="EndTask">
+      <soap12:operation soapAction="http://tempuri.org/IInCaptivaService/EndTask" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="EndProject">
+      <soap12:operation soapAction="http://tempuri.org/IInCaptivaService/EndProject" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="Delete">
       <soap12:operation soapAction="http://tempuri.org/IInCaptivaService/Delete" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SortTask">
+      <soap12:operation soapAction="http://tempuri.org/IInCaptivaService/SortTask" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SortProject">
+      <soap12:operation soapAction="http://tempuri.org/IInCaptivaService/SortProject" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SortWorker">
+      <soap12:operation soapAction="http://tempuri.org/IInCaptivaService/SortWorker" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SortWorkEntry">
+      <soap12:operation soapAction="http://tempuri.org/IInCaptivaService/SortWorkEntry" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddTestData">
+      <soap12:operation soapAction="http://tempuri.org/IInCaptivaService/AddTestData" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>

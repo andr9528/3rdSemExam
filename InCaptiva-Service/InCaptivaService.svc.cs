@@ -20,6 +20,54 @@ namespace inCaptiva_Service
             [EnumMember] Worker,
             [EnumMember] WorkEntry
         }
+
+        // Remember to update the enum's if new properties are added to the objects. 
+        [DataContract]
+        public enum PropTask
+        {
+            [EnumMember] ProjectID,
+            [EnumMember] StartTime,
+            [EnumMember] CompletedTime,
+            [EnumMember] Status,
+            [EnumMember] ID,
+            [EnumMember] Description,
+            [EnumMember] Name,
+            [EnumMember] TimeUsed,
+            [EnumMember] EstimatedTime
+        }
+        [DataContract]
+        public enum PropProject
+        {
+            [EnumMember] StartTime,
+            [EnumMember] CompletedTime,
+            [EnumMember] Status,
+            [EnumMember] ID,
+            [EnumMember] Name,
+            [EnumMember] Description,
+            [EnumMember] TimeUsed,
+            [EnumMember] EstimatedTime
+        }
+        [DataContract]
+        public enum PropWorker
+        {
+            [EnumMember] ID,
+            [EnumMember] Name,
+            [EnumMember] PhoneNumber,
+            [EnumMember] Email,
+            [EnumMember] JobDescription
+        }
+        [DataContract]
+        public enum PropWorkEntry
+        {
+            [EnumMember] StartTime,
+            [EnumMember] CompletedTime,
+            [EnumMember] Status,
+            [EnumMember] TaskID,
+            [EnumMember] WorkerID,
+            [EnumMember] ID,
+            [EnumMember] TimeUsed
+        }
+
         public string GetData(int value)
         {
             return string.Format("You entered: {0}", value);
@@ -487,17 +535,248 @@ namespace inCaptiva_Service
             return false;
         }
 
-        public bool Sort(ListType type, string parameter)
+        public bool EndTask(int taskID)
         {
-            
-
-            throw new NotImplementedException();
+            try
+            {
+                bool output;
+                lock (Repo.Lock)
+                {
+                    output = Repo.Tasks.Find(x => x.ID == taskID).Completed();
+                }
+                return output;
+            }
+            catch (Exception e)
+            {
+                throw new Exception("Something went wrong... - " + e.Message);
+            }
         }
-        //string GetName<T>(T item) where T : class
-        //{
-        //    var properties = typeof(T).GetProperties();
-        //    Enforce.That(properties.Length == 1);
-        //    return properties[0].Name;
-        //}
+
+        public bool EndProject(int projectID)
+        {
+            try
+            {
+                bool output;
+                lock (Repo.Lock)
+                {
+                    output = Repo.Projects.Find(x => x.ID == projectID).Completed();
+                }
+                return output;
+            }
+            catch (Exception e)
+            {
+                throw new Exception("Something went wrong... - " + e.Message);
+            }
+        }
+
+        public bool Sort(PropTask prop = PropTask.ID)
+        {
+            switch (prop)
+            {
+                case PropTask.ProjectID:
+                    lock (Repo.Lock)
+                    {
+                        Repo.Tasks = Repo.Tasks.OrderBy(x => x.ProjectID).ToList();
+                    }
+                    return true;
+                case PropTask.StartTime:
+                    lock (Repo.Lock)
+                    {
+                        Repo.Tasks = Repo.Tasks.OrderBy(x => x.StartTime).ToList();
+                    }
+                    return true;
+                case PropTask.CompletedTime:
+                    lock (Repo.Lock)
+                    {
+                        Repo.Tasks = Repo.Tasks.OrderBy(x => x.CompletedTime).ToList();
+                    }
+                    return true;
+                case PropTask.Status:
+                    lock (Repo.Lock)
+                    {
+                        Repo.Tasks = Repo.Tasks.OrderBy(x => x.Status).ToList();
+                    }
+                    return true;
+                case PropTask.ID:
+                    lock (Repo.Lock)
+                    {
+                        Repo.Tasks = Repo.Tasks.OrderBy(x => x.ID).ToList();
+                    }
+                    return true;
+                case PropTask.Description:
+                    lock (Repo.Lock)
+                    {
+                        Repo.Tasks = Repo.Tasks.OrderBy(x => x.Description).ToList();
+                    }
+                    return true;
+                case PropTask.Name:
+                    lock (Repo.Lock)
+                    {
+                        Repo.Tasks = Repo.Tasks.OrderBy(x => x.Name).ToList();
+                    }
+                    return true;
+                case PropTask.TimeUsed:
+                    lock (Repo.Lock)
+                    {
+                        Repo.Tasks = Repo.Tasks.OrderBy(x => x.TimeUsed).ToList();
+                    }
+                    return true;
+                case PropTask.EstimatedTime:
+                    lock (Repo.Lock)
+                    {
+                        Repo.Tasks = Repo.Tasks.OrderBy(x => x.EstimatedTime).ToList();
+                    }
+                    return true;
+                default:
+                    return false;
+            }
+        }
+
+        public bool Sort(PropProject prop = PropProject.ID)
+        {
+            switch (prop)
+            {
+                case PropProject.StartTime:
+                    lock (Repo.Lock)
+                    {
+                        Repo.Projects = Repo.Projects.OrderBy(x => x.StartTime).ToList();
+                    }
+                    return true;
+                case PropProject.CompletedTime:
+                    lock (Repo.Lock)
+                    {
+                        Repo.Projects = Repo.Projects.OrderBy(x => x.CompletedTime).ToList();
+                    }
+                    return true;
+                case PropProject.Status:
+                    lock (Repo.Lock)
+                    {
+                        Repo.Projects = Repo.Projects.OrderBy(x => x.Status).ToList();
+                    }
+                    return true;
+                case PropProject.ID:
+                    lock (Repo.Lock)
+                    {
+                        Repo.Projects = Repo.Projects.OrderBy(x => x.ID).ToList();
+                    }
+                    return true;
+                case PropProject.Name:
+                    lock (Repo.Lock)
+                    {
+                        Repo.Projects = Repo.Projects.OrderBy(x => x.Name).ToList();
+                    }
+                    return true;
+                case PropProject.Description:
+                    lock (Repo.Lock)
+                    {
+                        Repo.Projects = Repo.Projects.OrderBy(x => x.Description).ToList();
+                    }
+                    return true;
+                case PropProject.TimeUsed:
+                    lock (Repo.Lock)
+                    {
+                        Repo.Projects = Repo.Projects.OrderBy(x => x.TimeUsed).ToList();
+                    }
+                    return true;
+                case PropProject.EstimatedTime:
+                    lock (Repo.Lock)
+                    {
+                        Repo.Projects = Repo.Projects.OrderBy(x => x.EstimatedTime).ToList();
+                    }
+                    return true;
+                default:
+                    return false;
+            }
+        }
+
+        public bool Sort(PropWorker prop = PropWorker.ID)
+        {
+            switch (prop)
+            {
+                case PropWorker.ID:
+                    lock (Repo.Lock)
+                    {
+                        Repo.Workers = Repo.Workers.OrderBy(x => x.ID).ToList();
+                    }
+                    return true;
+                case PropWorker.Name:
+                    lock (Repo.Lock)
+                    {
+                        Repo.Workers = Repo.Workers.OrderBy(x => x.Name).ToList();
+                    }
+                    return true;
+                case PropWorker.PhoneNumber:
+                    lock (Repo.Lock)
+                    {
+                        Repo.Workers = Repo.Workers.OrderBy(x => x.PhoneNumber).ToList();
+                    }
+                    return true;
+                case PropWorker.Email:
+                    lock (Repo.Lock)
+                    {
+                        Repo.Workers = Repo.Workers.OrderBy(x => x.Email).ToList();
+                    }
+                    return true;
+                case PropWorker.JobDescription:
+                    lock (Repo.Lock)
+                    {
+                        Repo.Workers = Repo.Workers.OrderBy(x => x.JobDescription).ToList();
+                    }
+                    return true;
+                default:
+                    return false;
+            }
+        }
+
+        public bool Sort(PropWorkEntry prop = PropWorkEntry.ID)
+        {
+            switch (prop)
+            {
+                case PropWorkEntry.StartTime:
+                    lock (Repo.Lock)
+                    {
+                        Repo.WorkEntries = Repo.WorkEntries.OrderBy(x => x.StartTime).ToList();
+                    }
+                    return true;
+                case PropWorkEntry.CompletedTime:
+                    lock (Repo.Lock)
+                    {
+                        Repo.WorkEntries = Repo.WorkEntries.OrderBy(x => x.CompletedTime).ToList();
+                    }
+                    return true;
+                case PropWorkEntry.Status:
+                    lock (Repo.Lock)
+                    {
+                        Repo.WorkEntries = Repo.WorkEntries.OrderBy(x => x.Status).ToList();
+                    }
+                    return true;
+                case PropWorkEntry.TaskID:
+                    lock (Repo.Lock)
+                    {
+                        Repo.WorkEntries = Repo.WorkEntries.OrderBy(x => x.TaskID).ToList();
+                    }
+                    return true;
+                case PropWorkEntry.WorkerID:
+                    lock (Repo.Lock)
+                    {
+                        Repo.WorkEntries = Repo.WorkEntries.OrderBy(x => x.WorkerID).ToList();
+                    }
+                    return true;
+                case PropWorkEntry.ID:
+                    lock (Repo.Lock)
+                    {
+                        Repo.WorkEntries = Repo.WorkEntries.OrderBy(x => x.ID).ToList();
+                    }
+                    return true;
+                case PropWorkEntry.TimeUsed:
+                    lock (Repo.Lock)
+                    {
+                        Repo.WorkEntries = Repo.WorkEntries.OrderBy(x => x.TimeUsed).ToList();
+                    }
+                    return true;
+                default:
+                    return false;
+            }
+        }
     }
 }
