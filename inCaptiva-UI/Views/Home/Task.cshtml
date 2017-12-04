@@ -12,7 +12,14 @@
         Name: <input type="text" name="Name">
         Estimated time: <input type="text" name="EstimatedTime">
         Description: <input type="text" name="Description">
+        <input name="button" value="new" hidden />
         <button type="submit">Add new Task</button>
+    </p>
+}@using(Html.BeginForm()) {
+    <p>
+        Task ID: <input type="text" name="taskID">
+        <input name="button" value="end" hidden />
+        <button type="submit">End Task</button>
     </p>
 }
 <table class="table">

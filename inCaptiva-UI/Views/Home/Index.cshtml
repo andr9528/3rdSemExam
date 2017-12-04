@@ -13,19 +13,9 @@
     }
 
     #task {
-        border: 1px solid;
         /*background-color: blue;*/
         height: 20px;
         margin-left: -4px;
-        display: inline-block;
-    }
-
-    #task2 {
-        border: 1px solid;
-        /*background-color: blue;*/
-        height: 20px;
-        margin-left: -4px;
-        margin: -100px;
         display: inline-block;
     }
 
@@ -49,45 +39,146 @@
     }
 
     #label {
-        width: 120px;
+        width: 100px;
         display: inline-block;
     }
 </style>
 
 <p></p>
 <p></p>
-@using (Html.BeginForm())
-{
+@using(Html.BeginForm()) {
     <button type="submit">Replace with test data</button>
 }
 <p></p>
 <p></p>
 
-
 <div id="diagram">
-    @{ string[] color = new string[] { "red", "green", "blue", "yellow" }; }
-    @{ int lastID = -1; }
-    @{ int i = 0; }
-    @foreach (var task in Model.Task)
-    {
-        //new project
-        if (task.ProjectID != lastID)
-        {
-            i = 0;
-            <br />
-            <div id="label">Projekt ID - @(task.ProjectID): </div>
-        }
+    <center><divhead style="font-weight:bold">Tasks</divhead></center>
+    @{ string[] color = new string[] { "skyblue", "purple", "deeppink", "brown" }; }
+    @{ string[] color2 = new string[] { "red", "yellow", "green" }; }
+    @{ int colorIndex = 0; }
+    @{ int border = 1; }
+    @{ string content = ""; }
+
+    @*Project*@
+    @for(int i = 0; i < Model.Project.Count(); i++) {
+
+        <div style="font-weight:bold" id="label">Projekt ID - @(Model.Project[i].ID)</div>
+        <br />
 
         //task
-        <div id="task" style="background-color: @(color[i]); width: @(((task.EstimatedTime.TotalHours)/2).ToString().Replace(',','.'))%">@(task.ID)</div>
-        <div id="task2" style="background-color: black; width: @(((task.TimeUsed.TotalHours)/2).ToString().Replace(',','.'))%">@(task.ID)</div>
+        //Estimate
+        <div id="label">Estimate:</div>
+        for(int j = 0; j < Model.Task.Count; j++) {
 
-        lastID = task.ProjectID;
-        i++;
-        if (i > color.Length-1)
-        {
-            i = 0;
+            //only task with same id as current project
+            if(Model.Task[j].ProjectID == Model.Project[i].ID) {
+
+                //remove border and name if no time used/estimated
+                if(Model.Task[j].EstimatedTime.TotalHours <= 0) {
+                    border = 0;
+                    content = "";
+                } else if(Model.Task[j].EstimatedTime.TotalHours > 0) {
+                    border = 1;
+                    content = Model.Task[j].ID.ToString();
+                }
+
+                //task
+                <div id="task" style="border: @(border + "px solid"); background-color: @(color[colorIndex]); width: @(((Model.Task[j].EstimatedTime.TotalHours) / 2).ToString().Replace(',', '.'))%">@(content)</div>
+
+                //next color
+                colorIndex++;
+                if(colorIndex > color.Length - 1) {
+                    colorIndex = 0;
+                }
+            }
         }
-    }
 
+        <br />
+
+        //Actual
+        <div id="label">Time used:</div>
+        for(int j = 0; j < Model.Task.Count; j++) {
+
+            //on schedule colors
+            int warnMargin = 5; //when the color starts getting yellow e.g. 5 = -+ 20% of estimate
+            if(Model.Task[j].TimeUsed.TotalHours >= Model.Task[j].EstimatedTime.TotalHours + (Model.Task[j].EstimatedTime.TotalHours) / warnMargin) {
+                colorIndex = 0;
+            } else if(Model.Task[j].TimeUsed.TotalHours >= Model.Task[j].EstimatedTime.TotalHours - (Model.Task[j].EstimatedTime.TotalHours) / warnMargin) {
+                colorIndex = 1;
+            } else if(Model.Task[j].TimeUsed.TotalHours < Model.Task[j].EstimatedTime.TotalHours) {
+                colorIndex = 2;
+            }
+
+            //only task with same id as current project
+            if(Model.Task[j].ProjectID == Model.Project[i].ID) {
+
+                //remove border and name if no time used/estimated
+                if(Model.Task[j].TimeUsed.TotalHours <= 0) {
+                    border = 0;
+                    content = "";
+                } else if(Model.Task[j].TimeUsed.TotalHours > 0) {
+                    border = 1;
+                    content = Model.Task[j].ID.ToString();
+                }
+
+                //task
+                <div id="task" style="border: @(border + "px solid"); background-color: @(color2[colorIndex]); width: @(((Model.Task[j].TimeUsed.TotalHours) / 2).ToString().Replace(',', '.'))%">@(content)</div>
+            }
+        }
+
+        //next project
+        colorIndex = 0;
+        <br />
+    }
+</div>
+
+<br />
+<br />
+
+<div id="diagram">
+    <center><divhead style="font-weight:bold">Work entries</divhead></center>
+    @{ color = new string[] { "skyblue", "purple", "deeppink", "brown" }; }
+    @{ color2 = new string[] { "red", "yellow", "green" }; }
+    @{ colorIndex = 0; }
+    @{ border = 1; }
+    @{ content = ""; }
+
+    @*Task*@
+    @for(int i = 0; i < Model.Task.Count(); i++) {
+
+        <div style="font-weight:bold" id="label">Task ID - @(Model.Task[i].ID)</div>
+        <br />
+
+        //task
+        //Estimate
+        <div id="label">Time used:</div>
+        for(int j = 0; j < Model.WorkEntry.Count; j++) {
+
+            //only task with same id as current project
+            if(Model.WorkEntry[j].TaskID == Model.Task[i].ID) {
+
+                //remove border and name if no time used/estimated
+                if(Model.WorkEntry[j].TimeUsed.TotalHours <= 0) {
+                    border = 0;
+                    content = "";
+                } else if(Model.WorkEntry[j].TimeUsed.TotalHours > 0) {
+                    border = 1;
+                    content = Model.WorkEntry[j].ID.ToString();
+                }
+
+                //task
+                <div id="task" style="border: @(border + "px solid"); background-color: @(color[colorIndex]); width: @(((Model.WorkEntry[j].TimeUsed.TotalHours) / 2).ToString().Replace(',', '.'))%">@(content)</div>
+
+                //next color
+                colorIndex++;
+                if(colorIndex > color.Length - 1) {
+                    colorIndex = 0;
+                }
+            }
+        }
+        //next project
+        <br />
+
+    }
 </div>
