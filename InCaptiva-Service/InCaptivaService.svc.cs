@@ -12,6 +12,8 @@ namespace inCaptiva_Service
     // NOTE: In order to launch WCF Test Client for testing this service, please select Service1.svc or Service1.svc.cs at the Solution Explorer and start debugging.
     public class InCaptivaService : IInCaptivaService
     {
+        Random random = new Random();
+
         [DataContract]
         public enum ListType
         {
@@ -502,39 +504,7 @@ namespace inCaptiva_Service
             }
         }
 
-        public bool AddTestData()
-        {
-            ResetService("Nagakaborous");
-            NewProject("Onion cutting machine", "Lorem Ipsum er ganske enkelt fyldtekst fra print- og typografiindustrien. Lorem Ipsum har været standard...");
-            NewProject("Automated welding machine", "Lorem Ipsum er ganske enkelt fyldtekst fra print- og typografiindustrien. Lorem Ipsum har været standard...");
-            NewWorker("Jan Christensen", "75319486", "Jan@somehwere.com", "CEO");
-            NewWorker("James Bond", "00700700", "Bond@JamesBond.uk", "Assasin");
-            NewTask(1, "Cut Onions", "Slice & Dice", new TimeSpan(15, 0, 0));
-            NewTask(2, "Setup of build", "Setting up the materials, etc.", new TimeSpan(10, 0, 0));
-            NewTask(2, "Paintjob", "Paint the machine so it looks awesome", new TimeSpan(50, 0, 0));
-            NewTask(2, "Assembling", "Assemble the various components together", new TimeSpan(75, 0, 0));
-            return true;
-        }
-
-        public bool ResetService(string password)
-        {
-            if (password == "Nagakaborous")
-            {
-                lock (Repo.Lock)
-                {
-                    Repo.Projects.Clear();
-                    Repo.Tasks.Clear();
-                    Repo.WorkEntries.Clear();
-                    Repo.Workers.Clear();
-                    Repo.HighestEntryID = 0;
-                    Repo.HighestProjectID = 0;
-                    Repo.HighestTaskID = 0;
-                    Repo.HighestWorkerID = 0;
-                }
-                return true;
-            }
-            return false;
-        }
+        
         public bool EndTask(int taskID)
         {
             try
@@ -806,6 +776,49 @@ namespace inCaptiva_Service
             {
                 throw new Exception("Something went wrong... - " + e.Message);
             }
+        }
+        public bool AddTestData()
+        {
+            ResetService("Nagakaborous");
+            NewProject("Onion cutting machine", "Lorem Ipsum er ganske enkelt fyldtekst fra print- og typografiindustrien. Lorem Ipsum har været standard...");
+            NewProject("Automated welding machine", "Lorem Ipsum er ganske enkelt fyldtekst fra print- og typografiindustrien. Lorem Ipsum har været standard...");
+            NewWorker("Jan Christensen", "75319486", "Jan@somehwere.com", "CEO");
+            NewWorker("James Bond", "00700700", "Bond@JamesBond.uk", "Assasin");
+            NewTask(1, "Cut Onions", "Slice & Dice", new TimeSpan(15, 0, 0));
+            NewTask(2, "Setup of build", "Setting up the materials, etc.", new TimeSpan(10, 0, 0));
+            NewTask(2, "Paintjob", "Paint the machine so it looks awesome", new TimeSpan(50, 0, 0));
+            NewTask(2, "Assembling", "Assemble the various components together", new TimeSpan(75, 0, 0));
+            NewWorkEntry(0, 1);
+            NewWorkEntry(1, 0);
+            lock (Repo.Lock)
+            {
+                foreach (var entry in Repo.WorkEntries)
+                {
+                    entry.EndEntry();
+                    entry.CompletedTime = entry.CompletedTime + new TimeSpan(random.Next(0, 8), random.Next(0, 59), random.Next(0, 59));
+                }
+            }
+            return true;
+        }
+
+        public bool ResetService(string password)
+        {
+            if (password == "Nagakaborous")
+            {
+                lock (Repo.Lock)
+                {
+                    Repo.Projects.Clear();
+                    Repo.Tasks.Clear();
+                    Repo.WorkEntries.Clear();
+                    Repo.Workers.Clear();
+                    Repo.HighestEntryID = 0;
+                    Repo.HighestProjectID = 0;
+                    Repo.HighestTaskID = 0;
+                    Repo.HighestWorkerID = 0;
+                }
+                return true;
+            }
+            return false;
         }
     }
 }
