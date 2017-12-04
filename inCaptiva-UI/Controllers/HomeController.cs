@@ -52,11 +52,11 @@ namespace inCaptiva_UI.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Delete(int what, int id)
+        public async Task<IActionResult> Delete(InCaptivaService.InCaptivaServiceListType what, int id)
         {
             var service = new InCaptivaService.InCaptivaServiceClient();
-            await service.DeleteAsync(1, id);
-
+            await service.DeleteAsync(what, id);
+            
             return RedirectToAction("Worker");
         }
 

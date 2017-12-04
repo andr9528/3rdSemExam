@@ -461,6 +461,135 @@ namespace InCaptivaService
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "0.5.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="InCaptivaService.ListType", Namespace="http://schemas.datacontract.org/2004/07/inCaptiva_Service")]
+    public enum InCaptivaServiceListType : int
+    {
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        Task = 0,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        Project = 1,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        Worker = 2,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        WorkEntry = 3,
+    }
+    
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "0.5.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="InCaptivaService.PropTask", Namespace="http://schemas.datacontract.org/2004/07/inCaptiva_Service")]
+    public enum InCaptivaServicePropTask : int
+    {
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        ProjectID = 0,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        StartTime = 1,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        CompletedTime = 2,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        Status = 3,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        ID = 4,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        Description = 5,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        Name = 6,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        TimeUsed = 7,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        EstimatedTime = 8,
+    }
+    
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "0.5.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="InCaptivaService.PropProject", Namespace="http://schemas.datacontract.org/2004/07/inCaptiva_Service")]
+    public enum InCaptivaServicePropProject : int
+    {
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        StartTime = 0,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        CompletedTime = 1,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        Status = 2,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        ID = 3,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        Name = 4,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        Description = 5,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        TimeUsed = 6,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        EstimatedTime = 7,
+    }
+    
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "0.5.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="InCaptivaService.PropWorker", Namespace="http://schemas.datacontract.org/2004/07/inCaptiva_Service")]
+    public enum InCaptivaServicePropWorker : int
+    {
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        ID = 0,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        Name = 1,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        PhoneNumber = 2,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        Email = 3,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        JobDescription = 4,
+    }
+    
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "0.5.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="InCaptivaService.PropWorkEntry", Namespace="http://schemas.datacontract.org/2004/07/inCaptiva_Service")]
+    public enum InCaptivaServicePropWorkEntry : int
+    {
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        StartTime = 0,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        CompletedTime = 1,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        Status = 2,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        TaskID = 3,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        WorkerID = 4,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        ID = 5,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        TimeUsed = 6,
+    }
+    
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "0.5.0.0")]
     [System.ServiceModel.ServiceContractAttribute(ConfigurationName="ServiceReference1.IInCaptivaService")]
     public interface IInCaptivaService
     {
@@ -513,8 +642,26 @@ namespace InCaptivaService
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IInCaptivaService/EndWorkEntry", ReplyAction="http://tempuri.org/IInCaptivaService/EndWorkEntryResponse")]
         System.Threading.Tasks.Task<bool> EndWorkEntryAsync(int entryID);
         
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IInCaptivaService/EndTask", ReplyAction="http://tempuri.org/IInCaptivaService/EndTaskResponse")]
+        System.Threading.Tasks.Task<bool> EndTaskAsync(int taskID);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IInCaptivaService/EndProject", ReplyAction="http://tempuri.org/IInCaptivaService/EndProjectResponse")]
+        System.Threading.Tasks.Task<bool> EndProjectAsync(int projectID);
+        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IInCaptivaService/Delete", ReplyAction="http://tempuri.org/IInCaptivaService/DeleteResponse")]
-        System.Threading.Tasks.Task<bool> DeleteAsync(int type, int id);
+        System.Threading.Tasks.Task<bool> DeleteAsync(InCaptivaService.InCaptivaServiceListType type, int id);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IInCaptivaService/SortTask", ReplyAction="http://tempuri.org/IInCaptivaService/SortTaskResponse")]
+        System.Threading.Tasks.Task<bool> SortTaskAsync(InCaptivaService.InCaptivaServicePropTask prop);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IInCaptivaService/SortProject", ReplyAction="http://tempuri.org/IInCaptivaService/SortProjectResponse")]
+        System.Threading.Tasks.Task<bool> SortProjectAsync(InCaptivaService.InCaptivaServicePropProject prop);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IInCaptivaService/SortWorker", ReplyAction="http://tempuri.org/IInCaptivaService/SortWorkerResponse")]
+        System.Threading.Tasks.Task<bool> SortWorkerAsync(InCaptivaService.InCaptivaServicePropWorker prop);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IInCaptivaService/SortWorkEntry", ReplyAction="http://tempuri.org/IInCaptivaService/SortWorkEntryResponse")]
+        System.Threading.Tasks.Task<bool> SortWorkEntryAsync(InCaptivaService.InCaptivaServicePropWorkEntry prop);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IInCaptivaService/AddTestData", ReplyAction="http://tempuri.org/IInCaptivaService/AddTestDataResponse")]
         System.Threading.Tasks.Task<bool> AddTestDataAsync();
@@ -653,9 +800,39 @@ namespace InCaptivaService
             return base.Channel.EndWorkEntryAsync(entryID);
         }
         
-        public System.Threading.Tasks.Task<bool> DeleteAsync(int type, int id)
+        public System.Threading.Tasks.Task<bool> EndTaskAsync(int taskID)
+        {
+            return base.Channel.EndTaskAsync(taskID);
+        }
+        
+        public System.Threading.Tasks.Task<bool> EndProjectAsync(int projectID)
+        {
+            return base.Channel.EndProjectAsync(projectID);
+        }
+        
+        public System.Threading.Tasks.Task<bool> DeleteAsync(InCaptivaService.InCaptivaServiceListType type, int id)
         {
             return base.Channel.DeleteAsync(type, id);
+        }
+        
+        public System.Threading.Tasks.Task<bool> SortTaskAsync(InCaptivaService.InCaptivaServicePropTask prop)
+        {
+            return base.Channel.SortTaskAsync(prop);
+        }
+        
+        public System.Threading.Tasks.Task<bool> SortProjectAsync(InCaptivaService.InCaptivaServicePropProject prop)
+        {
+            return base.Channel.SortProjectAsync(prop);
+        }
+        
+        public System.Threading.Tasks.Task<bool> SortWorkerAsync(InCaptivaService.InCaptivaServicePropWorker prop)
+        {
+            return base.Channel.SortWorkerAsync(prop);
+        }
+        
+        public System.Threading.Tasks.Task<bool> SortWorkEntryAsync(InCaptivaService.InCaptivaServicePropWorkEntry prop)
+        {
+            return base.Channel.SortWorkEntryAsync(prop);
         }
         
         public System.Threading.Tasks.Task<bool> AddTestDataAsync()
