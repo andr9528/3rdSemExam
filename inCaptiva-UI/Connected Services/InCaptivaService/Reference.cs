@@ -246,6 +246,8 @@ namespace InCaptivaService
         
         private string DescriptionField;
         
+        private System.TimeSpan EstimatedTimeField;
+        
         private int IDField;
         
         private string NameField;
@@ -279,6 +281,19 @@ namespace InCaptivaService
             set
             {
                 this.DescriptionField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.TimeSpan EstimatedTime
+        {
+            get
+            {
+                return this.EstimatedTimeField;
+            }
+            set
+            {
+                this.EstimatedTimeField = value;
             }
         }
         
