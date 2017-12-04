@@ -11,7 +11,9 @@
     <xs:sequence>
       <xs:element minOccurs="0" name="CompletedTime" nillable="true" type="xs:dateTime" />
       <xs:element minOccurs="0" name="Description" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="EstimatedTime" type="ser:duration" />
       <xs:element minOccurs="0" name="ID" type="xs:int" />
+      <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="ProjectID" type="xs:int" />
       <xs:element minOccurs="0" name="StartTime" type="xs:dateTime" />
       <xs:element minOccurs="0" name="Status" type="xs:boolean" />
@@ -44,6 +46,7 @@
   <xs:complexType name="Project">
     <xs:sequence>
       <xs:element minOccurs="0" name="CompletedTime" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="Description" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="ID" type="xs:int" />
       <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="StartTime" type="xs:dateTime" />
@@ -70,4 +73,62 @@
     </xs:sequence>
   </xs:complexType>
   <xs:element name="WorkEntry" nillable="true" type="tns:WorkEntry" />
+  <xs:simpleType name="InCaptivaService.ListType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Task" />
+      <xs:enumeration value="Project" />
+      <xs:enumeration value="Worker" />
+      <xs:enumeration value="WorkEntry" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="InCaptivaService.ListType" nillable="true" type="tns:InCaptivaService.ListType" />
+  <xs:simpleType name="InCaptivaService.PropTask">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="ProjectID" />
+      <xs:enumeration value="StartTime" />
+      <xs:enumeration value="CompletedTime" />
+      <xs:enumeration value="Status" />
+      <xs:enumeration value="ID" />
+      <xs:enumeration value="Description" />
+      <xs:enumeration value="Name" />
+      <xs:enumeration value="TimeUsed" />
+      <xs:enumeration value="EstimatedTime" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="InCaptivaService.PropTask" nillable="true" type="tns:InCaptivaService.PropTask" />
+  <xs:simpleType name="InCaptivaService.PropProject">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="StartTime" />
+      <xs:enumeration value="CompletedTime" />
+      <xs:enumeration value="Status" />
+      <xs:enumeration value="ID" />
+      <xs:enumeration value="Name" />
+      <xs:enumeration value="Description" />
+      <xs:enumeration value="TimeUsed" />
+      <xs:enumeration value="EstimatedTime" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="InCaptivaService.PropProject" nillable="true" type="tns:InCaptivaService.PropProject" />
+  <xs:simpleType name="InCaptivaService.PropWorker">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="ID" />
+      <xs:enumeration value="Name" />
+      <xs:enumeration value="PhoneNumber" />
+      <xs:enumeration value="Email" />
+      <xs:enumeration value="JobDescription" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="InCaptivaService.PropWorker" nillable="true" type="tns:InCaptivaService.PropWorker" />
+  <xs:simpleType name="InCaptivaService.PropWorkEntry">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="StartTime" />
+      <xs:enumeration value="CompletedTime" />
+      <xs:enumeration value="Status" />
+      <xs:enumeration value="TaskID" />
+      <xs:enumeration value="WorkerID" />
+      <xs:enumeration value="ID" />
+      <xs:enumeration value="TimeUsed" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="InCaptivaService.PropWorkEntry" nillable="true" type="tns:InCaptivaService.PropWorkEntry" />
 </xs:schema>

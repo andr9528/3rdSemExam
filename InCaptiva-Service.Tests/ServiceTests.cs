@@ -56,7 +56,7 @@ namespace InCaptiva_Service.Tests
 
             Assert.AreEqual(1, countbefore);
 
-            Assert.IsTrue(client.Delete(1, worker.ID));
+            Assert.IsTrue(client.Delete(InCaptivaService.InCaptivaServiceListType.Worker, worker.ID));
 
             Assert.AreEqual(0, countbefore - 1);
             

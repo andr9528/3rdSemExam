@@ -61,7 +61,32 @@ namespace inCaptiva_Service
         bool EndWorkEntry(int entryID);
 
         [OperationContract]
+<<<<<<< HEAD
         bool Delete(int type, int id);
+=======
+        bool EndTask(int taskID);
+
+        [OperationContract]
+        bool EndProject(int projectID);
+
+        [OperationContract]
+        bool Delete(InCaptivaService.ListType type, int id);
+
+        [OperationContract(Name = "SortTask")]
+        bool Sort(InCaptivaService.PropTask prop = InCaptivaService.PropTask.ID);
+
+        [OperationContract(Name = "SortProject")]
+        bool Sort(InCaptivaService.PropProject prop = InCaptivaService.PropProject.ID);
+
+        [OperationContract(Name = "SortWorker")]
+        bool Sort(InCaptivaService.PropWorker prop = InCaptivaService.PropWorker.ID);
+
+        [OperationContract(Name = "SortWorkEntry")]
+        bool Sort(InCaptivaService.PropWorkEntry prop = InCaptivaService.PropWorkEntry.ID);
+
+        [OperationContract]
+        bool AddTestData();
+>>>>>>> 7a7b08ec6dbe6e2799101c173f23194b2b9a8372
 
         [OperationContract]
         bool ResetService(string password);

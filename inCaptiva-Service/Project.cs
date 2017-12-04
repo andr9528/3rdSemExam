@@ -102,12 +102,13 @@ namespace inCaptiva_Service
 
             }
         }
-        public void Completed()
+        public bool Completed()
         {
             lock (Lock)
             {
                 CompletedTime = DateTime.Now;
             }
+            return true;
         }
         private void DetermineTimeUsed()
         {
