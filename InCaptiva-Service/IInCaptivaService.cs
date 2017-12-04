@@ -62,6 +62,7 @@ namespace inCaptiva_Service
 
         [OperationContract]
 <<<<<<< HEAD
+<<<<<<< HEAD
         bool Delete(int type, int id);
 =======
         bool EndTask(int taskID);
@@ -87,6 +88,15 @@ namespace inCaptiva_Service
         [OperationContract]
         bool AddTestData();
 >>>>>>> 7a7b08ec6dbe6e2799101c173f23194b2b9a8372
+=======
+        bool Delete(InCaptivaService.ListType type, int id);
+
+        [OperationContract]
+        bool Sort(InCaptivaService.ListType type, string parameter);
+
+        [OperationContract]
+        bool AddTestData();
+>>>>>>> parent of 5e1047e... ...
 
         [OperationContract]
         bool ResetService(string password);
