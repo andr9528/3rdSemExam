@@ -136,8 +136,8 @@ namespace inCaptiva_Service
                 WorkerID = workerID;
                 lock (Repo.Lock)
                 {
-                    Repo.HighestEntryID++;
                     ID = Repo.HighestEntryID;
+                    Repo.HighestEntryID++;
                 }
             }
         }

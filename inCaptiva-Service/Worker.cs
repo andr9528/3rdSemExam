@@ -33,8 +33,8 @@ namespace inCaptiva_Service
 
                 lock (Repo.Lock)
                 {
-                    Repo.HighestWorkerID++;
                     ID = Repo.HighestWorkerID;
+                    Repo.HighestWorkerID++;
                 }
             }
         }
