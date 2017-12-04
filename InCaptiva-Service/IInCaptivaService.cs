@@ -61,13 +61,7 @@ namespace inCaptiva_Service
         bool EndWorkEntry(int entryID);
 
         [OperationContract]
-        bool Delete(InCaptivaService.ListType type, int id);
-
-        [OperationContract]
-        bool Sort(InCaptivaService.ListType type, string parameter);
-
-        [OperationContract]
-        bool AddTestData();
+        bool Delete(int type, int id);
 
         [OperationContract]
         bool ResetService(string password);
