@@ -784,10 +784,10 @@ namespace inCaptiva_Service
             NewProject("Automated welding machine", "Lorem Ipsum er ganske enkelt fyldtekst fra print- og typografiindustrien. Lorem Ipsum har været standard...");
             NewWorker("Jan Christensen", "75319486", "Jan@somehwere.com", "CEO");
             NewWorker("James Bond", "00700700", "Bond@JamesBond.uk", "Assasin");
-            NewTask(1, "Cut Onions", "Slice & Dice", new TimeSpan(15, 0, 0));
-            NewTask(2, "Setup of build", "Setting up the materials, etc.", new TimeSpan(10, 0, 0));
-            NewTask(2, "Paintjob", "Paint the machine so it looks awesome", new TimeSpan(50, 0, 0));
-            NewTask(2, "Assembling", "Assemble the various components together", new TimeSpan(75, 0, 0));
+            NewTask(0, "Cut Onions", "Slice & Dice", new TimeSpan(15, 0, 0));
+            NewTask(1, "Setup of build", "Setting up the materials, etc.", new TimeSpan(10, 0, 0));
+            NewTask(1, "Paintjob", "Paint the machine so it looks awesome", new TimeSpan(50, 0, 0));
+            NewTask(1, "Assembling", "Assemble the various components together", new TimeSpan(75, 0, 0));
             NewWorkEntry(0, 1);
             NewWorkEntry(1, 0);
             lock (Repo.Lock)

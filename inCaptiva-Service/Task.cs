@@ -67,8 +67,8 @@ namespace inCaptiva_Service
 
                 lock (Repo.Lock)
                 {
-                    Repo.HighestTaskID++;
                     ID = Repo.HighestTaskID;
+                    Repo.HighestTaskID++;
                 }
 
             }
@@ -94,10 +94,10 @@ namespace inCaptiva_Service
 
                 if (Entries != null)
                 {
+                    timeUsed = new TimeSpan();
                     foreach (var entry in Entries)
                     {
                         timeUsed += entry.TimeUsed;
-                        
                     }
                 }
                 else

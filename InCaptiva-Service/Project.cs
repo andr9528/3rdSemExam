@@ -48,6 +48,7 @@ namespace inCaptiva_Service
             }
             set { }
         }
+        [DataMember]
         public TimeSpan EstimatedTime
         {
             get
