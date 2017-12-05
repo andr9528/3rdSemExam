@@ -39,7 +39,7 @@
     }
 
     #label {
-        width: 100px;
+        width: 12%;
         display: inline-block;
     }
 </style>
@@ -53,19 +53,43 @@
 <p></p>
 
 <div id="diagram">
-    <center><divhead style="font-weight:bold">Tasks</divhead></center>
+    <center><divhead style="font-weight:bold">Projects - Tasks</divhead></center>
     @{ string[] color = new string[] { "skyblue", "purple", "deeppink", "brown" }; }
     @{ string[] color2 = new string[] { "red", "yellow", "green" }; }
     @{ int colorIndex = 0; }
     @{ int border = 1; }
     @{ string content = ""; }
+    @{ int barWidth = 82; }
+
+    @*
+        pheudo calc width
+            find longest proj
+        if (project estimate totalhour > project used time totalhour)
+        project estimate totalhour = 100%
+            currenttask.estimate / task.count * totalhour
+    *@
+
+
+    @{ double longestProj = 0; }
+    @for(int i = 0; i < Model.Project.Count(); i++) {
+
+        if(Model.Project[i].EstimatedTime.TotalHours > longestProj || Model.Project[i].TimeUsed.TotalHours > longestProj) {
+            if(Model.Project[i].EstimatedTime.TotalHours >= Model.Project[i].TimeUsed.TotalHours) {
+                longestProj = Model.Project[i].EstimatedTime.TotalHours;
+            } else {
+                longestProj = Model.Project[i].TimeUsed.TotalHours;
+            }
+        }
+    }
+
 
     @*Project*@
     @for(int i = 0; i < Model.Project.Count(); i++) {
 
-        <div style="font-weight:bold" id="label">Projekt ID - @(Model.Project[i].ID)</div>
-        <br />
-
+        if(Model.Project[i].EstimatedTime.TotalHours > 0) {
+            <div style="font-weight:bold" id="label">Projekt ID - @(Model.Project[i].ID)</div>
+            <br />
+        }
         //task
         //Estimate
         <div id="label">Estimate:</div>
@@ -83,8 +107,11 @@
                     content = Model.Task[j].ID.ToString();
                 }
 
+                //calc width
+                double tWitdh = (Model.Task[j].EstimatedTime.TotalHours / longestProj) * barWidth;
+
                 //task
-                <div id="task" style="border: @(border + "px solid"); background-color: @(color[colorIndex]); width: @(((Model.Task[j].EstimatedTime.TotalHours) / 2).ToString().Replace(',', '.'))%">@(content)</div>
+                <div id="task" style="border: @(border + "px solid"); background-color: @(color[colorIndex]); width: @(tWitdh.ToString().Replace(',', '.'))%">@(content)</div>
 
                 //next color
                 colorIndex++;
@@ -122,8 +149,11 @@
                     content = Model.Task[j].ID.ToString();
                 }
 
+                //calc width
+                double tWitdh = (Model.Task[j].TimeUsed.TotalHours / longestProj) * barWidth;
+
                 //task
-                <div id="task" style="border: @(border + "px solid"); background-color: @(color2[colorIndex]); width: @(((Model.Task[j].TimeUsed.TotalHours) / 2).ToString().Replace(',', '.'))%">@(content)</div>
+                <div id="task" style="border: @(border + "px solid"); background-color: @(color2[colorIndex]); width: @(tWitdh.ToString().Replace(',', '.'))%">@(content)</div>
             }
         }
 
@@ -136,8 +166,20 @@
 <br />
 <br />
 
+@{ double longestTask = 0; }
+@for(int i = 0; i < Model.Task.Count(); i++) {
+
+    if(Model.Task[i].EstimatedTime.TotalHours > longestTask || Model.Task[i].TimeUsed.TotalHours > longestTask) {
+        if(Model.Task[i].EstimatedTime.TotalHours >= Model.Task[i].TimeUsed.TotalHours) {
+            //longestTask = Model.Task[i].EstimatedTime.TotalHours;
+        } else {
+            longestTask = Model.Task[i].TimeUsed.TotalHours;
+        }
+    }
+}
+
 <div id="diagram">
-    <center><divhead style="font-weight:bold">Work entries</divhead></center>
+    <center><divhead style="font-weight:bold">Task - Work entries</divhead></center>
     @{ color = new string[] { "skyblue", "purple", "deeppink", "brown" }; }
     @{ color2 = new string[] { "red", "yellow", "green" }; }
     @{ colorIndex = 0; }
@@ -147,12 +189,15 @@
     @*Task*@
     @for(int i = 0; i < Model.Task.Count(); i++) {
 
-        <div style="font-weight:bold" id="label">Task ID - @(Model.Task[i].ID)</div>
-        <br />
-
         //task
-        //Estimate
-        <div id="label">Time used:</div>
+        if(Model.Task[i].TimeUsed.TotalHours > 0) {
+            <div style="font-weight:bold" id="label">Task ID - @(Model.Task[i].ID)</div>
+            <br />
+
+            //Estimate
+            <div id="label">Time used:</div>
+        }
+
         for(int j = 0; j < Model.WorkEntry.Count; j++) {
 
             //only task with same id as current project
@@ -167,8 +212,11 @@
                     content = Model.WorkEntry[j].ID.ToString();
                 }
 
-                //task
-                <div id="task" style="border: @(border + "px solid"); background-color: @(color[colorIndex]); width: @(((Model.WorkEntry[j].TimeUsed.TotalHours) / 2).ToString().Replace(',', '.'))%">@(content)</div>
+                //calc width
+                double tWitdh = (Model.WorkEntry[j].TimeUsed.TotalHours / longestTask) * barWidth;
+
+                //WorkEntry
+                <div id="task" style="border: @(border + "px solid"); background-color: @(color[colorIndex]);width: @(tWitdh.ToString().Replace(',', '.'))%">@(content)</div>
 
                 //next color
                 colorIndex++;
@@ -177,8 +225,10 @@
                 }
             }
         }
-        //next project
-        <br />
-
+        if(Model.Task.Count != i + 1) {
+            //next project
+            colorIndex = 0;
+            <br />
+        }
     }
 </div>
