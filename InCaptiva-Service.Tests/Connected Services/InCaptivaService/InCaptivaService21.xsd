@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:ser="http://schemas.microsoft.com/2003/10/Serialization/" xmlns:tns="http://schemas.datacontract.org/2004/07/inCaptiva_Service" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/inCaptiva_Service" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://incaptiva.azurewebsites.net/InCaptivaService.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+  <xs:complexType name="ArrayOfTask">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Task" nillable="true" type="tns:Task" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfTask" nillable="true" type="tns:ArrayOfTask" />
+  <xs:complexType name="Task">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="CompletedTime" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="Description" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="EstimatedTime" type="ser:duration" />
+      <xs:element minOccurs="0" name="ID" type="xs:int" />
+      <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ProjectID" type="xs:int" />
+      <xs:element minOccurs="0" name="StartTime" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="Status" type="xs:boolean" />
+      <xs:element minOccurs="0" name="TimeUsed" type="ser:duration" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Task" nillable="true" type="tns:Task" />
+  <xs:complexType name="ArrayOfWorker">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Worker" nillable="true" type="tns:Worker" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfWorker" nillable="true" type="tns:ArrayOfWorker" />
+  <xs:complexType name="Worker">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Email" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ID" type="xs:int" />
+      <xs:element minOccurs="0" name="JobDescription" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="PhoneNumber" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Worker" nillable="true" type="tns:Worker" />
+  <xs:complexType name="ArrayOfProject">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Project" nillable="true" type="tns:Project" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfProject" nillable="true" type="tns:ArrayOfProject" />
+  <xs:complexType name="Project">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="CompletedTime" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="Description" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ID" type="xs:int" />
+      <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="StartTime" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="Status" type="xs:boolean" />
+      <xs:element minOccurs="0" name="TimeUsed" type="ser:duration" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Project" nillable="true" type="tns:Project" />
+  <xs:complexType name="ArrayOfWorkEntry">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="WorkEntry" nillable="true" type="tns:WorkEntry" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfWorkEntry" nillable="true" type="tns:ArrayOfWorkEntry" />
+  <xs:complexType name="WorkEntry">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="CompletedTime" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="ID" type="xs:int" />
+      <xs:element minOccurs="0" name="StartTime" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="Status" type="xs:boolean" />
+      <xs:element minOccurs="0" name="TaskID" type="xs:int" />
+      <xs:element minOccurs="0" name="TimeUsed" type="ser:duration" />
+      <xs:element minOccurs="0" name="WorkerID" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="WorkEntry" nillable="true" type="tns:WorkEntry" />
+  <xs:simpleType name="InCaptivaService.ListType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Task" />
+      <xs:enumeration value="Project" />
+      <xs:enumeration value="Worker" />
+      <xs:enumeration value="WorkEntry" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="InCaptivaService.ListType" nillable="true" type="tns:InCaptivaService.ListType" />
+  <xs:simpleType name="InCaptivaService.PropTask">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="ProjectID" />
+      <xs:enumeration value="StartTime" />
+      <xs:enumeration value="CompletedTime" />
+      <xs:enumeration value="Status" />
+      <xs:enumeration value="ID" />
+      <xs:enumeration value="Description" />
+      <xs:enumeration value="Name" />
+      <xs:enumeration value="TimeUsed" />
+      <xs:enumeration value="EstimatedTime" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="InCaptivaService.PropTask" nillable="true" type="tns:InCaptivaService.PropTask" />
+  <xs:simpleType name="InCaptivaService.PropProject">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="StartTime" />
+      <xs:enumeration value="CompletedTime" />
+      <xs:enumeration value="Status" />
+      <xs:enumeration value="ID" />
+      <xs:enumeration value="Name" />
+      <xs:enumeration value="Description" />
+      <xs:enumeration value="TimeUsed" />
+      <xs:enumeration value="EstimatedTime" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="InCaptivaService.PropProject" nillable="true" type="tns:InCaptivaService.PropProject" />
+  <xs:simpleType name="InCaptivaService.PropWorker">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="ID" />
+      <xs:enumeration value="Name" />
+      <xs:enumeration value="PhoneNumber" />
+      <xs:enumeration value="Email" />
+      <xs:enumeration value="JobDescription" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="InCaptivaService.PropWorker" nillable="true" type="tns:InCaptivaService.PropWorker" />
+  <xs:simpleType name="InCaptivaService.PropWorkEntry">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="StartTime" />
+      <xs:enumeration value="CompletedTime" />
+      <xs:enumeration value="Status" />
+      <xs:enumeration value="TaskID" />
+      <xs:enumeration value="WorkerID" />
+      <xs:enumeration value="ID" />
+      <xs:enumeration value="TimeUsed" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="InCaptivaService.PropWorkEntry" nillable="true" type="tns:InCaptivaService.PropWorkEntry" />
+</xs:schema>

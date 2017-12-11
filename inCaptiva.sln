@@ -3,10 +3,16 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.27004.2005
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "inCaptiva-Lib", "inCaptiva-Lib\inCaptiva-Lib.csproj", "{21073DDD-3FB7-4CA2-9E81-217FE6C84E99}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "inCaptiva-UI", "inCaptiva-UI\inCaptiva-UI.csproj", "{D8DE03E3-4A09-4410-85A7-1391F3E00EB7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "inCaptiva-Service", "inCaptiva-Service\inCaptiva-Service.csproj", "{1329D2DA-224D-4AD2-AED6-8D6E2384021A}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InCaptiva-Service.Tests", "InCaptiva-Service.Tests\InCaptiva-Service.Tests.csproj", "{89B8861F-55D9-4CFC-9859-DA69C6F479FA}"
+	ProjectSection(ProjectDependencies) = postProject
+		{DF1526B7-C614-4E03-88CB-B83A715E25C2} = {DF1526B7-C614-4E03-88CB-B83A715E25C2}
+	EndProjectSection
 EndProject
+
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InCaptiva-Service", "InCaptiva-Service\InCaptiva-Service.csproj", "{DF1526B7-C614-4E03-88CB-B83A715E25C2}"
+
 Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "inCaptiva-UI", "inCaptiva-UI\", "{0DDCBC58-D55A-41CF-BC32-D08CD5EAFEAA}"
 	ProjectSection(WebsiteProperties) = preProject
 		TargetFrameworkMoniker = ".NETFramework,Version%3Dv4.6.1"
@@ -35,6 +41,7 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+
 		{21073DDD-3FB7-4CA2-9E81-217FE6C84E99}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{21073DDD-3FB7-4CA2-9E81-217FE6C84E99}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{21073DDD-3FB7-4CA2-9E81-217FE6C84E99}.Release|Any CPU.ActiveCfg = Release|Any CPU

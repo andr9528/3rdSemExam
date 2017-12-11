@@ -1,0 +1,1 @@
+﻿<%@ ServiceHost Language="C#" Debug="true" Service="inCaptiva_Service.InCaptivaService" CodeBehind="InCaptivaService.svc.cs" %>
