@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.26730.16
+VisualStudioVersion = 15.0.27004.2005
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "inCaptiva-UI", "inCaptiva-UI\inCaptiva-UI.csproj", "{D8DE03E3-4A09-4410-85A7-1391F3E00EB7}"
 EndProject
@@ -10,7 +10,30 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InCaptiva-Service.Tests", "
 		{DF1526B7-C614-4E03-88CB-B83A715E25C2} = {DF1526B7-C614-4E03-88CB-B83A715E25C2}
 	EndProjectSection
 EndProject
+
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InCaptiva-Service", "InCaptiva-Service\InCaptiva-Service.csproj", "{DF1526B7-C614-4E03-88CB-B83A715E25C2}"
+
+Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "inCaptiva-UI", "inCaptiva-UI\", "{0DDCBC58-D55A-41CF-BC32-D08CD5EAFEAA}"
+	ProjectSection(WebsiteProperties) = preProject
+		TargetFrameworkMoniker = ".NETFramework,Version%3Dv4.6.1"
+		Debug.AspNetCompiler.VirtualPath = "/localhost_55852"
+		Debug.AspNetCompiler.PhysicalPath = "inCaptiva-UI\"
+		Debug.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_55852\"
+		Debug.AspNetCompiler.Updateable = "true"
+		Debug.AspNetCompiler.ForceOverwrite = "true"
+		Debug.AspNetCompiler.FixedNames = "false"
+		Debug.AspNetCompiler.Debug = "True"
+		Release.AspNetCompiler.VirtualPath = "/localhost_55852"
+		Release.AspNetCompiler.PhysicalPath = "inCaptiva-UI\"
+		Release.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_55852\"
+		Release.AspNetCompiler.Updateable = "true"
+		Release.AspNetCompiler.ForceOverwrite = "true"
+		Release.AspNetCompiler.FixedNames = "false"
+		Release.AspNetCompiler.Debug = "False"
+		VWDPort = "55852"
+		SlnRelativePath = "inCaptiva-UI\"
+		DefaultWebSiteLanguage = "Visual C#"
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -18,18 +41,19 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{D8DE03E3-4A09-4410-85A7-1391F3E00EB7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{D8DE03E3-4A09-4410-85A7-1391F3E00EB7}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{D8DE03E3-4A09-4410-85A7-1391F3E00EB7}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{D8DE03E3-4A09-4410-85A7-1391F3E00EB7}.Release|Any CPU.Build.0 = Release|Any CPU
-		{89B8861F-55D9-4CFC-9859-DA69C6F479FA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{89B8861F-55D9-4CFC-9859-DA69C6F479FA}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{89B8861F-55D9-4CFC-9859-DA69C6F479FA}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{89B8861F-55D9-4CFC-9859-DA69C6F479FA}.Release|Any CPU.Build.0 = Release|Any CPU
-		{DF1526B7-C614-4E03-88CB-B83A715E25C2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{DF1526B7-C614-4E03-88CB-B83A715E25C2}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{DF1526B7-C614-4E03-88CB-B83A715E25C2}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{DF1526B7-C614-4E03-88CB-B83A715E25C2}.Release|Any CPU.Build.0 = Release|Any CPU
+
+		{21073DDD-3FB7-4CA2-9E81-217FE6C84E99}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{21073DDD-3FB7-4CA2-9E81-217FE6C84E99}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{21073DDD-3FB7-4CA2-9E81-217FE6C84E99}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{21073DDD-3FB7-4CA2-9E81-217FE6C84E99}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1329D2DA-224D-4AD2-AED6-8D6E2384021A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1329D2DA-224D-4AD2-AED6-8D6E2384021A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1329D2DA-224D-4AD2-AED6-8D6E2384021A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1329D2DA-224D-4AD2-AED6-8D6E2384021A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0DDCBC58-D55A-41CF-BC32-D08CD5EAFEAA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0DDCBC58-D55A-41CF-BC32-D08CD5EAFEAA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0DDCBC58-D55A-41CF-BC32-D08CD5EAFEAA}.Release|Any CPU.ActiveCfg = Debug|Any CPU
+		{0DDCBC58-D55A-41CF-BC32-D08CD5EAFEAA}.Release|Any CPU.Build.0 = Debug|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
