@@ -48,6 +48,7 @@ namespace inCaptiva_Service
             }
             set { }
         }
+        [DataMember]
         public TimeSpan EstimatedTime
         {
             get
@@ -71,6 +72,7 @@ namespace inCaptiva_Service
 
                 if (Tasks != null)
                 {
+                    estimatedTime = new TimeSpan();
                     foreach (var task in Tasks)
                     {
                         estimatedTime += task.EstimatedTime;
@@ -96,8 +98,8 @@ namespace inCaptiva_Service
 
                 lock (Repo.Lock)
                 {
-                    Repo.HighestProjectID++;
                     ID = Repo.HighestProjectID;
+                    Repo.HighestProjectID++;
                 }
 
             }
@@ -123,6 +125,7 @@ namespace inCaptiva_Service
 
                 if (Tasks != null)
                 {
+                    timeUsed = new TimeSpan();
                     foreach (var task in Tasks)
                     {
                         timeUsed += task.TimeUsed;
