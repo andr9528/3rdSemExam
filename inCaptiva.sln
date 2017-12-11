@@ -13,7 +13,7 @@ EndProject
 
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InCaptiva-Service", "InCaptiva-Service\InCaptiva-Service.csproj", "{DF1526B7-C614-4E03-88CB-B83A715E25C2}"
 
-Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "inCaptiva-UI", "inCaptiva-UI\", "{0DDCBC58-D55A-41CF-BC32-D08CD5EAFEAA}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "inCaptiva-UI", "inCaptiva-UI\inCaptiva-UI.csproj", "{EEFBA6FC-7E78-4B84-A607-798CC9FB765C}"
 	ProjectSection(WebsiteProperties) = preProject
 		TargetFrameworkMoniker = ".NETFramework,Version%3Dv4.6.1"
 		Debug.AspNetCompiler.VirtualPath = "/localhost_55852"
@@ -50,10 +50,10 @@ Global
 		{1329D2DA-224D-4AD2-AED6-8D6E2384021A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1329D2DA-224D-4AD2-AED6-8D6E2384021A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1329D2DA-224D-4AD2-AED6-8D6E2384021A}.Release|Any CPU.Build.0 = Release|Any CPU
-		{0DDCBC58-D55A-41CF-BC32-D08CD5EAFEAA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{0DDCBC58-D55A-41CF-BC32-D08CD5EAFEAA}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{0DDCBC58-D55A-41CF-BC32-D08CD5EAFEAA}.Release|Any CPU.ActiveCfg = Debug|Any CPU
-		{0DDCBC58-D55A-41CF-BC32-D08CD5EAFEAA}.Release|Any CPU.Build.0 = Debug|Any CPU
+		{EEFBA6FC-7E78-4B84-A607-798CC9FB765C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EEFBA6FC-7E78-4B84-A607-798CC9FB765C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EEFBA6FC-7E78-4B84-A607-798CC9FB765C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EEFBA6FC-7E78-4B84-A607-798CC9FB765C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
